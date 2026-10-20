@@ -245,7 +245,7 @@
   };
   $("voiceSample").onclick = () => {
     let b = StudioVoice.generate(
-      "Welcome to the Storyverse. Every world begins with an idea.",
+      "Welcome to the cartoon studio. Every world begins with an idea.",
       $("voicePreset").value,
     );
     new Audio(URL.createObjectURL(new Blob([b], { type: "audio/wav" })))

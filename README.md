@@ -4,6 +4,16 @@ Offline, editable 3D cartoons, fresh stills, and comics from the same scene data
 
 This is the **1.4.1 public source edition**, derived from the 1.4 Stills & Comics edition. It uses lightweight procedural low-poly rigs and a deterministic software renderer, not a text-to-video AI service. No account or API key is needed to use the built application.
 
+## New here? Start here
+
+1. **[Make your first cartoon](docs/GETTING_STARTED.md)**: download, build, open a ready-to-edit example, add narration/music and save an export.
+2. **[Recipes and examples](docs/RECIPES.md)**: change a camera, animate an actor, create a still, make a comic and render headlessly.
+3. **[Troubleshooting](docs/TROUBLESHOOTING.md)**: installation, silence, missing files, browser recording and blank frames.
+4. **[Project format and asset catalog](docs/PROJECT_FORMAT.md)**: the editable data model and available generic rigs.
+5. **[Testing and contributing](docs/TESTING.md)**: reproduce the checks and understand what they do not prove.
+
+You do not need to write JavaScript for the first tutorial. Installation uses a terminal; authoring uses the browser UI, with JSON fields for precise character and camera edits. This is a source release, so START.html appears **after** the build, not in the downloaded repository ZIP.
+
 ## Build once, use offline
 
 Requires Node.js 20 or newer and npm. The first dependency installation needs internet access.

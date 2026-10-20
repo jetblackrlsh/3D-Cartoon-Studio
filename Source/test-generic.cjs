@@ -105,12 +105,30 @@ const fs = require("node:fs"),
     4,
     "Only authorized music embedded",
   );
+  const tutorial = JSON.parse(
+    fs.readFileSync(path.join(root, "First-Cartoon.jetcartoon.json")),
+  );
+  S.validate(tutorial.project);
+  assert.equal(tutorial.project.scenes.length, 2);
+  assert.equal(Object.keys(tutorial.assets).length, 4);
+  vm.runInContext(
+    fs.readFileSync(path.join(__dirname, "print.js"), "utf8"),
+    ctx,
+  );
+  const options = JSON.parse(
+    fs.readFileSync(path.join(root, "examples/still-options.json")),
+  );
+  const still = await ctx.StudioPrint.still(tutorial, options);
+  assert.equal(still.width, 1280);
+  assert.equal(still.height, 720);
+  assert.ok(still.toBuffer("image/png").length > 1000);
   console.log(
     JSON.stringify({
       genericCharacterEnvironmentRenders: count,
       controlsPresent: true,
       musicTracks: 4,
       unknownRigRejected: true,
+      tutorialAndStillOptions: true,
     }),
   );
 })().catch((e) => {

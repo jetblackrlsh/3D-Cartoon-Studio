@@ -32,6 +32,14 @@ for (const item of library.tracks) {
     "data:" + item.mime + ";base64," + audio.toString("base64");
 }
 fs.writeFileSync(path.join(root, "Demo.jetcartoon.json"), JSON.stringify(pkg));
+const tutorial = JSON.parse(
+  fs.readFileSync(path.join(root, "examples/first-cartoon.json")),
+);
+tutorial.assets = { ...pkg.assets, ...tutorial.assets };
+fs.writeFileSync(
+  path.join(root, "First-Cartoon.jetcartoon.json"),
+  JSON.stringify(tutorial),
+);
 const scripts = [
   ["assets", "const BUNDLED=" + JSON.stringify(pkg) + ";"],
   ["engine", fs.readFileSync(path.join(root, "engine.bundle.js"), "utf8")],

@@ -1,0 +1,17 @@
+{
+  "sceneIndex": 0,
+  "time": 3,
+  "width": 1280,
+  "height": 720,
+  "captions": false,
+  "camera": [
+    4,
+    2.8,
+    8
+  ],
+  "target": [
+    0,
+    1.3,
+    0
+  ]
+}
