@@ -1,0 +1,26 @@
+{
+  "name": "3d-cartoon-studio",
+  "version": "1.4.1",
+  "private": true,
+  "description": "Offline 3D cartoon authoring, rendering, stills and editable comics",
+  "license": "GPL-3.0-only",
+  "scripts": {
+    "build": "node Source/build.cjs",
+    "test": "npm run build && node Source/test.cjs && node Source/test-voice.cjs && node Source/test-generic.cjs",
+    "render": "node Source/render.cjs",
+    "print": "node Source/print.cjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "0.1.80",
+    "esbuild": "0.25.9",
+    "mespeak": "2.0.2",
+    "pdf-lib": "1.17.1",
+    "three": "0.180.0"
+  },
+  "devDependencies": {
+    "jsdom": "26.1.0"
+  }
+}

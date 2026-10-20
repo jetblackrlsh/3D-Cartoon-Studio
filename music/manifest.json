@@ -1,0 +1,31 @@
+{
+  "title": "Emotion Music Library",
+  "creator": "Nicholas Alexander Benson (Jet Black)",
+  "license": "GPL-3.0-only",
+  "tracks": [
+    {
+      "name": "Tranquility",
+      "file": "Tranquility.mp3",
+      "mime": "audio/mpeg",
+      "sha256": "d178291d3222caeecb346baa973cb393b0b43b54ba085ca0a566f03e90c66abe"
+    },
+    {
+      "name": "Suspense",
+      "file": "Suspense.mp3",
+      "mime": "audio/mpeg",
+      "sha256": "315ebaab6320713b330151c8779e09c7d20e0a2c10f78fa46e90d1b64d074011"
+    },
+    {
+      "name": "Determination",
+      "file": "Determination.mp3",
+      "mime": "audio/mpeg",
+      "sha256": "35536bc68183896561e298500eac0207422ea792f280fa97ed73f0df155fa869"
+    },
+    {
+      "name": "Playfulness",
+      "file": "Playfulness.mp3",
+      "mime": "audio/mpeg",
+      "sha256": "bbe50be8f3cf189ce8a013d5f96230a02ffa583df20d6634c50dc0f2d91b011e"
+    }
+  ]
+}

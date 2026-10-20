@@ -36,7 +36,7 @@ Install FFmpeg separately for movies. Stills and comics do not require it.
 npm test
 node Source/print.cjs still Starter.jetcartoon.json output/still.png
 node Source/print.cjs comic Demo/Studio-Demo.jetcomic.json output/comic
-node Source/render.cjs Starter.jetcartoon.json rendered 0 1 12
+node Source/render.cjs Demo.jetcartoon.json rendered 0 1 12
 ```
 
 The test command creates the editable demo comic and its PDF under `Demo/`. The renderer produces one MP4 per selected scene; it is not an automatic finished-film editor. Existing scene MP4 files are skipped, so use a fresh output directory after project edits.
@@ -49,13 +49,13 @@ For precise still settings, pass a JSON options file as the fourth argument:
 
 ## Audio and media
 
-The public starter uses procedural scenery and has no external artwork, private stories, commercial character adaptations, or music recordings. Preset names in the interface do not imply those music files are included. You can supply media you have permission to use in your own project. See [docs/PROJECT_FORMAT.md](docs/PROJECT_FORMAT.md).
+The public starter uses generic procedural characters and scenery, with no personal characters, private worlds, story text or production artwork. Four original emotion-based songs by Nicholas Alexander Benson (Jet Black) are included with his authorization: Tranquility, Suspense, Determination and Playfulness. The build embeds these in START.html and generates Demo.jetcartoon.json for headless use. You can supply media you have permission to use in your own project. See [docs/PROJECT_FORMAT.md](docs/PROJECT_FORMAT.md).
 
 Local synthetic speech is included at build time through meSpeak. It is traditional text-to-speech, not voice cloning. Generated speech can sound robotic. For higher-quality voices, import a recording you are authorized to use.
 
 ## Known limits
 
-- This is the reusable generic studio, not a merger of every story-specific renderer branch. Unsupported character kinds fail validation. The public sample contains no production-story artwork or voice recordings.
+- This is the generic-only studio: all personal character and world templates have been removed, not just hidden or renamed. Unsupported character kinds fail validation. The public sample contains no production-story artwork or voice recordings.
 - Browser recording depends on MediaRecorder, codecs, audio activation and tab visibility. It is real-time, not frame-exact offline encoding. Use the headless renderer for deterministic visual frames.
 - Browser and CLI audio mixing are not identical. Browser SFX use embedded `sfx/<scene-id>` audio; CLI also supports procedural `scene.sfx` events. Check the final export rather than assuming audio parity.
 - Still/PDF exports use the software renderer; appearance can differ from WebGL preview. Fonts and native rasterization can differ across operating systems.
@@ -68,4 +68,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Keep the offline build and editable proj
 
 ## License
 
-The original studio code and procedural demo are licensed under **GNU GPL version 3 only**. Third-party packages retain their own licenses. GPL permits use, modification and commercial distribution under its conditions; redistribution of modified or bundled software requires applicable notices and corresponding source. Media you import is not automatically licensed by this repository.
+The original studio code, generic procedural demo and included original music are licensed under **GNU GPL version 3 only**. Third-party packages retain their own licenses. GPL permits use, modification and commercial distribution under its conditions; redistribution of modified or bundled software requires applicable notices and corresponding source. Media you import is not automatically licensed by this repository.

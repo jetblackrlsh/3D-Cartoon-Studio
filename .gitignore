@@ -1,0 +1,12 @@
+node_modules/
+START.html
+*.bundle.js
+Demo/
+rendered/
+test-results.json
+output/
+*.log
+.DS_Store
+.env
+.env.*
+Demo.jetcartoon.json
