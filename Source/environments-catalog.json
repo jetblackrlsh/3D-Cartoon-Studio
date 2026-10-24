@@ -1,0 +1,212 @@
+[
+  {
+    "id": "meadow",
+    "category": "Nature",
+    "label": "Meadow"
+  },
+  {
+    "id": "deciduous-forest",
+    "category": "Nature",
+    "label": "Deciduous Forest"
+  },
+  {
+    "id": "pine-forest",
+    "category": "Nature",
+    "label": "Pine Forest"
+  },
+  {
+    "id": "rainforest",
+    "category": "Nature",
+    "label": "Rainforest"
+  },
+  {
+    "id": "swamp",
+    "category": "Nature",
+    "label": "Swamp"
+  },
+  {
+    "id": "desert-dunes",
+    "category": "Nature",
+    "label": "Desert Dunes"
+  },
+  {
+    "id": "red-canyon",
+    "category": "Nature",
+    "label": "Red Canyon"
+  },
+  {
+    "id": "snowy-forest",
+    "category": "Nature",
+    "label": "Snowy Forest"
+  },
+  {
+    "id": "tundra",
+    "category": "Nature",
+    "label": "Tundra"
+  },
+  {
+    "id": "alpine-mountains",
+    "category": "Nature",
+    "label": "Alpine Mountains"
+  },
+  {
+    "id": "tropical-beach",
+    "category": "Nature",
+    "label": "Tropical Beach"
+  },
+  {
+    "id": "open-ocean",
+    "category": "Nature",
+    "label": "Open Ocean"
+  },
+  {
+    "id": "underwater-reef",
+    "category": "Nature",
+    "label": "Underwater Reef"
+  },
+  {
+    "id": "volcano",
+    "category": "Nature",
+    "label": "Volcano"
+  },
+  {
+    "id": "crystal-cavern",
+    "category": "Nature",
+    "label": "Crystal Cavern"
+  },
+  {
+    "id": "moonlit-forest",
+    "category": "Nature",
+    "label": "Moonlit Forest"
+  },
+  {
+    "id": "farmstead",
+    "category": "Fantasy",
+    "label": "Farmstead"
+  },
+  {
+    "id": "medieval-village",
+    "category": "Fantasy",
+    "label": "Medieval Village"
+  },
+  {
+    "id": "castle-courtyard",
+    "category": "Fantasy",
+    "label": "Castle Courtyard"
+  },
+  {
+    "id": "tavern-interior",
+    "category": "Fantasy",
+    "label": "Tavern Interior"
+  },
+  {
+    "id": "stone-dungeon",
+    "category": "Fantasy",
+    "label": "Stone Dungeon"
+  },
+  {
+    "id": "ancient-temple",
+    "category": "Fantasy",
+    "label": "Ancient Temple"
+  },
+  {
+    "id": "misty-graveyard",
+    "category": "Fantasy",
+    "label": "Misty Graveyard"
+  },
+  {
+    "id": "western-town",
+    "category": "Modern",
+    "label": "Western Town"
+  },
+  {
+    "id": "city-day",
+    "category": "Modern",
+    "label": "City Day"
+  },
+  {
+    "id": "city-night",
+    "category": "Modern",
+    "label": "City Night"
+  },
+  {
+    "id": "urban-alley",
+    "category": "Modern",
+    "label": "Urban Alley"
+  },
+  {
+    "id": "city-park",
+    "category": "Modern",
+    "label": "City Park"
+  },
+  {
+    "id": "subway-platform",
+    "category": "Modern",
+    "label": "Subway Platform"
+  },
+  {
+    "id": "office",
+    "category": "Modern",
+    "label": "Office"
+  },
+  {
+    "id": "classroom",
+    "category": "Modern",
+    "label": "Classroom"
+  },
+  {
+    "id": "hospital-room",
+    "category": "Modern",
+    "label": "Hospital Room"
+  },
+  {
+    "id": "kitchen",
+    "category": "Modern",
+    "label": "Kitchen"
+  },
+  {
+    "id": "bedroom",
+    "category": "Modern",
+    "label": "Bedroom"
+  },
+  {
+    "id": "living-room",
+    "category": "Modern",
+    "label": "Living Room"
+  },
+  {
+    "id": "warehouse",
+    "category": "Modern",
+    "label": "Warehouse"
+  },
+  {
+    "id": "starship-bridge",
+    "category": "ScienceFiction",
+    "label": "Starship Bridge"
+  },
+  {
+    "id": "station-corridor",
+    "category": "ScienceFiction",
+    "label": "Station Corridor"
+  },
+  {
+    "id": "alien-planet",
+    "category": "ScienceFiction",
+    "label": "Alien Planet"
+  },
+  {
+    "id": "cyberpunk-street",
+    "category": "ScienceFiction",
+    "label": "Cyberpunk Street"
+  },
+  {
+    "id": "wasteland",
+    "category": "ScienceFiction",
+    "label": "Wasteland"
+  },
+  {
+    "id": "moon-base",
+    "category": "ScienceFiction",
+    "label": "Moon Base"
+  }
+]

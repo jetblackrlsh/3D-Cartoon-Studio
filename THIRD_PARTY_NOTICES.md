@@ -26,3 +26,6 @@ The initial public release therefore distributes source only. No compiled voice 
 ## Imported media
 
 The tool license does not grant rights to third-party stories, likenesses, fonts, music, recordings, artwork or characters. The four original music recordings in music/ are separately identified and explicitly authorized by their creator for this release. No personal character/world assets are included. Users are responsible for rights to their own imports and publications.
+
+## Urban geometry
+Selected vehicle geometry from mrdoob/slop-newyork, commit 12593c9963f141665fe91881b1b4a2290db51d15, copyright 2026 Mr.doob, MIT. See docs/SLOP-NEWYORK-MIT.txt. No geographic dataset or shader runtime is distributed.

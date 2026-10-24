@@ -1,0 +1,67 @@
+{
+  "schema": "JetCartoonPackage",
+  "version": 1,
+  "project": {
+    "schema": "JetCartoonProject",
+    "version": 1,
+    "title": "Reusable Library Example",
+    "scenes": [
+      {
+        "id": "urban-walk",
+        "title": "A Walk Through the City",
+        "caption": "A generic traveler explores a reusable city set.",
+        "duration": 8,
+        "environment": "catalog",
+        "set": "urban-street-corner",
+        "camera": [
+          0,
+          5,
+          14
+        ],
+        "target": [
+          0,
+          1.5,
+          0
+        ],
+        "actors": [
+          {
+            "id": "traveler",
+            "kind": "blank-human",
+            "design": {
+              "skin": "#a87b5b",
+              "top": "#5a89bc",
+              "legs": "#35415c",
+              "hairVisible": true
+            },
+            "action": "walk",
+            "from": [
+              -2,
+              0,
+              1
+            ],
+            "to": [
+              2,
+              0,
+              1
+            ],
+            "rotation": 1.57
+          }
+        ],
+        "props": [],
+        "effects": [
+          {
+            "kind": "smoke-plume",
+            "start": 5,
+            "duration": 2,
+            "position": [
+              2,
+              2,
+              1
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "assets": {}
+}

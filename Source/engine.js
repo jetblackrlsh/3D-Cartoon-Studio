@@ -1,6 +1,17 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2026 jetblackrlsh
 import * as THREE from "three";
+import {urbanPropCatalog,urbanEnvironmentCatalog,validateUrbanProp,makeUrbanProp,validateUrbanEnvironment,makeUrbanEnvironment} from './urban-assets.js';
+import {environmentCatalog as baseEnvironmentCatalog,validateEnvironment as validateBaseEnvironment,makeEnvironment as makeBaseEnvironment} from './reusable-environments.js';
+import {propCatalog as basePropCatalog,validateLibraryProp as validateBaseProp,makeLibraryProp as makeBaseProp} from './reusable-props.js';
+
+import {visualEffectCatalog,validateVisualEffect,makeVisualEffect,updateVisualEffect} from './reusable-effects.js';
+import {createFlexibleRig,applyPreset,prepareActionProps,updateActionProps,presetCatalog,exportPreset,samplePreset} from './flexible-rigs.js';
+const propCatalog=[...basePropCatalog,...urbanPropCatalog],environmentCatalog=[...baseEnvironmentCatalog,...urbanEnvironmentCatalog];
+const validateLibraryProp=p=>p.library==='urban'?validateUrbanProp(p):validateBaseProp(p);
+const makeLibraryProp=(p,H)=>p.library==='urban'?makeUrbanProp(p,H):makeBaseProp(p,H);
+const validateEnvironment=s=>s.environment==='catalog'&&s.set?.startsWith('urban-')&&urbanEnvironmentCatalog.some(x=>x.id===s.set)?validateUrbanEnvironment(s):validateBaseEnvironment(s);
+const makeEnvironment=(s,H)=>urbanEnvironmentCatalog.some(x=>x.id===s.set)?makeUrbanEnvironment(s,H):makeBaseEnvironment(s,H);
 const TAU = Math.PI * 2,
   clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x)),
   lerp = (a, b, t) => a + (b - a) * t;
@@ -184,6 +195,7 @@ const TYPES = {
   },
 };
 function rig(kind = "person", design) {
+  if(['blank-human','blank-skater','skater'].includes(kind))return createFlexibleRig(kind,design||{},{mat,mesh,box,cyl,orb});
   if (["deer", "rabbit", "badger", "squirrel"].includes(kind))
     return woodlandRig(kind);
   let info = TYPES[kind] || TYPES.person,
@@ -591,6 +603,9 @@ function validate(p) {
     throw Error("Invalid studio project.");
   for (let s of p.scenes) {
     validateTracks(s);
+    validateEnvironment(s);
+    for(const e of s.effects||[])validateVisualEffect(e);
+    for(const p of s.props||[])validateLibraryProp(p);
     if (
       s.camera &&
       (!Array.isArray(s.camera) ||
@@ -600,6 +615,7 @@ function validate(p) {
       throw Error("Invalid camera.");
     if (
       ![
+        "catalog",
         "void",
         "jungle",
         "royal",
@@ -619,7 +635,7 @@ function validate(p) {
       throw Error("Limit 16 actors per scene.");
     for (let a of s.actors) {
       if (
-        !["deer", "rabbit", "badger", "squirrel"].includes(a.kind) &&
+        !["blank-human","blank-skater","skater","deer", "rabbit", "badger", "squirrel"].includes(a.kind) &&
         !TYPES[a.kind]
       )
         throw Error("Unknown character rig.");
@@ -673,18 +689,19 @@ function stage(s) {
   let sun = new THREE.DirectionalLight("#fff0cf", 2.2);
   sun.position.set(4, 8, 6);
   root.add(sun);
-  let envRoot = environment(s.environment);
+  let envRoot = s.environment==='catalog'?makeEnvironment(s,{mat,mesh}):environment(s.environment);
+  if(envRoot.userData.environment){root.userData.world=envRoot.userData.environment;root.background=new THREE.Color(root.userData.world.sky);}
   root.add(envRoot);
   root.userData.envGroups = [envRoot];
   for (let seq of (s.setSequence || []).slice(1)) {
-    let g = environment(seq.environment || s.environment);
+    let g = (seq.environment||s.environment)==='catalog'?makeEnvironment({...s,...seq},{mat,mesh}):environment(seq.environment || s.environment);
     g.visible = false;
     root.add(g);
     root.userData.envGroups.push(g);
   }
   let skyMat = mat("stars", s.environment === "void" ? "#080b20" : "#223d61");
   skyMat.side = THREE.BackSide;
-  root.add(new THREE.Mesh(new THREE.SphereGeometry(40, 16, 8), skyMat));
+  if(s.environment!=="catalog")root.add(new THREE.Mesh(new THREE.SphereGeometry(40, 16, 8), skyMat));
   if (assets[s.backdrop]) {
     root.userData.backdrop = assets[s.backdrop];
     let bt = new THREE.Texture(assets[s.backdrop]);
@@ -694,6 +711,7 @@ function stage(s) {
   }
   let rigs = s.actors.map((a) => {
     let r = rig(a.kind, a.design);
+    prepareActionProps(r,{mat,mesh,box,cyl,orb});
     root.add(r.root);
     if (a.sash) {
       let band = box(
@@ -716,7 +734,9 @@ function stage(s) {
     return r;
   });
   let props = (s.props || []).map((p) =>
-    p.geometry
+    ["2d-props","urban"].includes(p.library)
+      ? (()=>{const o=makeLibraryProp(p,{mat,mesh});root.add(o);return o})()
+      : p.geometry
       ? storyObject(root, p)
       : prop(root, p.kind, ...(p.from || [0, 0, 0])),
   );
@@ -750,6 +770,7 @@ function visibleAt(a, p) {
   return p >= (a.visibleFrom ?? 0) && p < (a.visibleUntil ?? 1.001);
 }
 function directorPose(r, action, t, q) {
+  if(applyPreset(r,action,t,q,r.presetOptions||{}))return;
   if (r.quad) {
     r.legs.forEach(
       (l, i) =>
@@ -988,7 +1009,8 @@ function update(st, t) {
     let aq = clamp(localSeconds / Math.max(0.01, actionDuration));
     if (beat?.endAction && localSeconds > actionDuration)
       action = beat.endAction;
-    directorPose(r, action, t + (a.phase || 0), aq);
+    r.presetOptions=a.presetOptions||{};directorPose(r, action, t + (a.phase || 0), aq);
+    updateActionProps(r,action,aq,r.presetOptions);
     r.body.visible = action !== "paper";
     r.paper.visible = action === "paper";
     r.trapeze.visible = action === "swing";
@@ -1025,14 +1047,15 @@ function update(st, t) {
           : null;
     o.visible = visibleAt(a, p);
     o.scale.setScalar(state.scale ?? a.scale ?? 1);
-    let parent = rig ? rig.hands[1] : st.root;
+    let parent = rig ? (a.socket==='head'?rig.head:a.socket==='body'?rig.body:rig.hands[a.hand??1]) : st.root;
     if (o.parent !== parent) parent.add(o);
-    o.position.set(...(rig ? [0, -0.1, 0.12] : state.position));
+    o.position.set(...(rig ? (a.heldOffset||[0, -0.1, 0.12]) : state.position));
     o.rotation.set(
-      state.tilt ?? (rig && a.kind === "rifle" ? Math.PI / 2 : 0),
-      state.rotation || 0,
-      state.roll || 0,
+      (state.tilt ?? (rig && a.kind === "rifle" ? Math.PI / 2 : 0))+(a.rotation3d?.[0]||0),
+      (state.rotation || 0)+(a.rotation3d?.[1]||0),
+      (state.roll || 0)+(a.rotation3d?.[2]||0),
     );
+    if(rig&&a.alignment==='actor-forward'){const local=o.rotation.clone();o.quaternion.copy(parent.getWorldQuaternion(new THREE.Quaternion()).invert().multiply(rig.root.getWorldQuaternion(new THREE.Quaternion())));o.rotateX(local.x);o.rotateY(local.y);o.rotateZ(local.z);}
     if (a.spin) o.rotation.y = t * 5;
     if (o.userData.lid)
       o.userData.lid.rotation.x = -(state.open ?? a.open ?? 0) * 1.9;
@@ -1402,6 +1425,7 @@ function taper(g, r1, r2, h, m, x, y, z) {
 }
 function effectStage(st) {
   st.fx = (st.s.effects || []).map((e) => {
+    const reusable=makeVisualEffect(e,{mat,mesh});if(reusable){st.root.add(reusable);return reusable;}
     let g = new THREE.Group(),
       m = mat("stars", e.color || "#ffe3a0");
     if (["block", "portal", "sonic", "luck", "shield"].includes(e.kind)) {
@@ -1452,6 +1476,7 @@ function effectUpdate(st, p) {
     let e = st.s.effects[i],
       o = st.fx[i],
       u = clamp((p - e.at) / ((e.until ?? e.at + 0.03) - e.at));
+    if(o.userData.visualEffect){updateVisualEffect(o,e,p*st.s.duration,st);continue;}
     o.visible = p >= e.at && p < (e.until ?? e.at + 0.03);
     let pos = e.position || [0, 1.5, 0];
     if (e.actor) {
@@ -1492,6 +1517,7 @@ function effectUpdate(st, p) {
 }
 
 window.CartoonStudio = {
+  environmentCatalog,validateEnvironment,makeEnvironment:s=>makeEnvironment(s,{mat,mesh}),propCatalog,validateLibraryProp,makeLibraryProp:p=>makeLibraryProp(p,{mat,mesh}),visualEffectCatalog,validateVisualEffect,presetCatalog,exportPreset,samplePreset,
   getAssetState: () => assets,
   restoreAssetState: (s) => {
     assets = s;

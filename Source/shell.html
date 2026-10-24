@@ -194,7 +194,7 @@
             <summary>Character & action reference</summary>
             <p>
               Characters: person, worker, scholar, knight, robot, traveler,
-              deer, rabbit, badger, squirrel. Actions: talk, think, observe,
+              deer, rabbit, badger, squirrel, blank-human, blank-skater, skater. The library adds 58 action presets, 22 effects, 90 props and 48 sets; see docs/LIBRARY.md. Actions: talk, think, observe,
               gesture, walk, run, march, dance, swing, aim, attack, fall, brace,
               sit, paper, strike, stomp, down, reach. Props: rifle, knife,
               spear, top, box, tablet, slime.
@@ -236,7 +236,7 @@
               step=".1" /></label
           ><label
             >Environment<select id="environment">
-              <option>void</option>
+              <option>catalog</option><option>void</option>
               <option>jungle</option>
               <option>royal</option>
               <option>gym</option>
@@ -245,7 +245,7 @@
               <option>diner</option>
               <option>street</option>
             </select></label
-          ><label>Camera position [x,y,z]<input id="camera" /></label
+          ><label>Reusable environment<select id="environmentSet"></select></label><label>Camera position [x,y,z]<input id="camera" /></label
           ><label
             >Shots (JSON: at, type, camera, target, to, targetTo)<textarea
               id="shots"

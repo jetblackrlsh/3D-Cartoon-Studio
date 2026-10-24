@@ -80,6 +80,7 @@
     $("caption").value = s.caption;
     $("duration").value = s.duration.toFixed(2);
     $("environment").value = s.environment;
+    $("environmentSet").replaceChildren(...S.environmentCatalog.map(e=>{const o=document.createElement("option");o.value=e.id;o.textContent=e.label||e.id;return o}));$("environmentSet").value=s.set||S.environmentCatalog[0].id;
     $("voicePreset").value = s.voice || "narrator";
     $("musicTrack").value = s.music || "";
     $("camera").value = JSON.stringify(s.camera || [5, 3.7, 9]);
@@ -195,6 +196,7 @@
       s.caption = $("caption").value;
       s.duration = +$("duration").value;
       s.environment = $("environment").value;
+      if(s.environment==="catalog")s.set=$("environmentSet").value;
       s.voice = $("voicePreset").value;
       s.music = $("musicTrack").value;
       s.camera = JSON.parse($("camera").value);

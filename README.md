@@ -2,7 +2,7 @@
 
 Offline, editable 3D cartoons, fresh stills, and comics from the same scene data.
 
-This is the **1.4.1 public source edition**, derived from the 1.4 Stills & Comics edition. It uses lightweight procedural low-poly rigs and a deterministic software renderer, not a text-to-video AI service. No account or API key is needed to use the built application.
+This is the **1.5.0 public source edition**, derived from the 1.4 Stills & Comics edition. It uses lightweight procedural low-poly rigs and a deterministic software renderer, not a text-to-video AI service. No account or API key is needed to use the built application.
 
 ## New here? Start here
 
@@ -37,6 +37,10 @@ The repository intentionally publishes source rather than prebuilt third-party v
 - Fresh PNG stills with independent scene, camera, lighting, time and resolution controls.
 - Editable `.jetcomic.json` comics: eight page layouts, captions, speech/thought balloons, page PNGs and multi-page PDF export.
 - Native rendering regression tests, including actual pixel comparisons and PDF parsing.
+
+## Reusable library update
+
+58 humanoid action presets, three restylable rig variants, 22 animated VFX, 90 props and 48 environments are now included. See [Library guide](docs/LIBRARY.md). The original skater-proportioned rig is included, but private captured skating motions are deliberately excluded because redistribution rights remain unresolved.
 
 ## Headless commands
 

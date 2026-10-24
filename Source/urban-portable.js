@@ -1,0 +1,9 @@
+import * as THREE from 'three';
+import {urbanPropCatalog,urbanEnvironmentCatalog,makeUrbanProp,makeUrbanEnvironment,validateUrbanProp} from './urban-assets.js';
+export {urbanPropCatalog,urbanEnvironmentCatalog,validateUrbanProp};
+function material(kind,color){const m=new THREE.MeshStandardMaterial({color,roughness:.78,metalness:kind==='metal'?.25:0});if(kind==='building'){const pixels=new Uint8Array(128*128*4),base=parseInt(color.slice(1),16);for(let y=0;y<128;y++)for(let x=0;x<128;x++){const i=(y*128+x)*4,window=x%32>8&&x%32<24&&y%24>6&&y%24<20,c=window?0x8cc4d3:base;pixels[i]=c>>16&255;pixels[i+1]=c>>8&255;pixels[i+2]=c&255;pixels[i+3]=255;}m.color.set('#ffffff');m.map=new THREE.DataTexture(pixels,128,128);m.map.colorSpace=THREE.SRGBColorSpace;m.map.needsUpdate=true;}return m;}
+const helpers={mat:material,mesh:(parent,geometry,material,x=0,y=0,z=0)=>{const m=new THREE.Mesh(geometry,material);m.position.set(x,y,z);parent.add(m);return m;}};
+export const createUrbanAsset=(id,options={})=>makeUrbanProp({...options,kind:id,library:'urban'},helpers);
+export const createUrbanSet=(id,options={})=>makeUrbanEnvironment({environment:'catalog',set:id,environmentOptions:options},helpers);
+export function inspectUrbanAsset(id,options={}){const o=createUrbanAsset(id,options);o.updateMatrixWorld(true);const b=new THREE.Box3().setFromObject(o);let vertices=0,meshes=0;o.traverse(x=>{if(x.isMesh){meshes++;vertices+=x.geometry.attributes.position.count;}});return {id,meshes,vertices,bounds:{min:b.min.toArray(),max:b.max.toArray()}};}
+export function disposeUrbanAsset(root){const geometries=new Set(),materials=new Set();root.traverse(x=>{if(x.geometry)geometries.add(x.geometry);for(const m of x.material?(Array.isArray(x.material)?x.material:[x.material]):[])materials.add(m);});for(const x of geometries)x.dispose();for(const x of materials){x.map?.dispose();x.dispose();}root.removeFromParent();}

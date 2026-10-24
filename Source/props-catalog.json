@@ -1,0 +1,669 @@
+[
+  {
+    "id": "longsword",
+    "label": "Longsword",
+    "category": "Fantasy weapons",
+    "actions": [
+      "weapon-slash",
+      "weapon-overhead"
+    ],
+    "grip": true
+  },
+  {
+    "id": "greatsword",
+    "label": "Greatsword",
+    "category": "Fantasy weapons",
+    "actions": [
+      "weapon-overhead"
+    ],
+    "grip": true
+  },
+  {
+    "id": "rapier",
+    "label": "Rapier",
+    "category": "Fantasy weapons",
+    "actions": [
+      "weapon-slash"
+    ],
+    "grip": true
+  },
+  {
+    "id": "katana",
+    "label": "Curved katana",
+    "category": "Historical weapons",
+    "actions": [
+      "weapon-slash"
+    ],
+    "grip": true
+  },
+  {
+    "id": "scimitar",
+    "label": "Scimitar",
+    "category": "Fantasy weapons",
+    "actions": [
+      "weapon-slash"
+    ],
+    "grip": true
+  },
+  {
+    "id": "dagger",
+    "label": "Dagger",
+    "category": "Fantasy weapons",
+    "actions": [
+      "weapon-slash"
+    ],
+    "grip": true
+  },
+  {
+    "id": "battleaxe",
+    "label": "Battle axe",
+    "category": "Fantasy weapons",
+    "actions": [
+      "weapon-overhead"
+    ],
+    "grip": true
+  },
+  {
+    "id": "double-axe",
+    "label": "Double axe",
+    "category": "Fantasy weapons",
+    "actions": [
+      "weapon-overhead"
+    ],
+    "grip": true
+  },
+  {
+    "id": "warhammer",
+    "label": "War hammer",
+    "category": "Fantasy weapons",
+    "actions": [
+      "weapon-overhead"
+    ],
+    "grip": true
+  },
+  {
+    "id": "mace",
+    "label": "Mace",
+    "category": "Fantasy weapons",
+    "actions": [
+      "weapon-slash"
+    ],
+    "grip": true
+  },
+  {
+    "id": "wood-club",
+    "label": "Wooden club",
+    "category": "Fantasy weapons",
+    "actions": [
+      "weapon-overhead"
+    ],
+    "grip": true
+  },
+  {
+    "id": "halberd",
+    "label": "Halberd",
+    "category": "Historical weapons",
+    "actions": [
+      "weapon-slash"
+    ],
+    "grip": true
+  },
+  {
+    "id": "wood-spear",
+    "label": "Long spear",
+    "category": "Historical weapons",
+    "actions": [
+      "weapon-slash"
+    ],
+    "grip": true
+  },
+  {
+    "id": "wizard-staff",
+    "label": "Crystal staff",
+    "category": "Magic weapons",
+    "actions": [
+      "cast-projectile",
+      "channel-power"
+    ],
+    "grip": true
+  },
+  {
+    "id": "wand",
+    "label": "Magic wand",
+    "category": "Magic weapons",
+    "actions": [
+      "cast-projectile"
+    ],
+    "grip": true
+  },
+  {
+    "id": "longbow",
+    "label": "Longbow",
+    "category": "Historical weapons",
+    "actions": [
+      "reach",
+      "carry"
+    ],
+    "grip": true
+  },
+  {
+    "id": "crossbow",
+    "label": "Crossbow",
+    "category": "Historical weapons",
+    "actions": [
+      "shoot-rifle"
+    ],
+    "grip": true
+  },
+  {
+    "id": "round-shield",
+    "label": "Round shield",
+    "category": "Armor",
+    "actions": [
+      "block-high",
+      "block-low"
+    ],
+    "grip": true
+  },
+  {
+    "id": "kite-shield",
+    "label": "Kite shield",
+    "category": "Armor",
+    "actions": [
+      "block-high",
+      "block-low"
+    ],
+    "grip": true
+  },
+  {
+    "id": "buckler",
+    "label": "Small buckler",
+    "category": "Armor",
+    "actions": [
+      "block-high"
+    ],
+    "grip": true
+  },
+  {
+    "id": "revolver",
+    "label": "Western revolver",
+    "category": "Modern weapons",
+    "actions": [
+      "shoot-pistol"
+    ],
+    "grip": true
+  },
+  {
+    "id": "handgun",
+    "label": "Modern handgun",
+    "category": "Modern weapons",
+    "actions": [
+      "shoot-pistol"
+    ],
+    "grip": true
+  },
+  {
+    "id": "shotgun",
+    "label": "Wood-stock long gun",
+    "category": "Modern weapons",
+    "actions": [
+      "shoot-rifle"
+    ],
+    "grip": true
+  },
+  {
+    "id": "scifi-blaster",
+    "label": "Science-fiction blaster",
+    "category": "Science fiction props",
+    "actions": [
+      "shoot-pistol",
+      "cast-projectile"
+    ],
+    "grip": true
+  },
+  {
+    "id": "energy-sword",
+    "label": "Energy sword",
+    "category": "Science fiction props",
+    "actions": [
+      "weapon-slash",
+      "weapon-overhead"
+    ],
+    "grip": true
+  },
+  {
+    "id": "scifi-rifle",
+    "label": "Science-fiction long gun",
+    "category": "Science fiction props",
+    "actions": [
+      "shoot-rifle"
+    ],
+    "grip": true
+  },
+  {
+    "id": "scanner",
+    "label": "Hand scanner",
+    "category": "Science fiction props",
+    "actions": [
+      "reach",
+      "carry"
+    ],
+    "grip": true
+  },
+  {
+    "id": "holo-projector",
+    "label": "Hologram projector",
+    "category": "Science fiction props",
+    "actions": [
+      "reach",
+      "carry"
+    ],
+    "grip": true
+  },
+  {
+    "id": "mug",
+    "label": "Mug",
+    "category": "Food and daily life",
+    "actions": [
+      "carry",
+      "reach"
+    ],
+    "grip": true
+  },
+  {
+    "id": "water-bottle",
+    "label": "Water bottle",
+    "category": "Food and daily life",
+    "actions": [
+      "carry",
+      "reach"
+    ],
+    "grip": true
+  },
+  {
+    "id": "plate",
+    "label": "Plate",
+    "category": "Food and daily life",
+    "actions": [
+      "carry"
+    ],
+    "grip": true
+  },
+  {
+    "id": "apple",
+    "label": "Apple",
+    "category": "Food and daily life",
+    "actions": [
+      "carry",
+      "reach"
+    ],
+    "grip": true
+  },
+  {
+    "id": "bread",
+    "label": "Bread loaf",
+    "category": "Food and daily life",
+    "actions": [
+      "carry"
+    ],
+    "grip": true
+  },
+  {
+    "id": "bowl",
+    "label": "Bowl",
+    "category": "Food and daily life",
+    "actions": [
+      "carry"
+    ],
+    "grip": true
+  },
+  {
+    "id": "book",
+    "label": "Closed book",
+    "category": "Documents and devices",
+    "actions": [
+      "carry",
+      "reach"
+    ],
+    "grip": true
+  },
+  {
+    "id": "open-book",
+    "label": "Open book",
+    "category": "Documents and devices",
+    "actions": [
+      "carry"
+    ],
+    "grip": true
+  },
+  {
+    "id": "scroll",
+    "label": "Scroll",
+    "category": "Documents and devices",
+    "actions": [
+      "carry"
+    ],
+    "grip": true
+  },
+  {
+    "id": "map",
+    "label": "Folded map",
+    "category": "Documents and devices",
+    "actions": [
+      "carry"
+    ],
+    "grip": true
+  },
+  {
+    "id": "quill",
+    "label": "Quill pen",
+    "category": "Documents and devices",
+    "actions": [
+      "reach"
+    ],
+    "grip": true
+  },
+  {
+    "id": "phone",
+    "label": "Phone",
+    "category": "Documents and devices",
+    "actions": [
+      "carry",
+      "reach"
+    ],
+    "grip": true
+  },
+  {
+    "id": "laptop",
+    "label": "Laptop",
+    "category": "Documents and devices",
+    "actions": [
+      "carry"
+    ],
+    "grip": false
+  },
+  {
+    "id": "camera",
+    "label": "Camera",
+    "category": "Documents and devices",
+    "actions": [
+      "carry"
+    ],
+    "grip": true
+  },
+  {
+    "id": "microphone",
+    "label": "Microphone",
+    "category": "Documents and devices",
+    "actions": [
+      "talk"
+    ],
+    "grip": true
+  },
+  {
+    "id": "key",
+    "label": "Key",
+    "category": "Treasure and travel",
+    "actions": [
+      "reach"
+    ],
+    "grip": true
+  },
+  {
+    "id": "coin-pouch",
+    "label": "Coin pouch",
+    "category": "Treasure and travel",
+    "actions": [
+      "carry"
+    ],
+    "grip": true
+  },
+  {
+    "id": "gem",
+    "label": "Cut gemstone",
+    "category": "Treasure and travel",
+    "actions": [
+      "carry"
+    ],
+    "grip": true
+  },
+  {
+    "id": "backpack",
+    "label": "Backpack",
+    "category": "Treasure and travel",
+    "actions": [
+      "carry"
+    ],
+    "grip": false
+  },
+  {
+    "id": "suitcase",
+    "label": "Suitcase",
+    "category": "Treasure and travel",
+    "actions": [
+      "carry"
+    ],
+    "grip": true
+  },
+  {
+    "id": "torch",
+    "label": "Lit torch",
+    "category": "Tools",
+    "actions": [
+      "carry"
+    ],
+    "grip": true
+  },
+  {
+    "id": "flashlight",
+    "label": "Flashlight",
+    "category": "Tools",
+    "actions": [
+      "reach"
+    ],
+    "grip": true
+  },
+  {
+    "id": "shovel",
+    "label": "Shovel",
+    "category": "Tools",
+    "actions": [
+      "carry",
+      "push"
+    ],
+    "grip": true
+  },
+  {
+    "id": "pickaxe",
+    "label": "Pickaxe",
+    "category": "Tools",
+    "actions": [
+      "weapon-overhead"
+    ],
+    "grip": true
+  },
+  {
+    "id": "wrench",
+    "label": "Wrench",
+    "category": "Tools",
+    "actions": [
+      "reach"
+    ],
+    "grip": true
+  },
+  {
+    "id": "tool-hammer",
+    "label": "Claw hammer",
+    "category": "Tools",
+    "actions": [
+      "weapon-overhead"
+    ],
+    "grip": true
+  },
+  {
+    "id": "broom",
+    "label": "Broom",
+    "category": "Tools",
+    "actions": [
+      "push"
+    ],
+    "grip": true
+  },
+  {
+    "id": "umbrella",
+    "label": "Open umbrella",
+    "category": "Treasure and travel",
+    "actions": [
+      "carry"
+    ],
+    "grip": true
+  },
+  {
+    "id": "medical-kit",
+    "label": "Medical kit",
+    "category": "Tools",
+    "actions": [
+      "carry",
+      "heal"
+    ],
+    "grip": true
+  },
+  {
+    "id": "toolbox",
+    "label": "Toolbox",
+    "category": "Tools",
+    "actions": [
+      "carry"
+    ],
+    "grip": true
+  },
+  {
+    "id": "crate",
+    "label": "Wood crate",
+    "category": "Furniture and scenery",
+    "actions": [
+      "carry",
+      "push"
+    ],
+    "grip": false
+  },
+  {
+    "id": "barrel",
+    "label": "Barrel",
+    "category": "Furniture and scenery",
+    "actions": [
+      "push"
+    ],
+    "grip": false
+  },
+  {
+    "id": "chair",
+    "label": "Chair",
+    "category": "Furniture and scenery",
+    "actions": [
+      "sit"
+    ],
+    "grip": false
+  },
+  {
+    "id": "table",
+    "label": "Small table",
+    "category": "Furniture and scenery",
+    "actions": [
+      "sit"
+    ],
+    "grip": false
+  },
+  {
+    "id": "treasure-chest",
+    "label": "Treasure chest",
+    "category": "Treasure and travel",
+    "actions": [
+      "carry"
+    ],
+    "grip": false
+  },
+  {
+    "id": "signpost",
+    "label": "Blank signpost",
+    "category": "Furniture and scenery",
+    "actions": [],
+    "grip": false
+  },
+  {
+    "id": "rope-coil",
+    "label": "Coiled rope",
+    "category": "Treasure and travel",
+    "actions": [
+      "carry"
+    ],
+    "grip": true
+  },
+  {
+    "id": "telescope",
+    "label": "Telescope",
+    "category": "Treasure and travel",
+    "actions": [
+      "point",
+      "reach"
+    ],
+    "grip": true
+  },
+  {
+    "id": "candle",
+    "label": "Candle",
+    "category": "Food and daily life",
+    "actions": [
+      "carry"
+    ],
+    "grip": true
+  },
+  {
+    "id": "potion",
+    "label": "Potion flask",
+    "category": "Magic props",
+    "actions": [
+      "carry",
+      "heal"
+    ],
+    "grip": true
+  },
+  {
+    "id": "crystal-ball",
+    "label": "Crystal ball",
+    "category": "Magic props",
+    "actions": [
+      "channel-power"
+    ],
+    "grip": false
+  },
+  {
+    "id": "soccer-ball",
+    "label": "Patterned ball",
+    "category": "Food and daily life",
+    "actions": [
+      "carry",
+      "kick-front"
+    ],
+    "grip": true
+  },
+  {
+    "id": "gift-box",
+    "label": "Gift box",
+    "category": "Food and daily life",
+    "actions": [
+      "carry",
+      "reach"
+    ],
+    "grip": true
+  },
+  {
+    "id": "guitar",
+    "label": "Guitar",
+    "category": "Food and daily life",
+    "actions": [
+      "carry"
+    ],
+    "grip": false
+  }
+]
