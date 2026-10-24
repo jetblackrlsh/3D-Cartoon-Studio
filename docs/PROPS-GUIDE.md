@@ -9,12 +9,12 @@ The 72 names match the verified 2D Studio v1.6.0-rc1 catalog. The models are new
 This example requires a scene actor with id hero. It attaches the sword to the right hand, returns it to a specified world position at 70% of the scene, and hides it at 95%. It demonstrates state/ownership, not an automatically physically plausible falling motion. Stage and inspect the drop path separately.
 
 ## Coordinates and options
-- Metres, +Y up, radians. Left hand is 0, right hand is 1. Scale 0.05–10, at most 128 scene props.
+- Metres, +Y up, radians. Left hand is 0, right hand is 1. Scale 0.05–10. Keep scene complexity bounded.
 - Handheld props use a grip/handling origin. Furniture/scenery use a floor-oriented origin. Place by actual bounds if arranging a tabletop or floor display. `makeLibraryProp` returns a Three.js Group for bounds inspection.
 - Swords/staves/tools have their long axis along +Y. Guns, crossbows and cameras face +Z. Do not assume every prop shares one orientation.
 - `from` is the world position. `heldOffset` is relative to the selected socket, replacing the world position while attached. `rotation3d` supplies local X/Y/Z rotation and combines with keyed tilt/rotation/roll.
 - `alignment:"actor-forward"` keeps +Z facing the owner's forward direction while preserving the hand position; appropriate for the supplied gun poses. Default `socket` inherits socket rotation. This is not target tracking.
-- `colors` can override wood, metal, dark, gold, accent, cloth, paper, glass or food. Different objects use different channels. The editor's simple color checkbox overrides accent only; use JSON for other channels.
+- `colors` can override wood, metal, dark, gold, accent, cloth, paper, glass or food. Different objects use different channels. Use the editor’s Props JSON field to set palette channels.
 - `visibleFrom`/`visibleUntil`, owner times and position-key times are normalized scene fractions (0–1), not seconds. Keep keys strictly increasing. For advanced timing, the existing scene track API also supports scale, tilt, rotation and roll.
 - `open` or keyed open (0–1) animates the treasure-chest lid. Other props are static geometry unless an author supplies tracks. Torch/candle flames and the hologram in this prop library are sculpted geometry; add the separate fire/particle VFX for animated flame.
 - No physics collision, automatic inventory, damage, automatic bow draw, finger grasping, or all-prop two-hand IK. Nothing here is a functional device or weapon schematic.
@@ -33,7 +33,6 @@ await S.prepare(stage); // prepare native-canvas textures before CPU rendering
 S.update(stage, 1.5); // absolute scene seconds, safe for deterministic seeking
 renderer.render(stage, 1.5);
 ```
-`library:"2d-props"` is required so old prop names keep their original behavior in earlier films. Templates/Props contains 72 .jetprop3d.json templates. Import/export preserves editable data; it does not flatten the object into an image.
 
 ## Catalog
 | ID | Label | Category | Suggested actions |
@@ -110,3 +109,5 @@ renderer.render(stage, 1.5);
 | soccer-ball | Patterned ball | Food and daily life | carry, kick-front |
 | gift-box | Gift box | Food and daily life | carry, reach |
 | guitar | Guitar | Food and daily life | carry |
+
+Public verification: Source/test-library.cjs exercises all 90 props alongside environments, VFX and rig poses. The runtime catalog supplies authoritative IDs. The public source does not ship the private 203-scene demonstration package.
