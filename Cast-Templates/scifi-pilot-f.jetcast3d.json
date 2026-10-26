@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "scifi-pilot-f",
+  "design": {
+    "body": "petite",
+    "hairStyle": "braids",
+    "outfit": "flight-jacket",
+    "accessory": "goggles",
+    "variant": 1,
+    "skin": "#f1c8a8",
+    "top": "#537249",
+    "legs": "#383f38",
+    "accent": "#c79553",
+    "shoes": "#e1d7ba",
+    "hair": "#dfd5c3",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.05
+  }
+}

@@ -123,6 +123,7 @@
           padding: 10px;
         }
       }
+      .castCards{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:8px;max-height:420px;overflow:auto;margin:12px 0}.castCards button{font-size:12px;padding:5px}.castCards img{width:100%;height:160px;object-fit:contain}.castCards button[aria-pressed="true"]{border:2px solid #e3bd68;background:#393855}
     </style>
   </head>
   <body>
@@ -215,6 +216,7 @@
         </section>
       </div>
       <div>
+<section><h2>Ready-to-use cast · 60 characters</h2><p>Five genres, original textured outfits and shared articulated motion. Choose a character card, then add it or apply it to the selected actor. All appearance fields remain editable in Actors JSON.</p><div class="row"><label>Search name or tags<input id="castSearch" placeholder="elf, astronaut, braids, sturdy…"></label><label>Genre<select id="castGenre"><option value="all">All genres</option><option value="everyday">Everyday</option><option value="fantasy">Fantasy</option><option value="scifi">Sci-fi</option><option value="western">Western</option><option value="superhero">Original superheroes</option></select></label></div><label>Character<select id="castSelect"></select></label><small id="castDetails"></small><div id="castCards" class="castCards"></div><label>Actor to replace<select id="castActor"></select></label><div class="row"><button id="addCast">Add chosen character</button><button id="applyCast">Apply to selected actor</button><button id="diverseCast">Add diverse background cast (4)</button><button id="addBlank">Add blank character</button></div><p>The helper uses the selected genre and avoids presets already in this scene. It never replaces existing characters. Explicit story identities should always be selected deliberately.</p></section>
         <section>
           <h2>Scene editor</h2>
           <select id="sceneList"></select>

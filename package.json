@@ -6,7 +6,7 @@
   "license": "GPL-3.0-only",
   "scripts": {
     "build": "node Source/build.cjs",
-    "test": "npm run build && node Source/test.cjs && node Source/test-voice.cjs && node Source/test-generic.cjs && node Source/test-library.cjs",
+    "test": "npm run build && node Source/test.cjs && node Source/test-voice.cjs && node Source/test-generic.cjs && node Source/test-library.cjs && node Source/test-cast-ui.cjs && node Source/test-diverse-cast.cjs && node Source/test-cast.cjs",
     "render": "node Source/render.cjs",
     "print": "node Source/print.cjs",
     "build:urban": "esbuild Source/urban-portable.js --bundle --format=esm --external:three --external:three/* --outfile=urban-assets.mjs"

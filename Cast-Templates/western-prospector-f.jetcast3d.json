@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "western-prospector-f",
+  "design": {
+    "body": "stocky",
+    "hairStyle": "curly",
+    "outfit": "suspenders",
+    "accessory": "headscarf",
+    "variant": 1,
+    "skin": "#6d402c",
+    "top": "#8d527a",
+    "legs": "#3b354c",
+    "accent": "#d6c2a0",
+    "shoes": "#e1d7ba",
+    "hair": "#bca288",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.52
+  }
+}

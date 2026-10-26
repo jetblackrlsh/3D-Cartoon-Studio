@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "fantasy-ogre-f",
+  "design": {
+    "body": "ogre",
+    "hairStyle": "braids",
+    "outfit": "patchwork",
+    "accessory": "earrings",
+    "variant": 1,
+    "skin": "#a49773",
+    "top": "#8d527a",
+    "legs": "#3b354c",
+    "accent": "#d6c2a0",
+    "shoes": "#e1d7ba",
+    "hair": "#dfd5c3",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "ogre",
+    "height": 3.15
+  }
+}

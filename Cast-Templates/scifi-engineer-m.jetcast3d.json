@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "scifi-engineer-m",
+  "design": {
+    "body": "stocky",
+    "hairStyle": "bald",
+    "outfit": "utility",
+    "accessory": "goggles",
+    "variant": 0,
+    "skin": "#9e6346",
+    "top": "#5966a6",
+    "legs": "#29364b",
+    "accent": "#a9d4d2",
+    "shoes": "#3b3032",
+    "hair": "#dfd5c3",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.62
+  }
+}

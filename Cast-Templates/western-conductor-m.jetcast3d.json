@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "western-conductor-m",
+  "design": {
+    "body": "stocky",
+    "hairStyle": "swept",
+    "outfit": "uniform",
+    "accessory": "rail-cap",
+    "variant": 0,
+    "skin": "#cfa07e",
+    "top": "#537249",
+    "legs": "#383f38",
+    "accent": "#c79553",
+    "shoes": "#3b3032",
+    "hair": "#bca288",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.62
+  }
+}

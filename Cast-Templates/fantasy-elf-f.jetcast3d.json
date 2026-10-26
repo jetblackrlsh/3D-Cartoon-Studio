@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "fantasy-elf-f",
+  "design": {
+    "body": "slender",
+    "hairStyle": "ponytail",
+    "outfit": "ranger",
+    "accessory": "circlet",
+    "variant": 1,
+    "skin": "#e0b493",
+    "top": "#537249",
+    "legs": "#383f38",
+    "accent": "#c79553",
+    "shoes": "#e1d7ba",
+    "hair": "#242531",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "elf",
+    "height": 2.52
+  }
+}

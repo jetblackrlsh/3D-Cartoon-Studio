@@ -1,0 +1,3012 @@
+{
+  "version": 1,
+  "project": {
+    "schema": "JetCartoonProject",
+    "version": 1,
+    "title": "Cast Library 1.1.0 \u2014 60 curated humanoids",
+    "scenes": [
+      {
+        "id": "everyday-neighbor-m",
+        "title": "Weekend Neighbor \u00b7 M",
+        "label": "Weekend Neighbor \u00b7 M",
+        "caption": "Sturdy build; curly hair; hoodie construction; glasses details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "everyday-neighbor-m",
+            "kind": "blank-human",
+            "cast": "everyday-neighbor-m",
+            "action": "idle",
+            "design": {
+              "body": "sturdy",
+              "hairStyle": "curly",
+              "outfit": "hoodie",
+              "accessory": "glasses",
+              "variant": 0,
+              "skin": "#6d402c",
+              "top": "#347c87",
+              "legs": "#263e54",
+              "accent": "#df9e4b",
+              "shoes": "#3b3032",
+              "hair": "#30241f",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.62
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.703,
+          1.8864,
+          5.24
+        ],
+        "target": [
+          0,
+          1.3624,
+          0
+        ]
+      },
+      {
+        "id": "everyday-neighbor-f",
+        "title": "Weekend Neighbor \u00b7 F",
+        "label": "Weekend Neighbor \u00b7 F",
+        "caption": "Petite build; bob hair; hoodie construction; scarf details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "everyday-neighbor-f",
+            "kind": "blank-human",
+            "cast": "everyday-neighbor-f",
+            "action": "idle",
+            "design": {
+              "body": "petite",
+              "hairStyle": "bob",
+              "outfit": "hoodie",
+              "accessory": "scarf",
+              "variant": 1,
+              "skin": "#432c24",
+              "top": "#5966a6",
+              "legs": "#29364b",
+              "accent": "#a9d4d2",
+              "shoes": "#e1d7ba",
+              "hair": "#bca288",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.05
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.3325,
+          1.4759999999999998,
+          4.1
+        ],
+        "target": [
+          0,
+          1.0659999999999998,
+          0
+        ]
+      },
+      {
+        "id": "everyday-barista-m",
+        "title": "Corner Cafe Barista \u00b7 M",
+        "label": "Corner Cafe Barista \u00b7 M",
+        "caption": "Slender build; swept hair; apron construction; none details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "everyday-barista-m",
+            "kind": "blank-human",
+            "cast": "everyday-barista-m",
+            "action": "idle",
+            "design": {
+              "body": "slender",
+              "hairStyle": "swept",
+              "outfit": "apron",
+              "accessory": "none",
+              "variant": 0,
+              "skin": "#f1c8a8",
+              "top": "#a55036",
+              "legs": "#493640",
+              "accent": "#e0c075",
+              "shoes": "#3b3032",
+              "hair": "#bca288",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.62
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.703,
+          1.8864,
+          5.24
+        ],
+        "target": [
+          0,
+          1.3624,
+          0
+        ]
+      },
+      {
+        "id": "everyday-barista-f",
+        "title": "Corner Cafe Barista \u00b7 F",
+        "label": "Corner Cafe Barista \u00b7 F",
+        "caption": "Curvy build; bun hair; apron construction; glasses details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "everyday-barista-f",
+            "kind": "blank-human",
+            "cast": "everyday-barista-f",
+            "action": "idle",
+            "design": {
+              "body": "curvy",
+              "hairStyle": "bun",
+              "outfit": "apron",
+              "accessory": "glasses",
+              "variant": 1,
+              "skin": "#cfa07e",
+              "top": "#537249",
+              "legs": "#383f38",
+              "accent": "#c79553",
+              "shoes": "#e1d7ba",
+              "hair": "#8c422a",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.52
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.6380000000000001,
+          1.8144,
+          5.04
+        ],
+        "target": [
+          0,
+          1.3104,
+          0
+        ]
+      },
+      {
+        "id": "everyday-medic-m",
+        "title": "Community Medic \u00b7 M",
+        "label": "Community Medic \u00b7 M",
+        "caption": "Tall build; buzz hair; scrubs construction; glasses details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "everyday-medic-m",
+            "kind": "blank-human",
+            "cast": "everyday-medic-m",
+            "action": "idle",
+            "design": {
+              "body": "tall",
+              "hairStyle": "buzz",
+              "outfit": "scrubs",
+              "accessory": "glasses",
+              "variant": 0,
+              "skin": "#80543f",
+              "top": "#5966a6",
+              "legs": "#29364b",
+              "accent": "#a9d4d2",
+              "shoes": "#3b3032",
+              "hair": "#8c422a",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.95
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.9175000000000002,
+          2.124,
+          5.9
+        ],
+        "target": [
+          0,
+          1.5340000000000003,
+          0
+        ]
+      },
+      {
+        "id": "everyday-medic-f",
+        "title": "Community Medic \u00b7 F",
+        "label": "Community Medic \u00b7 F",
+        "caption": "Average build; braids hair; scrubs construction; none details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "everyday-medic-f",
+            "kind": "blank-human",
+            "cast": "everyday-medic-f",
+            "action": "idle",
+            "design": {
+              "body": "average",
+              "hairStyle": "braids",
+              "outfit": "scrubs",
+              "accessory": "none",
+              "variant": 1,
+              "skin": "#9e6346",
+              "top": "#8d527a",
+              "legs": "#3b354c",
+              "accent": "#d6c2a0",
+              "shoes": "#e1d7ba",
+              "hair": "#242531",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.52
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.6380000000000001,
+          1.8144,
+          5.04
+        ],
+        "target": [
+          0,
+          1.3104,
+          0
+        ]
+      },
+      {
+        "id": "everyday-mechanic-m",
+        "title": "Workshop Mechanic \u00b7 M",
+        "label": "Workshop Mechanic \u00b7 M",
+        "caption": "Stocky build; short hair; coveralls construction; cap details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "everyday-mechanic-m",
+            "kind": "blank-human",
+            "cast": "everyday-mechanic-m",
+            "action": "idle",
+            "design": {
+              "body": "stocky",
+              "hairStyle": "short",
+              "outfit": "coveralls",
+              "accessory": "cap",
+              "variant": 0,
+              "skin": "#e0b493",
+              "top": "#537249",
+              "legs": "#383f38",
+              "accent": "#c79553",
+              "shoes": "#3b3032",
+              "hair": "#242531",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.62
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.703,
+          1.8864,
+          5.24
+        ],
+        "target": [
+          0,
+          1.3624,
+          0
+        ]
+      },
+      {
+        "id": "everyday-mechanic-f",
+        "title": "Workshop Mechanic \u00b7 F",
+        "label": "Workshop Mechanic \u00b7 F",
+        "caption": "Athletic build; ponytail hair; coveralls construction; goggles details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "everyday-mechanic-f",
+            "kind": "blank-human",
+            "cast": "everyday-mechanic-f",
+            "action": "idle",
+            "design": {
+              "body": "athletic",
+              "hairStyle": "ponytail",
+              "outfit": "coveralls",
+              "accessory": "goggles",
+              "variant": 1,
+              "skin": "#bf8662",
+              "top": "#bf8d32",
+              "legs": "#3b4959",
+              "accent": "#61c7c2",
+              "shoes": "#e1d7ba",
+              "hair": "#dfd5c3",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.52
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.6380000000000001,
+          1.8144,
+          5.04
+        ],
+        "target": [
+          0,
+          1.3104,
+          0
+        ]
+      },
+      {
+        "id": "everyday-teacher-m",
+        "title": "Neighborhood Teacher \u00b7 M",
+        "label": "Neighborhood Teacher \u00b7 M",
+        "caption": "Average build; bald hair; cardigan construction; glasses details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "everyday-teacher-m",
+            "kind": "blank-human",
+            "cast": "everyday-teacher-m",
+            "action": "idle",
+            "design": {
+              "body": "average",
+              "hairStyle": "bald",
+              "outfit": "cardigan",
+              "accessory": "glasses",
+              "variant": 0,
+              "skin": "#432c24",
+              "top": "#8d527a",
+              "legs": "#3b354c",
+              "accent": "#d6c2a0",
+              "shoes": "#3b3032",
+              "hair": "#dfd5c3",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.62
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.703,
+          1.8864,
+          5.24
+        ],
+        "target": [
+          0,
+          1.3624,
+          0
+        ]
+      },
+      {
+        "id": "everyday-teacher-f",
+        "title": "Neighborhood Teacher \u00b7 F",
+        "label": "Neighborhood Teacher \u00b7 F",
+        "caption": "Tall build; locs hair; cardigan construction; scarf details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "everyday-teacher-f",
+            "kind": "blank-human",
+            "cast": "everyday-teacher-f",
+            "action": "idle",
+            "design": {
+              "body": "tall",
+              "hairStyle": "locs",
+              "outfit": "cardigan",
+              "accessory": "scarf",
+              "variant": 1,
+              "skin": "#6d402c",
+              "top": "#347c87",
+              "legs": "#263e54",
+              "accent": "#df9e4b",
+              "shoes": "#e1d7ba",
+              "hair": "#30241f",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.95
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.9175000000000002,
+          2.124,
+          5.9
+        ],
+        "target": [
+          0,
+          1.5340000000000003,
+          0
+        ]
+      },
+      {
+        "id": "everyday-traveler-m",
+        "title": "City Traveler \u00b7 M",
+        "label": "City Traveler \u00b7 M",
+        "caption": "Petite build; mohawk hair; raincoat construction; backpack details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "everyday-traveler-m",
+            "kind": "blank-human",
+            "cast": "everyday-traveler-m",
+            "action": "idle",
+            "design": {
+              "body": "petite",
+              "hairStyle": "mohawk",
+              "outfit": "raincoat",
+              "accessory": "backpack",
+              "variant": 0,
+              "skin": "#cfa07e",
+              "top": "#bf8d32",
+              "legs": "#3b4959",
+              "accent": "#61c7c2",
+              "shoes": "#3b3032",
+              "hair": "#30241f",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.05
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.3325,
+          1.4759999999999998,
+          4.1
+        ],
+        "target": [
+          0,
+          1.0659999999999998,
+          0
+        ]
+      },
+      {
+        "id": "everyday-traveler-f",
+        "title": "City Traveler \u00b7 F",
+        "label": "City Traveler \u00b7 F",
+        "caption": "Sturdy build; afro hair; raincoat construction; beanie details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "everyday-traveler-f",
+            "kind": "blank-human",
+            "cast": "everyday-traveler-f",
+            "action": "idle",
+            "design": {
+              "body": "sturdy",
+              "hairStyle": "afro",
+              "outfit": "raincoat",
+              "accessory": "beanie",
+              "variant": 1,
+              "skin": "#f1c8a8",
+              "top": "#a55036",
+              "legs": "#493640",
+              "accent": "#e0c075",
+              "shoes": "#e1d7ba",
+              "hair": "#bca288",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.52
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.6380000000000001,
+          1.8144,
+          5.04
+        ],
+        "target": [
+          0,
+          1.3104,
+          0
+        ]
+      },
+      {
+        "id": "fantasy-knight-m",
+        "title": "Roadwarden Knight \u00b7 M",
+        "label": "Roadwarden Knight \u00b7 M",
+        "caption": "Athletic build; short hair; plate construction; helmet details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "fantasy-knight-m",
+            "kind": "blank-human",
+            "cast": "fantasy-knight-m",
+            "action": "idle",
+            "design": {
+              "body": "athletic",
+              "hairStyle": "short",
+              "outfit": "plate",
+              "accessory": "helmet",
+              "variant": 0,
+              "skin": "#9e6346",
+              "top": "#347c87",
+              "legs": "#263e54",
+              "accent": "#df9e4b",
+              "shoes": "#3b3032",
+              "hair": "#bca288",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.62
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.703,
+          1.8864,
+          5.24
+        ],
+        "target": [
+          0,
+          1.3624,
+          0
+        ]
+      },
+      {
+        "id": "fantasy-knight-f",
+        "title": "Roadwarden Knight \u00b7 F",
+        "label": "Roadwarden Knight \u00b7 F",
+        "caption": "Tall build; braids hair; plate construction; circlet details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "fantasy-knight-f",
+            "kind": "blank-human",
+            "cast": "fantasy-knight-f",
+            "action": "idle",
+            "design": {
+              "body": "tall",
+              "hairStyle": "braids",
+              "outfit": "plate",
+              "accessory": "circlet",
+              "variant": 1,
+              "skin": "#80543f",
+              "top": "#5966a6",
+              "legs": "#29364b",
+              "accent": "#a9d4d2",
+              "shoes": "#e1d7ba",
+              "hair": "#8c422a",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.95
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.9175000000000002,
+          2.124,
+          5.9
+        ],
+        "target": [
+          0,
+          1.5340000000000003,
+          0
+        ]
+      },
+      {
+        "id": "fantasy-elf-m",
+        "title": "Woodland Elf \u00b7 M",
+        "label": "Woodland Elf \u00b7 M",
+        "caption": "Elf build; long hair; ranger construction; quiver details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "fantasy-elf-m",
+            "kind": "blank-human",
+            "cast": "fantasy-elf-m",
+            "action": "idle",
+            "design": {
+              "body": "elf",
+              "hairStyle": "long",
+              "outfit": "ranger",
+              "accessory": "quiver",
+              "variant": 0,
+              "skin": "#bf8662",
+              "top": "#a55036",
+              "legs": "#493640",
+              "accent": "#e0c075",
+              "shoes": "#3b3032",
+              "hair": "#8c422a",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "elf",
+              "height": 2.85
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.8525,
+          2.052,
+          5.7
+        ],
+        "target": [
+          0,
+          1.4820000000000002,
+          0
+        ]
+      },
+      {
+        "id": "fantasy-elf-f",
+        "title": "Woodland Elf \u00b7 F",
+        "label": "Woodland Elf \u00b7 F",
+        "caption": "Slender build; ponytail hair; ranger construction; circlet details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "fantasy-elf-f",
+            "kind": "blank-human",
+            "cast": "fantasy-elf-f",
+            "action": "idle",
+            "design": {
+              "body": "slender",
+              "hairStyle": "ponytail",
+              "outfit": "ranger",
+              "accessory": "circlet",
+              "variant": 1,
+              "skin": "#e0b493",
+              "top": "#537249",
+              "legs": "#383f38",
+              "accent": "#c79553",
+              "shoes": "#e1d7ba",
+              "hair": "#242531",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "elf",
+              "height": 2.52
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.6380000000000001,
+          1.8144,
+          5.04
+        ],
+        "target": [
+          0,
+          1.3104,
+          0
+        ]
+      },
+      {
+        "id": "fantasy-ogre-m",
+        "title": "Hillside Ogre \u00b7 M",
+        "label": "Hillside Ogre \u00b7 M",
+        "caption": "Ogre build; mohawk hair; patchwork construction; tusks details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "fantasy-ogre-m",
+            "kind": "blank-human",
+            "cast": "fantasy-ogre-m",
+            "action": "idle",
+            "design": {
+              "body": "ogre",
+              "hairStyle": "mohawk",
+              "outfit": "patchwork",
+              "accessory": "tusks",
+              "variant": 0,
+              "skin": "#7d9164",
+              "top": "#5966a6",
+              "legs": "#29364b",
+              "accent": "#a9d4d2",
+              "shoes": "#3b3032",
+              "hair": "#242531",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "ogre",
+              "height": 3.15
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          2.0475,
+          2.268,
+          6.3
+        ],
+        "target": [
+          0,
+          1.638,
+          0
+        ]
+      },
+      {
+        "id": "fantasy-ogre-f",
+        "title": "Hillside Ogre \u00b7 F",
+        "label": "Hillside Ogre \u00b7 F",
+        "caption": "Ogre build; braids hair; patchwork construction; earrings details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "fantasy-ogre-f",
+            "kind": "blank-human",
+            "cast": "fantasy-ogre-f",
+            "action": "idle",
+            "design": {
+              "body": "ogre",
+              "hairStyle": "braids",
+              "outfit": "patchwork",
+              "accessory": "earrings",
+              "variant": 1,
+              "skin": "#a49773",
+              "top": "#8d527a",
+              "legs": "#3b354c",
+              "accent": "#d6c2a0",
+              "shoes": "#e1d7ba",
+              "hair": "#dfd5c3",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "ogre",
+              "height": 3.15
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          2.0475,
+          2.268,
+          6.3
+        ],
+        "target": [
+          0,
+          1.638,
+          0
+        ]
+      },
+      {
+        "id": "fantasy-dwarf-m",
+        "title": "Mountain Dwarf \u00b7 M",
+        "label": "Mountain Dwarf \u00b7 M",
+        "caption": "Dwarf build; beard hair; smith construction; goggles details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "fantasy-dwarf-m",
+            "kind": "blank-human",
+            "cast": "fantasy-dwarf-m",
+            "action": "idle",
+            "design": {
+              "body": "dwarf",
+              "hairStyle": "beard",
+              "outfit": "smith",
+              "accessory": "goggles",
+              "variant": 0,
+              "skin": "#f1c8a8",
+              "top": "#537249",
+              "legs": "#383f38",
+              "accent": "#c79553",
+              "shoes": "#3b3032",
+              "hair": "#dfd5c3",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "dwarf",
+              "height": 1.45
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          0.9425,
+          1.044,
+          2.9
+        ],
+        "target": [
+          0,
+          0.754,
+          0
+        ]
+      },
+      {
+        "id": "fantasy-dwarf-f",
+        "title": "Mountain Dwarf \u00b7 F",
+        "label": "Mountain Dwarf \u00b7 F",
+        "caption": "Dwarf build; bun hair; smith construction; braided-beard details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "fantasy-dwarf-f",
+            "kind": "blank-human",
+            "cast": "fantasy-dwarf-f",
+            "action": "idle",
+            "design": {
+              "body": "dwarf",
+              "hairStyle": "bun",
+              "outfit": "smith",
+              "accessory": "braided-beard",
+              "variant": 1,
+              "skin": "#cfa07e",
+              "top": "#bf8d32",
+              "legs": "#3b4959",
+              "accent": "#61c7c2",
+              "shoes": "#e1d7ba",
+              "hair": "#30241f",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "dwarf",
+              "height": 1.45
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          0.9425,
+          1.044,
+          2.9
+        ],
+        "target": [
+          0,
+          0.754,
+          0
+        ]
+      },
+      {
+        "id": "fantasy-mage-m",
+        "title": "Observatory Mage \u00b7 M",
+        "label": "Observatory Mage \u00b7 M",
+        "caption": "Tall build; long hair; robe construction; wizard-hat details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "fantasy-mage-m",
+            "kind": "blank-human",
+            "cast": "fantasy-mage-m",
+            "action": "idle",
+            "design": {
+              "body": "tall",
+              "hairStyle": "long",
+              "outfit": "robe",
+              "accessory": "wizard-hat",
+              "variant": 0,
+              "skin": "#80543f",
+              "top": "#8d527a",
+              "legs": "#3b354c",
+              "accent": "#d6c2a0",
+              "shoes": "#3b3032",
+              "hair": "#30241f",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.95
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.9175000000000002,
+          2.124,
+          5.9
+        ],
+        "target": [
+          0,
+          1.5340000000000003,
+          0
+        ]
+      },
+      {
+        "id": "fantasy-mage-f",
+        "title": "Observatory Mage \u00b7 F",
+        "label": "Observatory Mage \u00b7 F",
+        "caption": "Petite build; curly hair; robe construction; circlet details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "fantasy-mage-f",
+            "kind": "blank-human",
+            "cast": "fantasy-mage-f",
+            "action": "idle",
+            "design": {
+              "body": "petite",
+              "hairStyle": "curly",
+              "outfit": "robe",
+              "accessory": "circlet",
+              "variant": 1,
+              "skin": "#9e6346",
+              "top": "#347c87",
+              "legs": "#263e54",
+              "accent": "#df9e4b",
+              "shoes": "#e1d7ba",
+              "hair": "#bca288",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.05
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.3325,
+          1.4759999999999998,
+          4.1
+        ],
+        "target": [
+          0,
+          1.0659999999999998,
+          0
+        ]
+      },
+      {
+        "id": "fantasy-innkeeper-m",
+        "title": "Wayside Innkeeper \u00b7 M",
+        "label": "Wayside Innkeeper \u00b7 M",
+        "caption": "Stocky build; beard hair; waistcoat construction; none details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "fantasy-innkeeper-m",
+            "kind": "blank-human",
+            "cast": "fantasy-innkeeper-m",
+            "action": "idle",
+            "design": {
+              "body": "stocky",
+              "hairStyle": "beard",
+              "outfit": "waistcoat",
+              "accessory": "none",
+              "variant": 0,
+              "skin": "#e0b493",
+              "top": "#bf8d32",
+              "legs": "#3b4959",
+              "accent": "#61c7c2",
+              "shoes": "#3b3032",
+              "hair": "#bca288",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.62
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.703,
+          1.8864,
+          5.24
+        ],
+        "target": [
+          0,
+          1.3624,
+          0
+        ]
+      },
+      {
+        "id": "fantasy-innkeeper-f",
+        "title": "Wayside Innkeeper \u00b7 F",
+        "label": "Wayside Innkeeper \u00b7 F",
+        "caption": "Curvy build; bob hair; waistcoat construction; scarf details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "fantasy-innkeeper-f",
+            "kind": "blank-human",
+            "cast": "fantasy-innkeeper-f",
+            "action": "idle",
+            "design": {
+              "body": "curvy",
+              "hairStyle": "bob",
+              "outfit": "waistcoat",
+              "accessory": "scarf",
+              "variant": 1,
+              "skin": "#bf8662",
+              "top": "#a55036",
+              "legs": "#493640",
+              "accent": "#e0c075",
+              "shoes": "#e1d7ba",
+              "hair": "#8c422a",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.52
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.6380000000000001,
+          1.8144,
+          5.04
+        ],
+        "target": [
+          0,
+          1.3104,
+          0
+        ]
+      },
+      {
+        "id": "scifi-astronaut-m",
+        "title": "Orbital Astronaut \u00b7 M",
+        "label": "Orbital Astronaut \u00b7 M",
+        "caption": "Average build; buzz hair; spacesuit construction; space-helmet details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "scifi-astronaut-m",
+            "kind": "blank-human",
+            "cast": "scifi-astronaut-m",
+            "action": "idle",
+            "design": {
+              "body": "average",
+              "hairStyle": "buzz",
+              "outfit": "spacesuit",
+              "accessory": "space-helmet",
+              "variant": 0,
+              "skin": "#432c24",
+              "top": "#347c87",
+              "legs": "#263e54",
+              "accent": "#df9e4b",
+              "shoes": "#3b3032",
+              "hair": "#8c422a",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.62
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.703,
+          1.8864,
+          5.24
+        ],
+        "target": [
+          0,
+          1.3624,
+          0
+        ]
+      },
+      {
+        "id": "scifi-astronaut-f",
+        "title": "Orbital Astronaut \u00b7 F",
+        "label": "Orbital Astronaut \u00b7 F",
+        "caption": "Sturdy build; short hair; spacesuit construction; space-helmet details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "scifi-astronaut-f",
+            "kind": "blank-human",
+            "cast": "scifi-astronaut-f",
+            "action": "idle",
+            "design": {
+              "body": "sturdy",
+              "hairStyle": "short",
+              "outfit": "spacesuit",
+              "accessory": "space-helmet",
+              "variant": 1,
+              "skin": "#6d402c",
+              "top": "#5966a6",
+              "legs": "#29364b",
+              "accent": "#a9d4d2",
+              "shoes": "#e1d7ba",
+              "hair": "#242531",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.52
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.6380000000000001,
+          1.8144,
+          5.04
+        ],
+        "target": [
+          0,
+          1.3104,
+          0
+        ]
+      },
+      {
+        "id": "scifi-pilot-m",
+        "title": "Courier Pilot \u00b7 M",
+        "label": "Courier Pilot \u00b7 M",
+        "caption": "Slender build; swept hair; flight-jacket construction; headset details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "scifi-pilot-m",
+            "kind": "blank-human",
+            "cast": "scifi-pilot-m",
+            "action": "idle",
+            "design": {
+              "body": "slender",
+              "hairStyle": "swept",
+              "outfit": "flight-jacket",
+              "accessory": "headset",
+              "variant": 0,
+              "skin": "#cfa07e",
+              "top": "#a55036",
+              "legs": "#493640",
+              "accent": "#e0c075",
+              "shoes": "#3b3032",
+              "hair": "#242531",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.62
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.703,
+          1.8864,
+          5.24
+        ],
+        "target": [
+          0,
+          1.3624,
+          0
+        ]
+      },
+      {
+        "id": "scifi-pilot-f",
+        "title": "Courier Pilot \u00b7 F",
+        "label": "Courier Pilot \u00b7 F",
+        "caption": "Petite build; braids hair; flight-jacket construction; goggles details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "scifi-pilot-f",
+            "kind": "blank-human",
+            "cast": "scifi-pilot-f",
+            "action": "idle",
+            "design": {
+              "body": "petite",
+              "hairStyle": "braids",
+              "outfit": "flight-jacket",
+              "accessory": "goggles",
+              "variant": 1,
+              "skin": "#f1c8a8",
+              "top": "#537249",
+              "legs": "#383f38",
+              "accent": "#c79553",
+              "shoes": "#e1d7ba",
+              "hair": "#dfd5c3",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.05
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.3325,
+          1.4759999999999998,
+          4.1
+        ],
+        "target": [
+          0,
+          1.0659999999999998,
+          0
+        ]
+      },
+      {
+        "id": "scifi-engineer-m",
+        "title": "Station Engineer \u00b7 M",
+        "label": "Station Engineer \u00b7 M",
+        "caption": "Stocky build; bald hair; utility construction; goggles details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "scifi-engineer-m",
+            "kind": "blank-human",
+            "cast": "scifi-engineer-m",
+            "action": "idle",
+            "design": {
+              "body": "stocky",
+              "hairStyle": "bald",
+              "outfit": "utility",
+              "accessory": "goggles",
+              "variant": 0,
+              "skin": "#9e6346",
+              "top": "#5966a6",
+              "legs": "#29364b",
+              "accent": "#a9d4d2",
+              "shoes": "#3b3032",
+              "hair": "#dfd5c3",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.62
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.703,
+          1.8864,
+          5.24
+        ],
+        "target": [
+          0,
+          1.3624,
+          0
+        ]
+      },
+      {
+        "id": "scifi-engineer-f",
+        "title": "Station Engineer \u00b7 F",
+        "label": "Station Engineer \u00b7 F",
+        "caption": "Tall build; locs hair; utility construction; headset details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "scifi-engineer-f",
+            "kind": "blank-human",
+            "cast": "scifi-engineer-f",
+            "action": "idle",
+            "design": {
+              "body": "tall",
+              "hairStyle": "locs",
+              "outfit": "utility",
+              "accessory": "headset",
+              "variant": 1,
+              "skin": "#80543f",
+              "top": "#8d527a",
+              "legs": "#3b354c",
+              "accent": "#d6c2a0",
+              "shoes": "#e1d7ba",
+              "hair": "#30241f",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.95
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.9175000000000002,
+          2.124,
+          5.9
+        ],
+        "target": [
+          0,
+          1.5340000000000003,
+          0
+        ]
+      },
+      {
+        "id": "scifi-researcher-m",
+        "title": "Exoplanet Researcher \u00b7 M",
+        "label": "Exoplanet Researcher \u00b7 M",
+        "caption": "Tall build; curly hair; labcoat construction; glasses details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "scifi-researcher-m",
+            "kind": "blank-human",
+            "cast": "scifi-researcher-m",
+            "action": "idle",
+            "design": {
+              "body": "tall",
+              "hairStyle": "curly",
+              "outfit": "labcoat",
+              "accessory": "glasses",
+              "variant": 0,
+              "skin": "#bf8662",
+              "top": "#537249",
+              "legs": "#383f38",
+              "accent": "#c79553",
+              "shoes": "#3b3032",
+              "hair": "#30241f",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.95
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.9175000000000002,
+          2.124,
+          5.9
+        ],
+        "target": [
+          0,
+          1.5340000000000003,
+          0
+        ]
+      },
+      {
+        "id": "scifi-researcher-f",
+        "title": "Exoplanet Researcher \u00b7 F",
+        "label": "Exoplanet Researcher \u00b7 F",
+        "caption": "Curvy build; bun hair; labcoat construction; scanner details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "scifi-researcher-f",
+            "kind": "blank-human",
+            "cast": "scifi-researcher-f",
+            "action": "idle",
+            "design": {
+              "body": "curvy",
+              "hairStyle": "bun",
+              "outfit": "labcoat",
+              "accessory": "scanner",
+              "variant": 1,
+              "skin": "#e0b493",
+              "top": "#bf8d32",
+              "legs": "#3b4959",
+              "accent": "#61c7c2",
+              "shoes": "#e1d7ba",
+              "hair": "#bca288",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.52
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.6380000000000001,
+          1.8144,
+          5.04
+        ],
+        "target": [
+          0,
+          1.3104,
+          0
+        ]
+      },
+      {
+        "id": "scifi-android-m",
+        "title": "Service Android \u00b7 M",
+        "label": "Service Android \u00b7 M",
+        "caption": "Athletic build; crest hair; segmented construction; antenna details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "scifi-android-m",
+            "kind": "blank-human",
+            "cast": "scifi-android-m",
+            "action": "idle",
+            "design": {
+              "body": "athletic",
+              "hairStyle": "crest",
+              "outfit": "segmented",
+              "accessory": "antenna",
+              "variant": 0,
+              "skin": "#adbfc8",
+              "top": "#8d527a",
+              "legs": "#3b354c",
+              "accent": "#d6c2a0",
+              "shoes": "#3b3032",
+              "hair": "#bca288",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "android",
+              "height": 2.62
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.703,
+          1.8864,
+          5.24
+        ],
+        "target": [
+          0,
+          1.3624,
+          0
+        ]
+      },
+      {
+        "id": "scifi-android-f",
+        "title": "Service Android \u00b7 F",
+        "label": "Service Android \u00b7 F",
+        "caption": "Slender build; bob hair; segmented construction; antenna details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "scifi-android-f",
+            "kind": "blank-human",
+            "cast": "scifi-android-f",
+            "action": "idle",
+            "design": {
+              "body": "slender",
+              "hairStyle": "bob",
+              "outfit": "segmented",
+              "accessory": "antenna",
+              "variant": 1,
+              "skin": "#977ca7",
+              "top": "#347c87",
+              "legs": "#263e54",
+              "accent": "#df9e4b",
+              "shoes": "#e1d7ba",
+              "hair": "#8c422a",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "android",
+              "height": 2.52
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.6380000000000001,
+          1.8144,
+          5.04
+        ],
+        "target": [
+          0,
+          1.3104,
+          0
+        ]
+      },
+      {
+        "id": "scifi-explorer-m",
+        "title": "Frontier Explorer \u00b7 M",
+        "label": "Frontier Explorer \u00b7 M",
+        "caption": "Sturdy build; afro hair; pressure-vest construction; backpack details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "scifi-explorer-m",
+            "kind": "blank-human",
+            "cast": "scifi-explorer-m",
+            "action": "idle",
+            "design": {
+              "body": "sturdy",
+              "hairStyle": "afro",
+              "outfit": "pressure-vest",
+              "accessory": "backpack",
+              "variant": 0,
+              "skin": "#f1c8a8",
+              "top": "#bf8d32",
+              "legs": "#3b4959",
+              "accent": "#61c7c2",
+              "shoes": "#3b3032",
+              "hair": "#8c422a",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.62
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.703,
+          1.8864,
+          5.24
+        ],
+        "target": [
+          0,
+          1.3624,
+          0
+        ]
+      },
+      {
+        "id": "scifi-explorer-f",
+        "title": "Frontier Explorer \u00b7 F",
+        "label": "Frontier Explorer \u00b7 F",
+        "caption": "Athletic build; ponytail hair; pressure-vest construction; scanner details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "scifi-explorer-f",
+            "kind": "blank-human",
+            "cast": "scifi-explorer-f",
+            "action": "idle",
+            "design": {
+              "body": "athletic",
+              "hairStyle": "ponytail",
+              "outfit": "pressure-vest",
+              "accessory": "scanner",
+              "variant": 1,
+              "skin": "#cfa07e",
+              "top": "#a55036",
+              "legs": "#493640",
+              "accent": "#e0c075",
+              "shoes": "#e1d7ba",
+              "hair": "#242531",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.52
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.6380000000000001,
+          1.8144,
+          5.04
+        ],
+        "target": [
+          0,
+          1.3104,
+          0
+        ]
+      },
+      {
+        "id": "western-rancher-m",
+        "title": "Prairie Rancher \u00b7 M",
+        "label": "Prairie Rancher \u00b7 M",
+        "caption": "Tall build; short hair; denim construction; cowboy-hat details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "western-rancher-m",
+            "kind": "blank-human",
+            "cast": "western-rancher-m",
+            "action": "idle",
+            "design": {
+              "body": "tall",
+              "hairStyle": "short",
+              "outfit": "denim",
+              "accessory": "cowboy-hat",
+              "variant": 0,
+              "skin": "#80543f",
+              "top": "#347c87",
+              "legs": "#263e54",
+              "accent": "#df9e4b",
+              "shoes": "#3b3032",
+              "hair": "#242531",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.95
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.9175000000000002,
+          2.124,
+          5.9
+        ],
+        "target": [
+          0,
+          1.5340000000000003,
+          0
+        ]
+      },
+      {
+        "id": "western-rancher-f",
+        "title": "Prairie Rancher \u00b7 F",
+        "label": "Prairie Rancher \u00b7 F",
+        "caption": "Sturdy build; braids hair; denim construction; cowboy-hat details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "western-rancher-f",
+            "kind": "blank-human",
+            "cast": "western-rancher-f",
+            "action": "idle",
+            "design": {
+              "body": "sturdy",
+              "hairStyle": "braids",
+              "outfit": "denim",
+              "accessory": "cowboy-hat",
+              "variant": 1,
+              "skin": "#9e6346",
+              "top": "#5966a6",
+              "legs": "#29364b",
+              "accent": "#a9d4d2",
+              "shoes": "#e1d7ba",
+              "hair": "#dfd5c3",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.52
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.6380000000000001,
+          1.8144,
+          5.04
+        ],
+        "target": [
+          0,
+          1.3104,
+          0
+        ]
+      },
+      {
+        "id": "western-marshal-m",
+        "title": "Town Marshal \u00b7 M",
+        "label": "Town Marshal \u00b7 M",
+        "caption": "Athletic build; beard hair; duster construction; marshal-hat details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "western-marshal-m",
+            "kind": "blank-human",
+            "cast": "western-marshal-m",
+            "action": "idle",
+            "design": {
+              "body": "athletic",
+              "hairStyle": "beard",
+              "outfit": "duster",
+              "accessory": "marshal-hat",
+              "variant": 0,
+              "skin": "#e0b493",
+              "top": "#a55036",
+              "legs": "#493640",
+              "accent": "#e0c075",
+              "shoes": "#3b3032",
+              "hair": "#dfd5c3",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.62
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.703,
+          1.8864,
+          5.24
+        ],
+        "target": [
+          0,
+          1.3624,
+          0
+        ]
+      },
+      {
+        "id": "western-marshal-f",
+        "title": "Town Marshal \u00b7 F",
+        "label": "Town Marshal \u00b7 F",
+        "caption": "Tall build; bun hair; duster construction; marshal-hat details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "western-marshal-f",
+            "kind": "blank-human",
+            "cast": "western-marshal-f",
+            "action": "idle",
+            "design": {
+              "body": "tall",
+              "hairStyle": "bun",
+              "outfit": "duster",
+              "accessory": "marshal-hat",
+              "variant": 1,
+              "skin": "#bf8662",
+              "top": "#537249",
+              "legs": "#383f38",
+              "accent": "#c79553",
+              "shoes": "#e1d7ba",
+              "hair": "#30241f",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.95
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.9175000000000002,
+          2.124,
+          5.9
+        ],
+        "target": [
+          0,
+          1.5340000000000003,
+          0
+        ]
+      },
+      {
+        "id": "western-prospector-m",
+        "title": "Canyon Prospector \u00b7 M",
+        "label": "Canyon Prospector \u00b7 M",
+        "caption": "Dwarf build; beard hair; suspenders construction; work-hat details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "western-prospector-m",
+            "kind": "blank-human",
+            "cast": "western-prospector-m",
+            "action": "idle",
+            "design": {
+              "body": "dwarf",
+              "hairStyle": "beard",
+              "outfit": "suspenders",
+              "accessory": "work-hat",
+              "variant": 0,
+              "skin": "#432c24",
+              "top": "#5966a6",
+              "legs": "#29364b",
+              "accent": "#a9d4d2",
+              "shoes": "#3b3032",
+              "hair": "#30241f",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 1.45
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          0.9425,
+          1.044,
+          2.9
+        ],
+        "target": [
+          0,
+          0.754,
+          0
+        ]
+      },
+      {
+        "id": "western-prospector-f",
+        "title": "Canyon Prospector \u00b7 F",
+        "label": "Canyon Prospector \u00b7 F",
+        "caption": "Stocky build; curly hair; suspenders construction; headscarf details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "western-prospector-f",
+            "kind": "blank-human",
+            "cast": "western-prospector-f",
+            "action": "idle",
+            "design": {
+              "body": "stocky",
+              "hairStyle": "curly",
+              "outfit": "suspenders",
+              "accessory": "headscarf",
+              "variant": 1,
+              "skin": "#6d402c",
+              "top": "#8d527a",
+              "legs": "#3b354c",
+              "accent": "#d6c2a0",
+              "shoes": "#e1d7ba",
+              "hair": "#bca288",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.52
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.6380000000000001,
+          1.8144,
+          5.04
+        ],
+        "target": [
+          0,
+          1.3104,
+          0
+        ]
+      },
+      {
+        "id": "western-conductor-m",
+        "title": "Rail Conductor \u00b7 M",
+        "label": "Rail Conductor \u00b7 M",
+        "caption": "Stocky build; swept hair; uniform construction; rail-cap details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "western-conductor-m",
+            "kind": "blank-human",
+            "cast": "western-conductor-m",
+            "action": "idle",
+            "design": {
+              "body": "stocky",
+              "hairStyle": "swept",
+              "outfit": "uniform",
+              "accessory": "rail-cap",
+              "variant": 0,
+              "skin": "#cfa07e",
+              "top": "#537249",
+              "legs": "#383f38",
+              "accent": "#c79553",
+              "shoes": "#3b3032",
+              "hair": "#bca288",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.62
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.703,
+          1.8864,
+          5.24
+        ],
+        "target": [
+          0,
+          1.3624,
+          0
+        ]
+      },
+      {
+        "id": "western-conductor-f",
+        "title": "Rail Conductor \u00b7 F",
+        "label": "Rail Conductor \u00b7 F",
+        "caption": "Slender build; bob hair; uniform construction; rail-cap details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "western-conductor-f",
+            "kind": "blank-human",
+            "cast": "western-conductor-f",
+            "action": "idle",
+            "design": {
+              "body": "slender",
+              "hairStyle": "bob",
+              "outfit": "uniform",
+              "accessory": "rail-cap",
+              "variant": 1,
+              "skin": "#f1c8a8",
+              "top": "#bf8d32",
+              "legs": "#3b4959",
+              "accent": "#61c7c2",
+              "shoes": "#e1d7ba",
+              "hair": "#8c422a",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.52
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.6380000000000001,
+          1.8144,
+          5.04
+        ],
+        "target": [
+          0,
+          1.3104,
+          0
+        ]
+      },
+      {
+        "id": "western-doctor-m",
+        "title": "Frontier Doctor \u00b7 M",
+        "label": "Frontier Doctor \u00b7 M",
+        "caption": "Slender build; bald hair; frock construction; glasses details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "western-doctor-m",
+            "kind": "blank-human",
+            "cast": "western-doctor-m",
+            "action": "idle",
+            "design": {
+              "body": "slender",
+              "hairStyle": "bald",
+              "outfit": "frock",
+              "accessory": "glasses",
+              "variant": 0,
+              "skin": "#9e6346",
+              "top": "#8d527a",
+              "legs": "#3b354c",
+              "accent": "#d6c2a0",
+              "shoes": "#3b3032",
+              "hair": "#8c422a",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.62
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.703,
+          1.8864,
+          5.24
+        ],
+        "target": [
+          0,
+          1.3624,
+          0
+        ]
+      },
+      {
+        "id": "western-doctor-f",
+        "title": "Frontier Doctor \u00b7 F",
+        "label": "Frontier Doctor \u00b7 F",
+        "caption": "Petite build; locs hair; frock construction; scarf details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "western-doctor-f",
+            "kind": "blank-human",
+            "cast": "western-doctor-f",
+            "action": "idle",
+            "design": {
+              "body": "petite",
+              "hairStyle": "locs",
+              "outfit": "frock",
+              "accessory": "scarf",
+              "variant": 1,
+              "skin": "#80543f",
+              "top": "#347c87",
+              "legs": "#263e54",
+              "accent": "#df9e4b",
+              "shoes": "#e1d7ba",
+              "hair": "#242531",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.05
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.3325,
+          1.4759999999999998,
+          4.1
+        ],
+        "target": [
+          0,
+          1.0659999999999998,
+          0
+        ]
+      },
+      {
+        "id": "western-performer-m",
+        "title": "Traveling Musician \u00b7 M",
+        "label": "Traveling Musician \u00b7 M",
+        "caption": "Average build; long hair; embroidered construction; bolero-hat details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "western-performer-m",
+            "kind": "blank-human",
+            "cast": "western-performer-m",
+            "action": "idle",
+            "design": {
+              "body": "average",
+              "hairStyle": "long",
+              "outfit": "embroidered",
+              "accessory": "bolero-hat",
+              "variant": 0,
+              "skin": "#bf8662",
+              "top": "#bf8d32",
+              "legs": "#3b4959",
+              "accent": "#61c7c2",
+              "shoes": "#3b3032",
+              "hair": "#242531",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.62
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.703,
+          1.8864,
+          5.24
+        ],
+        "target": [
+          0,
+          1.3624,
+          0
+        ]
+      },
+      {
+        "id": "western-performer-f",
+        "title": "Traveling Musician \u00b7 F",
+        "label": "Traveling Musician \u00b7 F",
+        "caption": "Curvy build; afro hair; embroidered construction; earrings details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "western-performer-f",
+            "kind": "blank-human",
+            "cast": "western-performer-f",
+            "action": "idle",
+            "design": {
+              "body": "curvy",
+              "hairStyle": "afro",
+              "outfit": "embroidered",
+              "accessory": "earrings",
+              "variant": 1,
+              "skin": "#e0b493",
+              "top": "#a55036",
+              "legs": "#493640",
+              "accent": "#e0c075",
+              "shoes": "#e1d7ba",
+              "hair": "#dfd5c3",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.52
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.6380000000000001,
+          1.8144,
+          5.04
+        ],
+        "target": [
+          0,
+          1.3104,
+          0
+        ]
+      },
+      {
+        "id": "superhero-beacon-m",
+        "title": "Beacon Guard \u00b7 M",
+        "label": "Beacon Guard \u00b7 M",
+        "caption": "Athletic build; buzz hair; hero-armor construction; visor details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "superhero-beacon-m",
+            "kind": "blank-human",
+            "cast": "superhero-beacon-m",
+            "action": "idle",
+            "design": {
+              "body": "athletic",
+              "hairStyle": "buzz",
+              "outfit": "hero-armor",
+              "accessory": "visor",
+              "variant": 0,
+              "skin": "#6d402c",
+              "top": "#347c87",
+              "legs": "#263e54",
+              "accent": "#df9e4b",
+              "shoes": "#3b3032",
+              "hair": "#dfd5c3",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.62
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.703,
+          1.8864,
+          5.24
+        ],
+        "target": [
+          0,
+          1.3624,
+          0
+        ]
+      },
+      {
+        "id": "superhero-beacon-f",
+        "title": "Beacon Guard \u00b7 F",
+        "label": "Beacon Guard \u00b7 F",
+        "caption": "Sturdy build; braids hair; hero-armor construction; visor details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "superhero-beacon-f",
+            "kind": "blank-human",
+            "cast": "superhero-beacon-f",
+            "action": "idle",
+            "design": {
+              "body": "sturdy",
+              "hairStyle": "braids",
+              "outfit": "hero-armor",
+              "accessory": "visor",
+              "variant": 1,
+              "skin": "#432c24",
+              "top": "#5966a6",
+              "legs": "#29364b",
+              "accent": "#a9d4d2",
+              "shoes": "#e1d7ba",
+              "hair": "#30241f",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.52
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.6380000000000001,
+          1.8144,
+          5.04
+        ],
+        "target": [
+          0,
+          1.3104,
+          0
+        ]
+      },
+      {
+        "id": "superhero-comet-m",
+        "title": "Comet Courier \u00b7 M",
+        "label": "Comet Courier \u00b7 M",
+        "caption": "Slender build; mohawk hair; speed-suit construction; goggles details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "superhero-comet-m",
+            "kind": "blank-human",
+            "cast": "superhero-comet-m",
+            "action": "idle",
+            "design": {
+              "body": "slender",
+              "hairStyle": "mohawk",
+              "outfit": "speed-suit",
+              "accessory": "goggles",
+              "variant": 0,
+              "skin": "#f1c8a8",
+              "top": "#a55036",
+              "legs": "#493640",
+              "accent": "#e0c075",
+              "shoes": "#3b3032",
+              "hair": "#30241f",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.62
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.703,
+          1.8864,
+          5.24
+        ],
+        "target": [
+          0,
+          1.3624,
+          0
+        ]
+      },
+      {
+        "id": "superhero-comet-f",
+        "title": "Comet Courier \u00b7 F",
+        "label": "Comet Courier \u00b7 F",
+        "caption": "Petite build; ponytail hair; speed-suit construction; headset details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "superhero-comet-f",
+            "kind": "blank-human",
+            "cast": "superhero-comet-f",
+            "action": "idle",
+            "design": {
+              "body": "petite",
+              "hairStyle": "ponytail",
+              "outfit": "speed-suit",
+              "accessory": "headset",
+              "variant": 1,
+              "skin": "#cfa07e",
+              "top": "#537249",
+              "legs": "#383f38",
+              "accent": "#c79553",
+              "shoes": "#e1d7ba",
+              "hair": "#bca288",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.05
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.3325,
+          1.4759999999999998,
+          4.1
+        ],
+        "target": [
+          0,
+          1.0659999999999998,
+          0
+        ]
+      },
+      {
+        "id": "superhero-verdant-m",
+        "title": "Verdant Sentinel \u00b7 M",
+        "label": "Verdant Sentinel \u00b7 M",
+        "caption": "Ogre build; locs hair; leaf-armor construction; circlet details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "superhero-verdant-m",
+            "kind": "blank-human",
+            "cast": "superhero-verdant-m",
+            "action": "idle",
+            "design": {
+              "body": "ogre",
+              "hairStyle": "locs",
+              "outfit": "leaf-armor",
+              "accessory": "circlet",
+              "variant": 0,
+              "skin": "#80543f",
+              "top": "#5966a6",
+              "legs": "#29364b",
+              "accent": "#a9d4d2",
+              "shoes": "#3b3032",
+              "hair": "#bca288",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 3.15
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          2.0475,
+          2.268,
+          6.3
+        ],
+        "target": [
+          0,
+          1.638,
+          0
+        ]
+      },
+      {
+        "id": "superhero-verdant-f",
+        "title": "Verdant Sentinel \u00b7 F",
+        "label": "Verdant Sentinel \u00b7 F",
+        "caption": "Tall build; long hair; leaf-armor construction; circlet details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "superhero-verdant-f",
+            "kind": "blank-human",
+            "cast": "superhero-verdant-f",
+            "action": "idle",
+            "design": {
+              "body": "tall",
+              "hairStyle": "long",
+              "outfit": "leaf-armor",
+              "accessory": "circlet",
+              "variant": 1,
+              "skin": "#9e6346",
+              "top": "#8d527a",
+              "legs": "#3b354c",
+              "accent": "#d6c2a0",
+              "shoes": "#e1d7ba",
+              "hair": "#8c422a",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.95
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.9175000000000002,
+          2.124,
+          5.9
+        ],
+        "target": [
+          0,
+          1.5340000000000003,
+          0
+        ]
+      },
+      {
+        "id": "superhero-prism-m",
+        "title": "Prism Weaver \u00b7 M",
+        "label": "Prism Weaver \u00b7 M",
+        "caption": "Tall build; swept hair; mantle construction; mask details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "superhero-prism-m",
+            "kind": "blank-human",
+            "cast": "superhero-prism-m",
+            "action": "idle",
+            "design": {
+              "body": "tall",
+              "hairStyle": "swept",
+              "outfit": "mantle",
+              "accessory": "mask",
+              "variant": 0,
+              "skin": "#e0b493",
+              "top": "#537249",
+              "legs": "#383f38",
+              "accent": "#c79553",
+              "shoes": "#3b3032",
+              "hair": "#8c422a",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.95
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.9175000000000002,
+          2.124,
+          5.9
+        ],
+        "target": [
+          0,
+          1.5340000000000003,
+          0
+        ]
+      },
+      {
+        "id": "superhero-prism-f",
+        "title": "Prism Weaver \u00b7 F",
+        "label": "Prism Weaver \u00b7 F",
+        "caption": "Curvy build; bob hair; mantle construction; mask details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "superhero-prism-f",
+            "kind": "blank-human",
+            "cast": "superhero-prism-f",
+            "action": "idle",
+            "design": {
+              "body": "curvy",
+              "hairStyle": "bob",
+              "outfit": "mantle",
+              "accessory": "mask",
+              "variant": 1,
+              "skin": "#bf8662",
+              "top": "#bf8d32",
+              "legs": "#3b4959",
+              "accent": "#61c7c2",
+              "shoes": "#e1d7ba",
+              "hair": "#242531",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.52
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.6380000000000001,
+          1.8144,
+          5.04
+        ],
+        "target": [
+          0,
+          1.3104,
+          0
+        ]
+      },
+      {
+        "id": "superhero-bulwark-m",
+        "title": "Copper Bulwark \u00b7 M",
+        "label": "Copper Bulwark \u00b7 M",
+        "caption": "Stocky build; bald hair; exo-suit construction; visor details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "superhero-bulwark-m",
+            "kind": "blank-human",
+            "cast": "superhero-bulwark-m",
+            "action": "idle",
+            "design": {
+              "body": "stocky",
+              "hairStyle": "bald",
+              "outfit": "exo-suit",
+              "accessory": "visor",
+              "variant": 0,
+              "skin": "#432c24",
+              "top": "#8d527a",
+              "legs": "#3b354c",
+              "accent": "#d6c2a0",
+              "shoes": "#3b3032",
+              "hair": "#242531",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.62
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.703,
+          1.8864,
+          5.24
+        ],
+        "target": [
+          0,
+          1.3624,
+          0
+        ]
+      },
+      {
+        "id": "superhero-bulwark-f",
+        "title": "Copper Bulwark \u00b7 F",
+        "label": "Copper Bulwark \u00b7 F",
+        "caption": "Dwarf build; bun hair; exo-suit construction; goggles details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "superhero-bulwark-f",
+            "kind": "blank-human",
+            "cast": "superhero-bulwark-f",
+            "action": "idle",
+            "design": {
+              "body": "dwarf",
+              "hairStyle": "bun",
+              "outfit": "exo-suit",
+              "accessory": "goggles",
+              "variant": 1,
+              "skin": "#6d402c",
+              "top": "#347c87",
+              "legs": "#263e54",
+              "accent": "#df9e4b",
+              "shoes": "#e1d7ba",
+              "hair": "#dfd5c3",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 1.45
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          0.9425,
+          1.044,
+          2.9
+        ],
+        "target": [
+          0,
+          0.754,
+          0
+        ]
+      },
+      {
+        "id": "superhero-nightjar-m",
+        "title": "Nightjar Rescuer \u00b7 M",
+        "label": "Nightjar Rescuer \u00b7 M",
+        "caption": "Average build; curly hair; rescue-suit construction; headset details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "superhero-nightjar-m",
+            "kind": "blank-human",
+            "cast": "superhero-nightjar-m",
+            "action": "idle",
+            "design": {
+              "body": "average",
+              "hairStyle": "curly",
+              "outfit": "rescue-suit",
+              "accessory": "headset",
+              "variant": 0,
+              "skin": "#cfa07e",
+              "top": "#bf8d32",
+              "legs": "#3b4959",
+              "accent": "#61c7c2",
+              "shoes": "#3b3032",
+              "hair": "#dfd5c3",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.62
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.703,
+          1.8864,
+          5.24
+        ],
+        "target": [
+          0,
+          1.3624,
+          0
+        ]
+      },
+      {
+        "id": "superhero-nightjar-f",
+        "title": "Nightjar Rescuer \u00b7 F",
+        "label": "Nightjar Rescuer \u00b7 F",
+        "caption": "Athletic build; afro hair; rescue-suit construction; mask details.",
+        "duration": 5,
+        "environment": "void",
+        "actors": [
+          {
+            "id": "superhero-nightjar-f",
+            "kind": "blank-human",
+            "cast": "superhero-nightjar-f",
+            "action": "idle",
+            "design": {
+              "body": "athletic",
+              "hairStyle": "afro",
+              "outfit": "rescue-suit",
+              "accessory": "mask",
+              "variant": 1,
+              "skin": "#f1c8a8",
+              "top": "#a55036",
+              "legs": "#493640",
+              "accent": "#e0c075",
+              "shoes": "#e1d7ba",
+              "hair": "#30241f",
+              "hairVisible": true,
+              "helmetVisible": false,
+              "eye": "#152b3b",
+              "species": "human",
+              "height": 2.52
+            },
+            "from": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "props": [],
+        "camera": [
+          1.6380000000000001,
+          1.8144,
+          5.04
+        ],
+        "target": [
+          0,
+          1.3104,
+          0
+        ]
+      }
+    ]
+  },
+  "assets": {},
+  "schema": "JetCartoonPackage"
+}

@@ -42,6 +42,10 @@ The repository intentionally publishes source rather than prebuilt third-party v
 
 58 humanoid action presets, three restylable rig variants, 22 animated VFX, 90 props and 48 environments are now included. See [Library guide](docs/LIBRARY.md). The original skater-proportioned rig is included, but private captured skating motions are deliberately excluded because redistribution rights remain unresolved.
 
+## Cast Library
+
+60 editable stock characters across everyday, fantasy, sci-fi, western and original superhero genres are included, with thumbnail browsing, search, appearance replacement and a deterministic diverse-cast helper. All use the shared articulated humanoid rig. See [Cast Library guide](docs/CAST_LIBRARY.md) for editor/headless usage, editable templates and compatibility limits.
+
 ## Headless commands
 
 Install FFmpeg separately for movies. Stills and comics do not require it.

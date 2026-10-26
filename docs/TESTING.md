@@ -39,3 +39,9 @@ A successful decode checks stream validity, not story coverage or sound quality.
 ## Generated files
 
 START.html, runtime bundles, complete embedded-audio example projects, Demo/, output/ and node_modules/ are generated and ignored by Git. Source examples, music originals, manifests and the lockfile are tracked. Do not commit private projects to make a test easier. Do not publish bundled third-party voice binaries without meeting their corresponding-source and notice obligations.
+
+## Cast regression tests
+
+`npm test` also checks all 60 cast designs, 17,400 pose updates across the 58 authored actions, finite transforms/textures, joint and hand-socket attachments (including backward seek), catalog/legacy validation, and 768 seeded four-character diversity cases. It renders all 60 previews under ignored `Cast-Previews/` and writes reports to ignored `qa/`. `test-cast-ui.cjs` exercises search/filter, add/apply, identity/motion preservation, capacity, blank characters and cancel/new-project behavior through jsdom with a stub preview renderer; it is not WebGL/browser QA.
+
+Optional real-browser coverage is `PLAYWRIGHT_MODULE=/path/to/playwright CHROMIUM_PATH=/path/to/chromium node Source/test-cast-browser.cjs` after building. Install Playwright separately if desired; it is not a runtime dependency. The public cast integration passed the full automated suite and a native-rendered five-genre visual smoke inspection. Chromium interaction QA could not run in the cloud authoring environment because its process/socket sandbox prevented browser startup; no browser pass is claimed.

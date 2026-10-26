@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "fantasy-mage-f",
+  "design": {
+    "body": "petite",
+    "hairStyle": "curly",
+    "outfit": "robe",
+    "accessory": "circlet",
+    "variant": 1,
+    "skin": "#9e6346",
+    "top": "#347c87",
+    "legs": "#263e54",
+    "accent": "#df9e4b",
+    "shoes": "#e1d7ba",
+    "hair": "#bca288",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.05
+  }
+}

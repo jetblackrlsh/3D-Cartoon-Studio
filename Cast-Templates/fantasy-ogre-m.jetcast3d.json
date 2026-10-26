@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "fantasy-ogre-m",
+  "design": {
+    "body": "ogre",
+    "hairStyle": "mohawk",
+    "outfit": "patchwork",
+    "accessory": "tusks",
+    "variant": 0,
+    "skin": "#7d9164",
+    "top": "#5966a6",
+    "legs": "#29364b",
+    "accent": "#a9d4d2",
+    "shoes": "#3b3032",
+    "hair": "#242531",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "ogre",
+    "height": 3.15
+  }
+}

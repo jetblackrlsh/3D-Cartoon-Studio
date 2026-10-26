@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "superhero-nightjar-m",
+  "design": {
+    "body": "average",
+    "hairStyle": "curly",
+    "outfit": "rescue-suit",
+    "accessory": "headset",
+    "variant": 0,
+    "skin": "#cfa07e",
+    "top": "#bf8d32",
+    "legs": "#3b4959",
+    "accent": "#61c7c2",
+    "shoes": "#3b3032",
+    "hair": "#dfd5c3",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.62
+  }
+}

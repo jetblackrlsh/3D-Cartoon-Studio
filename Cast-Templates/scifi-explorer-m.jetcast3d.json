@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "scifi-explorer-m",
+  "design": {
+    "body": "sturdy",
+    "hairStyle": "afro",
+    "outfit": "pressure-vest",
+    "accessory": "backpack",
+    "variant": 0,
+    "skin": "#f1c8a8",
+    "top": "#bf8d32",
+    "legs": "#3b4959",
+    "accent": "#61c7c2",
+    "shoes": "#3b3032",
+    "hair": "#8c422a",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.62
+  }
+}

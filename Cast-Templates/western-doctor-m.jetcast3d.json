@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "western-doctor-m",
+  "design": {
+    "body": "slender",
+    "hairStyle": "bald",
+    "outfit": "frock",
+    "accessory": "glasses",
+    "variant": 0,
+    "skin": "#9e6346",
+    "top": "#8d527a",
+    "legs": "#3b354c",
+    "accent": "#d6c2a0",
+    "shoes": "#3b3032",
+    "hair": "#8c422a",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.62
+  }
+}

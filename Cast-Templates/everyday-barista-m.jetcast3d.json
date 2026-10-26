@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "everyday-barista-m",
+  "design": {
+    "body": "slender",
+    "hairStyle": "swept",
+    "outfit": "apron",
+    "accessory": "none",
+    "variant": 0,
+    "skin": "#f1c8a8",
+    "top": "#a55036",
+    "legs": "#493640",
+    "accent": "#e0c075",
+    "shoes": "#3b3032",
+    "hair": "#bca288",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.62
+  }
+}

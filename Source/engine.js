@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2026 jetblackrlsh
+import castThumbnails from './cast-thumbnails.json';
+import {castCatalog,castDesign,createCastActor,searchCast,diverseCast,validateCastActor,bodyProfiles,hairStyles,outfitStyles,accessoryStyles} from './cast-library.js';
 import * as THREE from "three";
 import {urbanPropCatalog,urbanEnvironmentCatalog,validateUrbanProp,makeUrbanProp,validateUrbanEnvironment,makeUrbanEnvironment} from './urban-assets.js';
 import {environmentCatalog as baseEnvironmentCatalog,validateEnvironment as validateBaseEnvironment,makeEnvironment as makeBaseEnvironment} from './reusable-environments.js';
@@ -634,6 +636,8 @@ function validate(p) {
     if (!Array.isArray(s.actors) || s.actors.length > 16)
       throw Error("Limit 16 actors per scene.");
     for (let a of s.actors) {
+      validateCastActor(a);
+      if(a.design?.height!==undefined&&(!Number.isFinite(a.design.height)||a.design.height<.8||a.design.height>3.5))throw Error("Invalid character height");
       if (
         !["blank-human","blank-skater","skater","deer", "rabbit", "badger", "squirrel"].includes(a.kind) &&
         !TYPES[a.kind]
@@ -710,7 +714,7 @@ function stage(s) {
     root.background = bt;
   }
   let rigs = s.actors.map((a) => {
-    let r = rig(a.kind, a.design);
+    let r = rig(a.kind, a.cast ? castDesign(a.cast,a.design) : a.design);
     prepareActionProps(r,{mat,mesh,box,cyl,orb});
     root.add(r.root);
     if (a.sash) {
@@ -1517,6 +1521,7 @@ function effectUpdate(st, p) {
 }
 
 window.CartoonStudio = {
+  castThumbnails,castCatalog,castDesign,createCastActor,searchCast,diverseCast,bodyProfiles,hairStyles,outfitStyles,accessoryStyles,
   environmentCatalog,validateEnvironment,makeEnvironment:s=>makeEnvironment(s,{mat,mesh}),propCatalog,validateLibraryProp,makeLibraryProp:p=>makeLibraryProp(p,{mat,mesh}),visualEffectCatalog,validateVisualEffect,presetCatalog,exportPreset,samplePreset,
   getAssetState: () => assets,
   restoreAssetState: (s) => {

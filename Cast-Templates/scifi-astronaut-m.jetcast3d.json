@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "scifi-astronaut-m",
+  "design": {
+    "body": "average",
+    "hairStyle": "buzz",
+    "outfit": "spacesuit",
+    "accessory": "space-helmet",
+    "variant": 0,
+    "skin": "#432c24",
+    "top": "#347c87",
+    "legs": "#263e54",
+    "accent": "#df9e4b",
+    "shoes": "#3b3032",
+    "hair": "#8c422a",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.62
+  }
+}

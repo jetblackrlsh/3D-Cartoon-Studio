@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "western-rancher-m",
+  "design": {
+    "body": "tall",
+    "hairStyle": "short",
+    "outfit": "denim",
+    "accessory": "cowboy-hat",
+    "variant": 0,
+    "skin": "#80543f",
+    "top": "#347c87",
+    "legs": "#263e54",
+    "accent": "#df9e4b",
+    "shoes": "#3b3032",
+    "hair": "#242531",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.95
+  }
+}
