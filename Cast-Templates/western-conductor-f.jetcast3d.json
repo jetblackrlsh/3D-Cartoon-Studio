@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "western-conductor-f",
+  "design": {
+    "body": "slender",
+    "hairStyle": "bob",
+    "outfit": "uniform",
+    "accessory": "rail-cap",
+    "variant": 1,
+    "skin": "#f1c8a8",
+    "top": "#bf8d32",
+    "legs": "#3b4959",
+    "accent": "#61c7c2",
+    "shoes": "#e1d7ba",
+    "hair": "#8c422a",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.52
+  }
+}

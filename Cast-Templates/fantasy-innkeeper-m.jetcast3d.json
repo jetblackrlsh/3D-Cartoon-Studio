@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "fantasy-innkeeper-m",
+  "design": {
+    "body": "stocky",
+    "hairStyle": "beard",
+    "outfit": "waistcoat",
+    "accessory": "none",
+    "variant": 0,
+    "skin": "#e0b493",
+    "top": "#bf8d32",
+    "legs": "#3b4959",
+    "accent": "#61c7c2",
+    "shoes": "#3b3032",
+    "hair": "#bca288",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.62
+  }
+}

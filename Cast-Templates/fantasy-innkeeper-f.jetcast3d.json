@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "fantasy-innkeeper-f",
+  "design": {
+    "body": "curvy",
+    "hairStyle": "bob",
+    "outfit": "waistcoat",
+    "accessory": "scarf",
+    "variant": 1,
+    "skin": "#bf8662",
+    "top": "#a55036",
+    "legs": "#493640",
+    "accent": "#e0c075",
+    "shoes": "#e1d7ba",
+    "hair": "#8c422a",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.52
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "scifi-researcher-m",
+  "design": {
+    "body": "tall",
+    "hairStyle": "curly",
+    "outfit": "labcoat",
+    "accessory": "glasses",
+    "variant": 0,
+    "skin": "#bf8662",
+    "top": "#537249",
+    "legs": "#383f38",
+    "accent": "#c79553",
+    "shoes": "#3b3032",
+    "hair": "#30241f",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.95
+  }
+}

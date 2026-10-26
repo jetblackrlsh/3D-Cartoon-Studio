@@ -85,6 +85,7 @@
     $("musicTrack").value = s.music || "";
     $("camera").value = JSON.stringify(s.camera || [5, 3.7, 9]);
     $("actors").value = JSON.stringify(s.actors, null, 2);
+    $("castActor").innerHTML=s.actors.map((a,i)=>`<option value="${i}">${esc(a.id||a.kind)} (${esc(a.cast||a.kind)})</option>`).join("");
     $("shots").value = JSON.stringify(s.shots || [], null, 2);
     $("props").value = JSON.stringify(s.props || [], null, 2);
     $("effects").value = JSON.stringify(s.effects || [], null, 2);
@@ -320,7 +321,7 @@
           duration: 6,
           environment: "street",
           actors: [
-            { kind: "person", action: "walk", from: [-2, 0, 0], to: [2, 0, 0] },
+            S.createCastActor('everyday-neighbor-f',{id:'actor-1',action:'walk',from:[-2,0,0],to:[2,0,0]}),
           ],
           camera: [5, 3, 8],
           target: [0, 1.2, 0],
@@ -464,7 +465,21 @@
   function clampInt(x, a, b) {
     return Math.max(a, Math.min(b, Math.floor(+x) || 0));
   }
+function castBrowse(){const list=S.searchCast($('castSearch').value,$('castGenre').value||'all'),old=$('castSelect').value;$('castSelect').innerHTML=list.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join('');if(list.some(p=>p.id===old))$('castSelect').value=old;
+$('castCards').innerHTML=list.map(p=>`<button type="button" data-cast="${p.id}" aria-pressed="${p.id===$('castSelect').value}"><img alt="${esc(p.name)}" src="${S.castThumbnails?.[p.id]||''}"><br>${esc(p.name)}</button>`).join('');castDetails();}
+function castDetails(){const p=S.castCatalog.find(p=>p.id===$('castSelect').value);$('castDetails').textContent=p?`${p.description} Tags: ${p.tags.join(', ')}`:'No matching characters';}
+function putCast(id,replace=false){const copy=clone(project),row=S.locate(copy,time),s=copy.scenes[row.index];if(replace){const ai=+$('castActor').value;if(!s.actors[ai])throw Error('Select an actor');const a=s.actors[ai];s.actors[ai]={...a,kind:'blank-human',cast:id,design:S.castDesign(id)};if(a.action?.startsWith('skate-')||(a.beats||[]).some(b=>b.action?.startsWith('skate-')))throw Error('Choose an authored humanoid motion before changing a skating actor');}else{if(s.actors.length>=16)throw Error('Actor limit reached');const a=S.createCastActor(id,{id:'cast-'+Date.now(),from:[s.actors.length*1.6,0,0]});while(s.actors.some(x=>x.id===a.id))a.id+='-copy';s.actors.push(a);}S.validate(copy);project=copy;pkg.project=project;select(row.index);status('Cast character applied. Review placement and full motion before export.');}
+$('castSearch').oninput=castBrowse;$('castGenre').onchange=castBrowse;$('castSelect').onchange=()=>{castDetails();castBrowse();};
+$('castCards').onclick=e=>{const card=e.target.closest?.('[data-cast]');if(card){$('castSelect').value=card.dataset.cast;castBrowse();}};
+$('addCast').onclick=()=>{try{putCast($('castSelect').value)}catch(e){status(e.message)}};
+$('applyCast').onclick=()=>{try{putCast($('castSelect').value,true)}catch(e){status(e.message)}};
+$('diverseCast').onclick=()=>{try{const copy=clone(project),row=S.locate(copy,time),s=copy.scenes[row.index],count=Math.min(4,16-s.actors.length);if(!count)throw Error('Actor limit reached');const actors=S.diverseCast(count,{genre:$('castGenre').value||'all',seed:s.actors.length,used:s.actors.map(x=>x.cast),existing:s.actors});actors.forEach((a,i)=>{a.id='background-'+Date.now()+'-'+i;a.from=[(i-(count-1)/2)*2,0,-2];while(s.actors.some(x=>x.id===a.id))a.id+='-copy';});s.actors.push(...actors);S.validate(copy);project=copy;pkg.project=project;select(row.index);status('Diverse cast added. Inspect spacing and story suitability.');}catch(e){status(e.message)}};
+castBrowse();
+
+$('addBlank').onclick=()=>{try{const copy=clone(project),row=S.locate(copy,time),scene=copy.scenes[row.index];if(scene.actors.length>=16)throw Error('Actor limit reached');let id='blank-'+Date.now();while(scene.actors.some(a=>a.id===id))id+='-copy';scene.actors.push({id,kind:'blank-human',action:'idle',from:[0,0,0]});S.validate(copy);project=copy;pkg.project=project;select(row.index);status('Blank character added.');}catch(e){status(e.message)}};
+
   window.StudioApp = {
+    putCast,
     pause: () => {
       playing = false;
       stopAudio();

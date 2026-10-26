@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "fantasy-knight-m",
+  "design": {
+    "body": "athletic",
+    "hairStyle": "short",
+    "outfit": "plate",
+    "accessory": "helmet",
+    "variant": 0,
+    "skin": "#9e6346",
+    "top": "#347c87",
+    "legs": "#263e54",
+    "accent": "#df9e4b",
+    "shoes": "#3b3032",
+    "hair": "#bca288",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.62
+  }
+}

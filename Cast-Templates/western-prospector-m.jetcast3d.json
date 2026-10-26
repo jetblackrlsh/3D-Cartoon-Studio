@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "western-prospector-m",
+  "design": {
+    "body": "dwarf",
+    "hairStyle": "beard",
+    "outfit": "suspenders",
+    "accessory": "work-hat",
+    "variant": 0,
+    "skin": "#432c24",
+    "top": "#5966a6",
+    "legs": "#29364b",
+    "accent": "#a9d4d2",
+    "shoes": "#3b3032",
+    "hair": "#30241f",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 1.45
+  }
+}

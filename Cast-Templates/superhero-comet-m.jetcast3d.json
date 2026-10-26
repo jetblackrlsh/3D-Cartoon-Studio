@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "superhero-comet-m",
+  "design": {
+    "body": "slender",
+    "hairStyle": "mohawk",
+    "outfit": "speed-suit",
+    "accessory": "goggles",
+    "variant": 0,
+    "skin": "#f1c8a8",
+    "top": "#a55036",
+    "legs": "#493640",
+    "accent": "#e0c075",
+    "shoes": "#3b3032",
+    "hair": "#30241f",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.62
+  }
+}

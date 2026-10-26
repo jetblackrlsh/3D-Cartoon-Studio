@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "superhero-bulwark-f",
+  "design": {
+    "body": "dwarf",
+    "hairStyle": "bun",
+    "outfit": "exo-suit",
+    "accessory": "goggles",
+    "variant": 1,
+    "skin": "#6d402c",
+    "top": "#347c87",
+    "legs": "#263e54",
+    "accent": "#df9e4b",
+    "shoes": "#e1d7ba",
+    "hair": "#dfd5c3",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 1.45
+  }
+}

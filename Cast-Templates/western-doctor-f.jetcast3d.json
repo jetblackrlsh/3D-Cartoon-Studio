@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "western-doctor-f",
+  "design": {
+    "body": "petite",
+    "hairStyle": "locs",
+    "outfit": "frock",
+    "accessory": "scarf",
+    "variant": 1,
+    "skin": "#80543f",
+    "top": "#347c87",
+    "legs": "#263e54",
+    "accent": "#df9e4b",
+    "shoes": "#e1d7ba",
+    "hair": "#242531",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.05
+  }
+}

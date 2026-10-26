@@ -1,4 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
+// Cast profile and wardrobe integration, modified 2026-10-26.
+import {proportionDimensions} from './cast-library.js';
+import {dressCast} from './cast-wardrobe.js';
 import * as THREE from 'three';
 import curves from './preset-curves.json';
 export const presetCatalog=Object.entries(curves).map(([name,v])=>({name,...v.info}));
@@ -7,15 +10,16 @@ export function createFlexibleRig(kind,design={},H){
  const {mat,mesh,box,cyl,orb}=H,skate=kind!=='blank-human';
  const defaults=kind==='skater'?{skin:'#ba805d',top:'#7753c7',legs:'#25304c',shoes:'#e4edf5',hair:'#342434',helmet:'#9ce9ff'}:{skin:'#c6cdd7',top:'#a9b5c5',legs:'#8391a6',shoes:'#58657b',hair:'#3d4055',helmet:'#9baac0'};
  design={...design,top:design.top||design.shirt,legs:design.legs||design.pants};const style={...defaults};for(const k of Object.keys(defaults))if(/^#[0-9a-fA-F]{6}$/.test(design[k]||''))style[k]=design[k];
- const root=new THREE.Group(),body=new THREE.Group();root.add(body);const height=skate?1.72:2.62;
- const d=skate?{hip:.85,hipW:.11,thigh:.4,shin:.38,shoulder:1.32,shoulderW:.22,arm:.28,fore:.26,head:1.55,headR:.13,torsoR:.145,torsoH:.4,limbR:.065}:{hip:1,hipW:.16,thigh:.47,shin:.44,shoulder:1.84,shoulderW:.39,arm:.47,fore:.43,head:2.25,headR:.34,torsoR:.31,torsoH:.78,limbR:.12};
+ const root=new THREE.Group(),body=new THREE.Group();root.add(body);let height=skate?1.72:2.62;
+ const base=skate?{hip:.85,hipW:.11,thigh:.4,shin:.38,shoulder:1.32,shoulderW:.22,arm:.28,fore:.26,head:1.55,headR:.13,torsoR:.145,torsoH:.4,limbR:.065}:{hip:1,hipW:.16,thigh:.47,shin:.44,shoulder:1.84,shoulderW:.39,arm:.47,fore:.43,head:2.25,headR:.34,torsoR:.31,torsoH:.78,limbR:.12};
+ const d=skate?base:proportionDimensions(base,design);if(design.body&&!skate)height=d.head+d.headR+.08;
  const skin=mat('cloth',style.skin),shirt=mat('cloth',style.top),pants=mat('cloth',style.legs),shoe=mat('cloth',style.shoes);
  const torso=cyl(body,d.torsoR,d.torsoH,shirt,0,(d.hip+d.shoulder)/2,0,skate?10:8);box(body,d.hipW*2.7,.13,d.torsoR*1.3,pants,0,d.hip,0);cyl(body,skate?.05:.1,.2,skin,0,d.head-d.headR,0);
  const head=new THREE.Group();head.position.y=d.head;body.add(head);orb(head,d.headR,skin,0,0,0);
  const face={};const eyeMat=mat('cloth',design.eye||'#172437');
  for(const [i,side] of ['L','R'].entries()){let sign=i===0?-1:1;face['eye'+side]=orb(head,d.headR*.105,eyeMat,sign*d.headR*.35,d.headR*.14,d.headR*.90);face['brow'+side]=box(head,d.headR*.32,d.headR*.045,d.headR*.06,eyeMat,sign*d.headR*.35,d.headR*.37,d.headR*.89);}
  face.mouth=orb(head,d.headR*.1,eyeMat,0,-d.headR*.35,d.headR*.94);face.mouth.scale.set(1.5,.4,.25);
- if(design.hairVisible){const cap=mesh(head,new THREE.SphereGeometry(d.headR*1.04,12,8,0,Math.PI*2,0,Math.PI*.55),mat('cloth',style.hair),0,.02,0);cap.rotation.x=-.2;}
+ if(design.hairVisible&&!design.body){const cap=mesh(head,new THREE.SphereGeometry(d.headR*1.04,12,8,0,Math.PI*2,0,Math.PI*.55),mat('cloth',style.hair),0,.02,0);cap.rotation.x=-.2;}
  if(skate&&design.helmetVisible!==false){mesh(head,new THREE.SphereGeometry(d.headR*1.07,12,8,0,Math.PI*2,0,Math.PI*.52),mat('cloth',style.helmet),0,0,0);}
  const arms=[],forearms=[],legs=[],shins=[],hands=[],shoes=[],handVariants=[];
  for(const side of [-1,1]){
@@ -27,7 +31,7 @@ export function createFlexibleRig(kind,design={},H){
  }
  const paper=new THREE.Group(),trapeze=new THREE.Group();root.add(paper,trapeze);paper.visible=false;trapeze.visible=false;
  const h=Number(design.height);const baseScale=Number.isFinite(h)?clamp(h,.8,3.5)/height:1;
- return {root,body,head,torso,arms,forearms,legs,shins,hands,shoes,handVariants,face,paper,trapeze,kind,style,helmetVisible:design.helmetVisible,dimensions:d,height,baseScale,flexible:true};
+ const r={root,body,head,torso,arms,forearms,legs,shins,hands,shoes,handVariants,face,paper,trapeze,kind,style,helmetVisible:design.helmetVisible,dimensions:d,height,baseScale,flexible:true};if(!skate)dressCast(r,design,H);return r;
 }
 export function samplePreset(name,q,options={}){
  const c=curves[name];if(!c)throw Error('Unknown 3D preset '+name);const frames=c.frames;const at=clamp(q,0,1)*(frames.length-1),i=Math.floor(at),f=at-i,a=frames[i].channels,b=frames[Math.min(i+1,frames.length-1)].channels;const out={},intensity=clamp(options.intensity??1,.25,1.5);

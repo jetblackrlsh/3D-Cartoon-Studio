@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "western-marshal-m",
+  "design": {
+    "body": "athletic",
+    "hairStyle": "beard",
+    "outfit": "duster",
+    "accessory": "marshal-hat",
+    "variant": 0,
+    "skin": "#e0b493",
+    "top": "#a55036",
+    "legs": "#493640",
+    "accent": "#e0c075",
+    "shoes": "#3b3032",
+    "hair": "#dfd5c3",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.62
+  }
+}

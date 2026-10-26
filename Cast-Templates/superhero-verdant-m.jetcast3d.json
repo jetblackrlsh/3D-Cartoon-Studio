@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "superhero-verdant-m",
+  "design": {
+    "body": "ogre",
+    "hairStyle": "locs",
+    "outfit": "leaf-armor",
+    "accessory": "circlet",
+    "variant": 0,
+    "skin": "#80543f",
+    "top": "#5966a6",
+    "legs": "#29364b",
+    "accent": "#a9d4d2",
+    "shoes": "#3b3032",
+    "hair": "#bca288",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 3.15
+  }
+}

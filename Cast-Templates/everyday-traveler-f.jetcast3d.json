@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "everyday-traveler-f",
+  "design": {
+    "body": "sturdy",
+    "hairStyle": "afro",
+    "outfit": "raincoat",
+    "accessory": "beanie",
+    "variant": 1,
+    "skin": "#f1c8a8",
+    "top": "#a55036",
+    "legs": "#493640",
+    "accent": "#e0c075",
+    "shoes": "#e1d7ba",
+    "hair": "#bca288",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.52
+  }
+}

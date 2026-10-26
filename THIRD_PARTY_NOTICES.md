@@ -29,3 +29,7 @@ The tool license does not grant rights to third-party stories, likenesses, fonts
 
 ## Urban geometry
 Selected vehicle geometry from mrdoob/slop-newyork, commit 12593c9963f141665fe91881b1b4a2290db51d15, copyright 2026 Mr.doob, MIT. See docs/SLOP-NEWYORK-MIT.txt. No geographic dataset or shader runtime is distributed.
+
+## Cast Library additions
+
+The 60 generic cast presets, editable snapshots, procedural wardrobe and embedded generated thumbnails are original studio additions under GPL-3.0-only, modified/integrated on 2026-10-26. No third-party stock model, franchise character or captured motion is included. See docs/CAST_LIBRARY.md.

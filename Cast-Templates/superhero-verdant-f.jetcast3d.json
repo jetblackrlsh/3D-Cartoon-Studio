@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "superhero-verdant-f",
+  "design": {
+    "body": "tall",
+    "hairStyle": "long",
+    "outfit": "leaf-armor",
+    "accessory": "circlet",
+    "variant": 1,
+    "skin": "#9e6346",
+    "top": "#8d527a",
+    "legs": "#3b354c",
+    "accent": "#d6c2a0",
+    "shoes": "#e1d7ba",
+    "hair": "#8c422a",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.95
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "superhero-prism-m",
+  "design": {
+    "body": "tall",
+    "hairStyle": "swept",
+    "outfit": "mantle",
+    "accessory": "mask",
+    "variant": 0,
+    "skin": "#e0b493",
+    "top": "#537249",
+    "legs": "#383f38",
+    "accent": "#c79553",
+    "shoes": "#3b3032",
+    "hair": "#8c422a",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.95
+  }
+}

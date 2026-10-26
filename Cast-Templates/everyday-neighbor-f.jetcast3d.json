@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "everyday-neighbor-f",
+  "design": {
+    "body": "petite",
+    "hairStyle": "bob",
+    "outfit": "hoodie",
+    "accessory": "scarf",
+    "variant": 1,
+    "skin": "#432c24",
+    "top": "#5966a6",
+    "legs": "#29364b",
+    "accent": "#a9d4d2",
+    "shoes": "#e1d7ba",
+    "hair": "#bca288",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.05
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "superhero-beacon-m",
+  "design": {
+    "body": "athletic",
+    "hairStyle": "buzz",
+    "outfit": "hero-armor",
+    "accessory": "visor",
+    "variant": 0,
+    "skin": "#6d402c",
+    "top": "#347c87",
+    "legs": "#263e54",
+    "accent": "#df9e4b",
+    "shoes": "#3b3032",
+    "hair": "#dfd5c3",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "human",
+    "height": 2.62
+  }
+}

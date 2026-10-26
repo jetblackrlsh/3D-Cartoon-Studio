@@ -1,0 +1,23 @@
+{
+  "format": "jetcast3d",
+  "version": 1,
+  "cast": "fantasy-dwarf-m",
+  "design": {
+    "body": "dwarf",
+    "hairStyle": "beard",
+    "outfit": "smith",
+    "accessory": "goggles",
+    "variant": 0,
+    "skin": "#f1c8a8",
+    "top": "#537249",
+    "legs": "#383f38",
+    "accent": "#c79553",
+    "shoes": "#3b3032",
+    "hair": "#dfd5c3",
+    "hairVisible": true,
+    "helmetVisible": false,
+    "eye": "#152b3b",
+    "species": "dwarf",
+    "height": 1.45
+  }
+}
