@@ -1,5 +1,3 @@
-// SPDX-License-Identifier: GPL-3.0-only
-// Cast profile and wardrobe integration, modified 2026-10-26.
 import {proportionDimensions} from './cast-library.js';
 import {dressCast} from './cast-wardrobe.js';
 import * as THREE from 'three';
@@ -50,8 +48,44 @@ export function applyPreset(r,name,t,q,options={}){
   r.hands[i].rotation.z=-angle('wrist'+side);
   if(r.handVariants){const vals=['open','fist','point'].map(n=>[n,c['hand'+side+n[0].toUpperCase()+n.slice(1)]?.opacity??(n==='open'?1:0)]).sort((a,b)=>b[1]-a[1]);for(const [n,g]of Object.entries(r.handVariants[i]))g.visible=n===vals[0][0];}
  }
+ if(r.standard){
+  // Source channels name screen-side limbs; the standard adapter converts that
+  // canonical frame to the imported skeleton's actual anatomical side frame.
+  // Elbows and knees flex in a sagittal hinge, never sideways in the 2D plane.
+  for(let i=0;i<2;i++){
+   const side=i===0?'L':'R';
+   if(!locomotion&&!forward){r.forearms[i].rotation.set(-clamp(Math.abs(angle('elbow'+side)),.10,2.44),0,0);if(Math.abs(angle('shoulder'+side))<.02){r.arms[i].rotation.x=-.04;r.arms[i].rotation.z=i===0?-.055:.055;}}
+   r.shins[i].rotation.set(clamp(Math.abs(angle('knee'+side)),0,2.44),0,0);
+  }
+  r.standardTorsoHinge=name==='bow'?r.body.rotation.x:0;
+  if(name==='bow')for(const arm of r.arms)arm.rotation.x=-r.body.rotation.x;
+  r.standardGait=locomotion?{action:name,time:t}:null;
+  r.standardFold=['sit','stand-up','crouch'].includes(name)?{alpha:Math.min(1.5,Math.abs(angle('hipL'))),beta:Math.min(2.44,Math.abs(angle('kneeL')))}:null;
+  r.standardHandRelaxed=['idle','breathe','blink','walk','run','talk','sad','nod','bow','tired'].includes(name);
+  if(locomotion){const period=name==='run'?.76:1.28,cycle=t/period;for(let i=0;i<2;i++){const swing=Math.cos(2*Math.PI*(cycle+i*.5));r.arms[i].rotation.set(swing*(name==='run'?.60:.26),0,i===0?-.055:.055);r.forearms[i].rotation.set(name==='run'?-1.05-.10*swing:-.20-.07*(1-swing)/2,0,0);}r.body.rotation.x=name==='run'?.17:.02;}
+  if(name==='jump'){for(let i=0;i<2;i++){const side=i===0?'L':'R';r.legs[i].rotation.set(-Math.abs(angle('hip'+side)),0,0);}}
+  if(name==='kneel'){const front=options.mirror?1:0,rear=1-front;r.legs[front].rotation.set(-1.50,0,0);r.shins[front].rotation.set(1.50,0,0);r.legs[rear].rotation.set(0,0,0);r.shins[rear].rotation.set(1.50,0,0);r.body.rotation.x=.06;}
+  r.standardFootPlant=[true,true];
+  if(locomotion||name==='jump')r.standardFootPlant=[false,false];if(name==='kneel')r.standardFootPlant[options.mirror?0:1]=false;
+  if(['kick-front','kick-side'].includes(name))r.standardFootPlant[options.mirror?0:1]=false;
+  if(['idle','breathe','talk'].includes(name))r.body.scale.y=1+(r.body.scale.y-1)*.22;
+  if(name==='talk'){
+   const main=options.mirror?0:1,activity=clamp((Math.abs(angle(options.mirror?'shoulderL':'shoulderR'))-.43)/.36,0,1);
+   r.arms[main].rotation.set(-.28,0,(main===1?1:-1)*(.12+.10*activity));
+   r.forearms[main].rotation.set(-(1.05+.40*activity),0,0);r.hands[main].rotation.x=.16;
+  }
+ }
+ if(r.standard&&['carry','push','wave'].includes(name)){
+  // World-relative palm profiles: carry supports from below, push/hello face forward.
+  for(let i=0;i<2;i++){if(name==='wave'&&i!==(options.mirror?0:1))continue;let desired;
+   if(name==='carry')desired=new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,0,1),i===0?-Math.PI/2:Math.PI/2).multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1,0,0),-Math.PI/2));
+   else desired=new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,1,0),i===0?Math.PI/2:-Math.PI/2).multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,0,1),Math.PI));
+   if(name==='wave')desired.premultiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,0,1),.16*Math.sin(6*Math.PI*q)));
+   const parent=r.body.quaternion.clone().multiply(r.arms[i].quaternion).multiply(r.forearms[i].quaternion);r.hands[i].quaternion.copy(parent.invert().multiply(desired));
+  }
+ }
  if(name==='punch-cross')r.body.rotation.y=-Math.sin(Math.PI*q)*.45;
- if(name==='weapon-slash')r.body.rotation.y=Math.sin(2*Math.PI*q)*.35;
+ if(name==='weapon-slash'){if(r.standard)applyStandardSlash(r,q,options);else r.body.rotation.y=Math.sin(2*Math.PI*q)*.35;}if(name==='weapon-overhead'&&r.standard)applyStandardSlash(r,q,options,true);
  if(name==='kick-front'){const active=Math.abs(angle('hipR'))>=Math.abs(angle('hipL'))?1:0;r.legs[active].rotation.x=-Math.abs(angle(active?'hipR':'hipL'));r.shins[active].rotation.x=Math.abs(angle(active?'kneeR':'kneeL'));}
  if(['shoot-pistol','shoot-rifle'].includes(name)){
   r.body.position.z=-Math.abs(c.root?.x||0)*unit;r.body.position.x=0;const main=options.mirror?0:1,other=1-main,sign=main===1?1:-1,len=-r.forearms[main].position.y-r.hands[main].position.y,sy=r.arms[main].position.y,u=(r.height||2.62)/2.62;
@@ -75,6 +109,33 @@ else if(kind==='energy-orb'){orb(g,.16,m,0,0,.12);}
 else if(kind==='barrier'){mesh(g,new THREE.TorusGeometry(.42,.035,6,24),m,0,.15,.2);}
 else if(kind==='aura'){mesh(g,new THREE.TorusGeometry(.8,.025,6,24),m,0,1.2,0);}
 }}
-export function updateActionProps(r,name,q,options={}){if(!r.actionProps)return;for(const g of Object.values(r.actionProps))g.visible=false;const info=curves[name]?.info;if(!options.accessory||!info?.prop||!r.actionProps[info.prop])return;const g=r.actionProps[info.prop];const parent=info.prop==='aura'?r.body:r.hands[options.mirror?0:1];if(g.parent!==parent)parent.add(g);g.visible=q>.02&&q<.98;if(g.userData.flash)g.userData.flash.visible=Math.abs(q-(info.peak||.4))<.045;if(['aura','barrier','energy-orb'].includes(info.prop)){const u=(r.height||2.62)/2.62;g.scale.setScalar(u*(.8+Math.sin(Math.PI*q)*.2));}}
+export function updateActionProps(r,name,q,options={}){if(!r.actionProps)return;for(const g of Object.values(r.actionProps))g.visible=false;const info=curves[name]?.info;if(!options.accessory||!info?.prop||!r.actionProps[info.prop])return;const g=r.actionProps[info.prop];const parent=info.prop==='aura'?r.body:r.hands[options.mirror?0:1];if(g.parent!==parent)parent.add(g);g.visible=(r.standard&&['weapon-slash','weapon-overhead'].includes(name))||q>.02&&q<.98;if(g.userData.flash)g.userData.flash.visible=Math.abs(q-(info.peak||.4))<.045;if(['aura','barrier','energy-orb'].includes(info.prop)){const u=(r.height||2.62)/2.62;g.scale.setScalar(u*(.8+Math.sin(Math.PI*q)*.2));}}
 
 function solveHand(r,i,target,pole){const a=r.arms[i],b=r.forearms[i],hand=r.hands[i],start=a.position.clone(),la=-b.position.y,lb=-hand.position.y;const dir=target.clone().sub(start),length=clamp(dir.length(),Math.abs(la-lb)+.00001,la+lb-.00001);dir.normalize();const along=(la*la+length*length-lb*lb)/(2*length),height=Math.sqrt(Math.max(0,la*la-along*along));let bend=pole.clone().sub(start);bend.addScaledVector(dir,-bend.dot(dir));if(bend.lengthSq()<1e-8)bend.set(i===0?-1:1,0,0);bend.normalize();const elbow=start.clone().addScaledVector(dir,along).addScaledVector(bend,height),end=start.clone().addScaledVector(dir,length),down=new THREE.Vector3(0,-1,0);a.quaternion.setFromUnitVectors(down,elbow.clone().sub(start).normalize());b.quaternion.setFromUnitVectors(down,end.clone().sub(elbow).normalize().applyQuaternion(a.quaternion.clone().invert()));hand.quaternion.copy(a.quaternion).multiply(b.quaternion).invert();}
+
+/** Version 1.2.1: original spatial slash, only on genuine standard humanoids.
+ * Explicit ready / coil / accelerate / crossing plane / follow-through / recover.
+ * Normalized reach and bounded elbow flexion; no clip substitution or extra root owner.
+ */
+function applyStandardSlash(r,q,options={},overhead=false){
+ const keys=overhead?[[0,.20,1.42,.39,0,.15,.95,.27],[.20,.28,2.22,.12,-.06,0,.60,-.80],[.34,.28,2.22,.12,-.06,0,.60,-.80],[.48,.20,1.58,.68,.08,0,-.10,.995],[.60,.20,1.12,.65,.15,0,-.75,.66],[.73,.20,1.12,.65,.15,0,-.75,.66],[1,.20,1.42,.39,0,.15,.95,.27]]:[
+  [0, .20,1.42,.39, 0, .15,.95,.27],
+  [.20,.58,1.98,.00,-.43,.35,.93,-.08],
+  [.34,.56,1.97,.03,-.43,.35,.93,-.08],
+  [.48,.10,1.62,.63,.10,-.48,.18,.85],
+  [.60,-.42,1.24,.49,.43,-.78,-.33,.53],
+  [.73,-.44,1.23,.46,.43,-.78,-.33,.53],
+  [1,.20,1.42,.39,0,.15,.95,.27]];
+ let a=keys[0],b=keys.at(-1);for(let j=1;j<keys.length;j++)if(q<=keys[j][0]){a=keys[j-1];b=keys[j];break;}
+ const f=clamp((q-a[0])/(b[0]-a[0]),0,1),e=f*f*(3-2*f),v=a.map((x,i)=>x+(b[i]-x)*e),main=options.mirror?0:1,sign=options.mirror?-1:1;
+ const dims=r.dimensions,sy=r.arms[main].position.y,u=(r.height||2.62)/2.62,reach=-r.forearms[main].position.y-r.hands[main].position.y;
+ r.body.rotation.set(.04,-v[4]*sign,0);r.body.position.set(0,0,0);r.body.scale.set(1,1,1);
+ r.legs[0].rotation.set(-.07,0,-.10);r.legs[1].rotation.set(.07,0,.10);r.shins.forEach(x=>x.rotation.set(.12,0,0));
+ r.arms[1-main].rotation.set(-.28,0,main===1?-.25:.25);r.forearms[1-main].rotation.set(-.62,0,0);
+ const target=new THREE.Vector3(v[1]*sign*u,sy+(v[2]-1.84)*u,v[3]*u),origin=r.arms[main].position,la=-r.forearms[main].position.y,lb=-r.hands[main].position.y,delta=target.clone().sub(origin),minimum=Math.sqrt(la*la+lb*lb+2*la*lb*Math.cos(2.44));if(delta.length()<minimum)target.copy(origin).add(delta.setLength(minimum));
+ solveHand(r,main,target,new THREE.Vector3(sign*reach,sy-.35*u,.06));
+ // The +Y blade points along a deliberate three-dimensional cutting arc.
+ const desired=new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0,1,0),new THREE.Vector3(v[5]*sign,v[6],v[7]).normalize());
+ const parent=r.arms[main].quaternion.clone().multiply(r.forearms[main].quaternion);r.hands[main].quaternion.copy(parent.invert().multiply(desired));
+ for(const [name,g]of Object.entries(r.handVariants[main]))g.visible=name==='fist';
+}

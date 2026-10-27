@@ -1,306 +1,10 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval'; style-src 'unsafe-inline'; img-src data: blob:; media-src data: blob:; connect-src 'none'; worker-src blob:"
-    />
-    <title>Jet Black RLSH 3D Cartoon Studio • Stills & Comics Edition</title>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        background: #090d1c;
-        color: #e8e8f4;
-        font: 15px system-ui;
-      }
-      header {
-        padding: 20px 3%;
-        background: #151d36;
-        border-bottom: 1px solid #69498e;
-      }
-      h1 {
-        font-size: 25px;
-        margin: 0 0 7px;
-      }
-      p {
-        line-height: 1.5;
-        color: #bdbed2;
-      }
-      main {
-        max-width: 1500px;
-        margin: auto;
-        padding: 20px;
-        display: grid;
-        grid-template-columns: minmax(400px, 2fr) minmax(300px, 1fr);
-        gap: 20px;
-      }
-      canvas {
-        width: 100%;
-        height: auto;
-        background: #000;
-        border: 1px solid #51476a;
-        border-radius: 8px;
-      }
-      section {
-        background: #131b30;
-        border: 1px solid #34405c;
-        padding: 16px;
-        border-radius: 10px;
-        margin-bottom: 12px;
-      }
-      button,
-      input,
-      select,
-      textarea {
-        font: inherit;
-        color: inherit;
-        background: #1d2843;
-        border: 1px solid #576184;
-        border-radius: 5px;
-        padding: 8px;
-      }
-      button {
-        cursor: pointer;
-      }
-      button:hover {
-        background: #40375f;
-      }
-      button:disabled {
-        opacity: 0.5;
-      }
-      label {
-        display: block;
-        margin: 12px 0 5px;
-        color: #d7cbef;
-      }
-      textarea {
-        width: 100%;
-        min-height: 110px;
-      }
-      input,
-      select {
-        max-width: 100%;
-      }
-      input[type="range"] {
-        width: 100%;
-      }
-      .row {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        align-items: center;
-      }
-      #status {
-        padding: 12px;
-        border-left: 3px solid #b697f0;
-        background: #19243b;
-      }
-      small {
-        color: #aab7cb;
-      }
-      h2 {
-        font-size: 19px;
-      }
-      details {
-        margin: 15px 0;
-      }
-      pre {
-        white-space: pre-wrap;
-      }
-      footer {
-        padding: 25px;
-        font-size: 13px;
-        color: #acb3c8;
-      }
-      @media (max-width: 900px) {
-        main {
-          display: block;
-          padding: 10px;
-        }
-      }
-      .castCards{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:8px;max-height:420px;overflow:auto;margin:12px 0}.castCards button{font-size:12px;padding:5px}.castCards img{width:100%;height:160px;object-fit:contain}.castCards button[aria-pressed="true"]{border:2px solid #e3bd68;background:#393855}
-    </style>
-  </head>
-  <body>
-    <header>
-      <h1>Jet Black RLSH 3D Cartoon Studio • Stills & Comics Edition</h1>
-      <small
-        >Offline scenes · textured 3D rigs · bundled synthetic voices · editable
-        projects</small
-      >
-    </header>
-    <main>
-      <div>
-        <canvas id="preview" width="1280" height="720"></canvas>
-        <section>
-          <div class="row">
-            <button id="play">Play</button
-            ><button id="png">Save frame PNG</button><span id="clock"></span>
-          </div>
-          <input id="seek" type="range" min="0" max="1" step=".05" />
-          <div class="row">
-            <label
-              >Voice volume<input
-                id="voiceVolume"
-                type="range"
-                min="0"
-                max="1"
-                step=".05"
-                value=".9" /></label
-            ><label
-              >Music volume<input
-                id="musicVolume"
-                type="range"
-                min="0"
-                max=".5"
-                step=".01"
-                value=".12"
-            /></label>
-          </div>
-          <div id="status" role="status">Loading embedded assets…</div>
-        </section>
-        <section>
-          <h2>Projects & export</h2>
-          <div class="row">
-            <button id="save">Save portable project</button
-            ><label
-              >Load project<input id="load" type="file" accept=".json" /></label
-            ><button id="newProject">New project</button>
-          </div>
-          <p>
-            All artwork, music and generated speech travel with the project.
-            Edits are kept in memory until you save. Preview is WebGL when
-            supported, with a CPU fallback.
-          </p>
-          <label>Movie scene range (zero-based)</label>
-          <div class="row">
-            <input id="exportStart" type="number" min="0" value="0" /><input
-              id="exportEnd"
-              type="number"
-              min="0"
-              value="2"
-            /><button id="exportMovie">Record movie</button>
-          </div>
-          <p>
-            Browser recording runs in real time and requires keeping the tab
-            visible. Output is MP4 if supported, otherwise WebM. The included
-            headless renderer produces MP4 independently of browser recording.
-          </p>
-          <details>
-            <summary>Character & action reference</summary>
-            <p>
-              Characters: person, worker, scholar, knight, robot, traveler,
-              deer, rabbit, badger, squirrel, blank-human, blank-skater, skater. The library adds 58 action presets, 22 effects, 90 props and 48 sets; see docs/LIBRARY.md. Actions: talk, think, observe,
-              gesture, walk, run, march, dance, swing, aim, attack, fall, brace,
-              sit, paper, strike, stomp, down, reach. Props: rifle, knife,
-              spear, top, box, tablet, slime.
-            </p>
-            <p>
-              Actor JSON: kind, action, from/to [x,y,z], scale, rotation
-              (radians), optional prop, armedAt (0–1), beats
-              [{at:0–1,action,position,rotation,scale}]. Actors support keys
-              [{at,position,rotation}], visibleFrom/visibleUntil and disarmedAt.
-              Scene props support keys, open, visibleFrom/visibleUntil and
-              owners [{at,actor:id}]. Shot and action times are normalized 0–1.
-              Ownership transfers keep a single prop instance; inspect the saved
-              shot list for examples. All animation is deterministic at a
-              requested timestamp. Headless API: CartoonStudio.validate,
-              timeline, locate, stage, update, SoftwareRenderer.
-            </p>
-          </details>
-        </section>
-      </div>
-      <div>
-<section><h2>Ready-to-use cast · 60 characters</h2><p>Five genres, original textured outfits and shared articulated motion. Choose a character card, then add it or apply it to the selected actor. All appearance fields remain editable in Actors JSON.</p><div class="row"><label>Search name or tags<input id="castSearch" placeholder="elf, astronaut, braids, sturdy…"></label><label>Genre<select id="castGenre"><option value="all">All genres</option><option value="everyday">Everyday</option><option value="fantasy">Fantasy</option><option value="scifi">Sci-fi</option><option value="western">Western</option><option value="superhero">Original superheroes</option></select></label></div><label>Character<select id="castSelect"></select></label><small id="castDetails"></small><div id="castCards" class="castCards"></div><label>Actor to replace<select id="castActor"></select></label><div class="row"><button id="addCast">Add chosen character</button><button id="applyCast">Apply to selected actor</button><button id="diverseCast">Add diverse background cast (4)</button><button id="addBlank">Add blank character</button></div><p>The helper uses the selected genre and avoids presets already in this scene. It never replaces existing characters. Explicit story identities should always be selected deliberately.</p></section>
-        <section>
-          <h2>Scene editor</h2>
-          <select id="sceneList"></select>
-          <div class="row">
-            <button id="duplicate">Duplicate scene</button
-            ><button id="delete">Delete scene</button>
-          </div>
-          <label>Title<input id="title" /></label
-          ><label
-            >Complete narration / caption<textarea
-              id="caption"
-            ></textarea></label
-          ><label
-            >Duration (seconds)<input
-              id="duration"
-              type="number"
-              min="1"
-              max="180"
-              step=".1" /></label
-          ><label
-            >Environment<select id="environment">
-              <option>catalog</option><option>void</option>
-              <option>jungle</option>
-              <option>royal</option>
-              <option>gym</option>
-              <option>room</option>
-              <option>library</option>
-              <option>diner</option>
-              <option>street</option>
-            </select></label
-          ><label>Reusable environment<select id="environmentSet"></select></label><label>Camera position [x,y,z]<input id="camera" /></label
-          ><label
-            >Shots (JSON: at, type, camera, target, to, targetTo)<textarea
-              id="shots"
-              style="font-family: monospace"
-            ></textarea></label
-          ><label
-            >Actors (JSON)<textarea
-              id="actors"
-              style="min-height: 210px; font-family: monospace"
-            ></textarea></label
-          ><label
-            >Props (JSON)<textarea
-              id="props"
-              style="font-family: monospace"
-            ></textarea></label
-          ><label>Effects (JSON)<textarea id="effects"></textarea></label
-          ><label
-            >Music<select id="musicTrack">
-              <option>Tranquility</option>
-              <option>Suspense</option>
-              <option>Determination</option>
-              <option>Playfulness</option>
-              <option value="">Silence</option>
-            </select></label
-          ><label
-            >Voice preset<select id="voicePreset">
-              <option>narrator</option>
-              <option>warm</option>
-              <option>bright</option>
-              <option>gruff</option>
-              <option>whisper</option>
-              <option>robot</option>
-            </select></label
-          >
-          <div class="row">
-            <button id="apply">Apply scene changes</button
-            ><button id="voiceSample">Hear voice sample</button
-            ><button id="generateVoice">Generate scene speech</button>
-          </div>
-          <label
-            >Use an existing dialogue recording<input
-              id="audioFile"
-              type="file"
-              accept="audio/*"
-          /></label>
-          <p>
-            Traditional synthetic speech is generated locally. It does not clone
-            anyone’s voice. Higher-quality recordings can be imported without
-            changing the animation.
-          </p>
-        </section>
-      </div>
-      <section style="grid-column: 1/-1">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval'; style-src 'unsafe-inline'; img-src data: blob:; media-src data: blob:; connect-src 'none'; worker-src blob:"><title>Jet Black RLSH 3D Cartoon Studio • Stills &amp; Comics Edition</title><style>
+*{box-sizing:border-box}body{margin:0;background:#090d1c;color:#e8e8f4;font:15px system-ui}header{padding:20px 3%;background:#151d36;border-bottom:1px solid #69498e}h1{font-size:25px;margin:0 0 7px}p{line-height:1.5;color:#bdbed2}main{max-width:1500px;margin:auto;padding:20px;display:grid;grid-template-columns:minmax(400px,2fr) minmax(300px,1fr);gap:20px}canvas{width:100%;height:auto;background:#000;border:1px solid #51476a;border-radius:8px}section{background:#131b30;border:1px solid #34405c;padding:16px;border-radius:10px;margin-bottom:12px}button,input,select,textarea{font:inherit;color:inherit;background:#1d2843;border:1px solid #576184;border-radius:5px;padding:8px}button{cursor:pointer}button:hover{background:#40375f}button:disabled{opacity:.5}label{display:block;margin:12px 0 5px;color:#d7cbef}textarea{width:100%;min-height:110px}input,select{max-width:100%}input[type=range]{width:100%}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}#status{padding:12px;border-left:3px solid #b697f0;background:#19243b}small{color:#aab7cb}h2{font-size:19px}details{margin:15px 0}pre{white-space:pre-wrap}footer{padding:25px;font-size:13px;color:#acb3c8}@media(max-width:900px){main{display:block;padding:10px}}.castCards{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:8px;max-height:420px;overflow:auto;margin:12px 0}.castCards button{font-size:12px;padding:5px}.castCards img{width:100%;height:160px;object-fit:contain}.castCards button[aria-pressed="true"]{border:2px solid #e3bd68;background:#393855}</style><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval'; style-src 'unsafe-inline'; img-src data: blob:; media-src data: blob:; connect-src 'none'; worker-src blob:"><style>main > section{grid-column:1 / -1}</style></head><body><header>
+      <h1>Jet Black RLSH 3D Cartoon Studio • Stills &amp; Comics Edition</h1>
+      <small>Offline scenes · textured 3D rigs · bundled synthetic voices · editable
+        projects</small>
+    </header><main><div><canvas id="preview" width="1280" height="720"></canvas><section><div class="row"><button id="play">Play</button><button id="png">Save frame PNG</button><span id="clock"></span></div><input id="seek" type="range" min="0" max="1" step=".05"><div class="row"><label>Voice volume<input id="voiceVolume" type="range" min="0" max="1" step=".05" value=".9"></label><label>Music volume<input id="musicVolume" type="range" min="0" max=".5" step=".01" value=".12"></label></div><div id="status" role="status">Loading embedded assets…</div></section><section><h2>Standard imported skeletons · GLB/glTF</h2><p>Genuine skinned characters and quaternion animation clips, alongside all original rigs. Self-contained GLB is recommended; embedded glTF is supported. Unsupported bone mappings are reported rather than silently replaced. Keep a saved copy of your source model.</p><div class="row"><label>Import model or animation<input id="standardFile" type="file" accept=".glb,.gltf"></label><label>Units to metres<input id="standardUnits" type="number" min=".0001" max="100" step=".01" value="1"></label><label>Source up axis<select id="standardUp"><option value="Y">Y-up (glTF standard)</option><option value="Z">Z-up</option><option value="X">X-up</option></select></label></div><label>Bone map / correction options (JSON, optional)<textarea id="standardMapping" style="min-height:65px" placeholder="{&quot;boneMap&quot;:{&quot;hips&quot;:&quot;Hips&quot;,&quot;head&quot;:&quot;Head&quot;}}">{}</textarea></label><label>Imported asset<select id="standardAsset"></select></label><div class="row"><button id="standardBlank">Add customizable skinned blank</button><button id="standardUse">Use on selected actor</button></div><label>Imported animation clip<select id="standardClip"></select></label><div class="row"><label><input id="standardLoop" type="checkbox" checked="">Loop</label><label><input id="standardRootMotion" type="checkbox">Retain root motion</label><label>Speed<input id="standardSpeed" type="number" min=".05" max="5" step=".05" value="1"></label><button id="standardAnimate">Apply imported clip</button><button id="standardClearAnimation">Use authored presets instead</button></div><div class="row"><button id="standardSaveCast">Save character template</button><label>Load character template<input id="standardLoadCast" type="file" accept=".json"></label></div><small id="standardDetails"></small><details><summary>Reusable skinned cast · 60 recipes</summary><label>Genre<select id="standardGenre"><option value="all">All genres</option><option value="everyday">Everyday</option><option value="fantasy">Fantasy</option><option value="scifi">Sci-fi</option><option value="western">Western</option><option value="superhero">Original superheroes</option></select></label><div class="row"><label>Body silhouette<select id="standardBody"></select></label><label>Hair style<select id="standardHair"></select></label><label>Outfit<select id="standardOutfit"></select></label><label>Headwear / gear<select id="standardAccessory"></select></label><button id="standardAppearance">Apply custom shape &amp; wardrobe</button></div><label>Character<select id="standardCast"></select></label><div id="standardCards" class="castCards"></div><div class="row"><button id="standardAddCast">Add skinned character</button><button id="standardApplyCast">Apply look to selected skinned actor</button><button id="standardDiverse">Add varied skinned cast (4)</button></div><p>Appearance recipes vary skinned clothing, body silhouette, hair, headwear and gear. Palette, height and recipe fields remain editable. Imported models retain their original materials unless a recipe is deliberately applied. The original 60 procedural cast remain available below.</p></details><p>Imported assets are embedded when saving the project. No web fetch is needed during playback. Captured skating clips are not distributed in this public edition.</p></section><section><h2>Ready-to-use cast · 60 characters</h2><p>Five genres, original textured outfits and shared articulated motion. Choose a character card, then add it or apply it to the selected actor. All appearance fields remain editable in Actors JSON.</p><div class="row"><label>Search name or tags<input id="castSearch" placeholder="elf, astronaut, braids, sturdy…"></label><label>Genre<select id="castGenre"><option value="all">All genres</option><option value="everyday">Everyday</option><option value="fantasy">Fantasy</option><option value="scifi">Sci-fi</option><option value="western">Western</option><option value="superhero">Original superheroes</option></select></label></div><label>Character<select id="castSelect"></select></label><small id="castDetails"></small><div id="castCards" class="castCards"></div><div class="row"><button id="addCast">Add chosen character</button><button id="applyCast">Apply to selected actor</button><button id="diverseCast">Add diverse full-3D cast (4)</button><label>Actor to replace<select id="castActor"></select></label><button id="addBlank">Add blank character</button></div><p>The helper uses the selected genre and avoids presets already in this scene. It never replaces existing characters. Explicit story identities should always be selected deliberately.</p></section><section><h2>Characters and animation presets</h2><label>Actor<select id="presetActor"></select></label><details><summary>Fast Mode role for selected actor</summary><label>Narrative role<select id="actorRenderRole"><option value="active">Active / story character (full 3D)</option><option value="background-extra">Background extra only</option></select></label><label><input id="actorNonInteracting" type="checkbox">I confirm this extra never speaks, handles an object, fights, or affects the plot</label><label>Representation<select id="actorRepresentation"><option value="auto">Automatic from explicit role</option><option value="full">Promote / keep Full 3D</option></select></label><button id="applyActorRole">Apply explicit role</button><small id="actorRoleState"></small><p>Changing role does not delete animation or appearance. Full 3D is the safe override. For JSON-authored story roles, use speaking, handlesObjects, combat, or plotRelevant=true to protect actors independently.</p></details><div class="row"><label>Rig<select id="rigKind"><option value="blank-skater">Blank skater</option><option value="skater">Original skater</option><option value="blank-human">Blank basic humanoid</option><option value="standard-humanoid">Imported skinned humanoid</option><option value="keep">Keep existing rig</option></select></label><button id="addPuppet">Add blank character</button></div><div class="row"><label>Skin<input id="styleSkin" type="color" value="#c6cdd7"></label><label>Shirt<input id="styleTop" type="color" value="#a9b5c5"></label><label>Pants<input id="styleLegs" type="color" value="#8391a6"></label><label>Shoes<input id="styleShoes" type="color" value="#58657b"></label><label>Hair<input id="styleHair" type="color" value="#3d4055"></label></div><div class="row"><label><input id="hairVisible" type="checkbox">Show hair</label><label><input id="helmetVisible" type="checkbox" checked="">Show helmet</label><label>Height (metres)<input id="rigHeight" type="number" min=".8" max="3.5" step=".05" value="1.72"></label><button id="restyle">Apply appearance</button></div><label>Preset<select id="presetName"></select></label><div class="row"><label>Duration<input id="presetDuration" type="number" min=".1" max="30" step=".1" value="3"></label><label>Intensity<input id="presetIntensity" type="number" min=".25" max="1.5" step=".05" value="1"></label><label><input id="presetMirror" type="checkbox">Mirror</label><label><input id="presetAccessory" type="checkbox">Matching prop/effect</label><label><input id="rootMotion" type="checkbox">Captured travel</label></div><div class="row"><button id="applyPreset">Apply preset to scene</button><button id="savePreset">Save motion template</button><label>Load motion template<input id="loadPreset" type="file" accept=".json"></label></div><p>Applying replaces only the selected actor’s animation in this scene. It starts at the scene beginning; authored actions return to idle and captured clips hold their final pose. Captured skating clips are excluded from this public edition. Appearance changes do not change the source motion. Add music, action sounds and interaction targets separately.</p></section><section><h2>Reusable 3D visual effects</h2><label>Effect<select id="vfxName"></select></label><div class="row"><label>Start (seconds)<input id="vfxStart" type="number" min="0" step=".1" value="0"></label><label>Duration<input id="vfxDuration" type="number" min=".1" max="30" step=".1" value="2"></label><label>Color<input id="vfxColor" type="color" value="#98a8b5"></label></div><div class="row"><label>X<input id="vfxX" type="number" step=".1" value="0"></label><label>Y<input id="vfxY" type="number" step=".1" value="0"></label><label>Z<input id="vfxZ" type="number" step=".1" value="0"></label><label>Scale<input id="vfxScale" type="number" min=".1" max="4" step=".1" value="1"></label><label>Intensity<input id="vfxIntensity" type="number" min=".25" max="2" step=".25" value="1"></label></div><div class="row"><button id="addVfx">Add effect to scene</button><button id="clearVfx">Remove preset effects</button><button id="saveVfx">Save effect template</button><label>Load effect template<input id="loadVfx" type="file" accept=".json"></label></div><p>All 22 effects use deterministic 3D geometry. These are visual effects, not sound effects. Position and timing are editable in the scene JSON; actor/socket attachments and 3-axis rotation are also supported.</p></section><section><h2>Reusable 3D props</h2><label>Prop<select id="propName"></select></label><div class="row"><label>Scale<input id="propScale" type="number" value="1" min=".05" max="10" step=".05"></label><label>X<input id="propX" type="number" value="0" step=".1"></label><label>Y<input id="propY" type="number" value="0" step=".1"></label><label>Z<input id="propZ" type="number" value="0" step=".1"></label></div><div class="row"><label><input id="propRecolor" type="checkbox">Override accent</label><input id="propColor" type="color" value="#62c7e0"><label>Attach<select id="propAttach"><option value="world">World</option><option value="right">Selected actor right hand</option><option value="left">Selected actor left hand</option><option value="body">Selected actor body</option><option value="head">Selected actor head</option></select></label></div><div class="row"><button id="addProp">Add prop</button><button id="saveProp">Save prop template</button><label>Load prop template<input id="loadProp" type="file" accept=".json"></label></div><p>volumetric catalog props. Position becomes a socket offset when attached. Edit props JSON for palette channels, three-axis rotation, visibility intervals, movement and ownership transfers. Props are scene geometry, not physics objects; review grips and two-handed contact for each shot.</p></section><section><h2>Reusable 3D environments</h2><label>Environment<select id="worldName"></select></label><label><input id="worldFrame" type="checkbox" checked="">Use the environment's establishing camera</label><div class="row"><button id="applyWorld">Apply environment</button><button id="saveWorld">Save environment template</button><label>Load template<input id="loadWorld" type="file" accept=".json"></label></div><p>The catalog sets are procedural 3D scenery, not backdrop images. Actors and props are retained. Interiors are open-front cutaways. Water sets need appropriate swimming or boat staging; environments do not provide physics collision. Edit environment options in JSON to recolor or hide terrain, landmarks, furnishings or atmosphere.</p><label>Environment options (JSON)<textarea id="worldOptions">{}</textarea></label></section><section><h2>Projects &amp; export</h2><label>Render preset<select id="renderMode"><option value="standard">Standard · full detail (legacy defaults)</option><option value="fast">Fast · 640 × 360 · 6 fps</option></select></label><small id="renderEffective"></small><div class="row"><button id="addFastExtras">Add 4 non-interacting background extras</button></div><p>Fast Mode uses a smaller picture and intentionally choppy 6 fps motion. Only explicitly marked non-interacting background extras become cheap flat cutouts; heroes, speakers, object handlers, combatants and plot-relevant actors stay full 3D. Cameras and depth placement still matter. No shadow or anti-aliasing quality promise is made for the CPU exporter.</p><div id="fastBudget" role="status"></div><p>New Fast projects start with two varied original-rig cast presets. Existing imported characters keep their identity and appearance; no automatic rig substitution. The original library remains diverse in genre, skin tone, hair and outfit.</p><div class="row"><button id="save">Save portable project</button><label>Load project<input id="load" type="file" accept=".json"></label><button id="newProject">New project</button></div><p>All artwork, music and generated speech travel with the project. Edits are kept in memory until you save. Preview is WebGL when supported, with a CPU fallback.</p><label>Movie scene range (zero-based)</label><div class="row"><input id="exportStart" type="number" min="0" value="0"><input id="exportEnd" type="number" min="0" value="2"><button id="exportMovie">Record movie</button></div><p>Browser recording runs in real time and requires keeping the tab visible. Output is MP4 if supported, otherwise WebM. The included headless renderer produces MP4 independently of browser recording.</p><details><summary>Character &amp; action reference</summary><p>Choose generic procedural people, woodland animals, an editable stock cast, or a genuine imported standard humanoid. The authored preset catalog contains 58 actions. Captured skating clips are not distributed. Use motion templates, editable actor JSON, props, effects and camera tracks for reusable staging.</p><p>Actor rotation is in radians. Shot and action times are normalized 0–1. Headless API: CartoonStudio.validate, timeline, locate, stage, update, SoftwareRenderer.</p></details></section></div><div><section><h2>Scene editor</h2><select id="sceneList"></select><div class="row"><button id="duplicate">Duplicate scene</button><button id="delete">Delete scene</button></div><label>Title<input id="title"></label><label>Complete narration / caption<textarea id="caption"></textarea></label><label>Duration (seconds)<input id="duration" type="number" min="1" max="180" step=".1"></label><label>Environment<select id="environment"><option value="catalog">Reusable environment catalog</option><option>void</option><option>jungle</option><option>royal</option><option>gym</option><option>room</option><option>library</option><option>diner</option><option>street</option></select></label><label>Catalog scene set<select id="environmentSet"></select></label><label>Camera position [x,y,z]<input id="camera"></label><label>Shots (JSON: at, type, camera, target, to, targetTo)<textarea id="shots" style="font-family:monospace"></textarea></label><label>Actors (JSON)<textarea id="actors" style="min-height:210px;font-family:monospace"></textarea></label><label>Props (JSON)<textarea id="props" style="font-family:monospace"></textarea></label><label>Effects (JSON)<textarea id="effects"></textarea></label><label>Set name<input id="setName"></label><label>Music<select id="musicTrack"><option>Tranquility</option><option>Suspense</option><option>Determination</option><option>Playfulness</option><option value="">Silence</option></select></label><label>Voice preset<select id="voicePreset"><option>jet</option><option>nova</option><option>narrator</option><option>warm</option><option>bright</option><option>gruff</option><option>whisper</option><option>robot</option></select></label><div class="row"><button id="apply">Apply scene changes</button><button id="voiceSample">Hear voice sample</button><button id="generateVoice">Generate scene speech</button></div><label>Use an existing dialogue recording<input id="audioFile" type="file" accept="audio/*"></label><p>Traditional synthetic speech is generated locally. It does not clone anyone’s voice. Higher-quality recordings can be imported without changing the animation.</p></section></div><section style="grid-column: 1/-1">
         <h2>Fresh stills</h2>
         <p>
           Capture a movie moment, or change the copied scene JSON to compose a
@@ -308,52 +12,12 @@
           transition fade is applied.
         </p>
         <div class="row">
-          <button id="stillCapture">Copy current scene</button
-          ><label
-            >Local scene time
-            <input
-              id="stillTime"
-              type="number"
-              value="1"
-              min="0"
-              step=".05" /></label
-          ><label
-            >Width
-            <input
-              id="stillWidth"
-              type="number"
-              value="1600"
-              min="64"
-              max="4096" /></label
-          ><label
-            >Height
-            <input
-              id="stillHeight"
-              type="number"
-              value="900"
-              min="64"
-              max="4096" /></label
-          ><label
-            ><input id="stillCaptions" type="checkbox" /> Movie captions</label
-          ><label
-            >Ambient light
-            <input
-              id="stillAmbient"
-              type="number"
-              value="1.8"
-              min="0"
-              max="6"
-              step=".1" /></label
-          ><label
-            >Sun light
-            <input
-              id="stillSun"
-              type="number"
-              value="2.2"
-              min="0"
-              max="6"
-              step=".1"
-          /></label>
+          <button id="stillCapture">Copy current scene</button><label>Local scene time
+            <input id="stillTime" type="number" value="1" min="0" step=".05"></label><label>Width
+            <input id="stillWidth" type="number" value="1600" min="64" max="4096"></label><label>Height
+            <input id="stillHeight" type="number" value="900" min="64" max="4096"></label><label><input id="stillCaptions" type="checkbox"> Movie captions</label><label>Ambient light
+            <input id="stillAmbient" type="number" value="1.8" min="0" max="6" step=".1"></label><label>Sun light
+            <input id="stillSun" type="number" value="2.2" min="0" max="6" step=".1"></label>
         </div>
         <details>
           <summary>
@@ -364,23 +28,13 @@
             Actor rotation is in radians; normalized animation times are 0–1.
             Copy a scene first, then adjust its values.
           </p>
-          <textarea
-            id="stillSceneJSON"
-            style="min-height: 280px; font-family: monospace"
-          ></textarea>
+          <textarea id="stillSceneJSON" style="min-height: 280px; font-family: monospace"></textarea>
         </details>
         <div class="row">
-          <button id="stillPreview">Preview fresh still</button
-          ><button id="stillSave">Download high-resolution PNG</button>
+          <button id="stillPreview">Preview fresh still</button><button id="stillSave">Download high-resolution PNG</button>
         </div>
-        <canvas
-          id="stillPreviewCanvas"
-          width="800"
-          height="450"
-          style="max-width: 900px"
-        ></canvas>
-      </section>
-      <section style="grid-column: 1/-1">
+        <canvas id="stillPreviewCanvas" width="800" height="450" style="max-width: 900px"></canvas>
+      </section><section style="grid-column: 1/-1">
         <h2>Comic pages</h2>
         <p>
           Capture current scenes as independent panel snapshots. Compose a page,
@@ -389,16 +43,12 @@
           saved.
         </p>
         <div class="row">
-          <button id="comicNew">New comic from current frame</button
-          ><label
-            >Load comic
-            <input id="comicLoad" type="file" accept=".json" /></label
-          ><button id="comicSave">Save editable comic</button>
+          <button id="comicNew">New comic from current frame</button><label>Load comic
+            <input id="comicLoad" type="file" accept=".json"></label><button id="comicSave">Save editable comic</button>
         </div>
-        <label>Comic title <input id="comicTitle" /></label>
+        <label>Comic title <input id="comicTitle"></label>
         <div class="row">
-          <select id="comicPages" aria-label="Select comic page"></select
-          ><select id="comicLayout" aria-label="Page layout">
+          <select id="comicPages" aria-label="Select comic page"></select><select id="comicLayout" aria-label="Page layout">
             <option value="cover">Cover</option>
             <option value="one">1 panel</option>
             <option value="two">2 panels</option>
@@ -406,20 +56,9 @@
             <option value="six">6 panels</option>
             <option value="nine">9 panels</option>
             <option value="whos-who">Who's Who</option>
-            <option value="credits">Credits</option></select
-          ><button id="comicAddPage">Add page</button
-          ><button id="comicAddPanel">Add current frame as panel</button
-          ><button id="comicDuplicate">Duplicate page</button
-          ><button id="comicDelete">Delete page</button
-          ><button id="comicEarlier">Move earlier</button
-          ><button id="comicLater">Move later</button>
+            <option value="credits">Credits</option></select><button id="comicAddPage">Add page</button><button id="comicAddPanel">Add current frame as panel</button><button id="comicDuplicate">Duplicate page</button><button id="comicDelete">Delete page</button><button id="comicEarlier">Move earlier</button><button id="comicLater">Move later</button>
         </div>
-        <label
-          >Editable page JSON (panels, scene poses, captions, balloons)</label
-        ><textarea
-          id="comicJSON"
-          style="min-height: 240px; font-family: monospace"
-        ></textarea>
+        <label>Editable page JSON (panels, scene poses, captions, balloons)</label><textarea id="comicJSON" style="min-height: 240px; font-family: monospace"></textarea>
         <details>
           <summary>Bubble and caption guide</summary>
           <p>
@@ -434,28 +73,17 @@
           </p>
         </details>
         <div class="row">
-          <button id="comicApply">Apply page JSON</button
-          ><button id="comicPNG">Download current page PNG</button
-          ><button id="comicPDF">Download full PDF</button>
+          <button id="comicApply">Apply page JSON</button><button id="comicPNG">Download current page PNG</button><button id="comicPDF">Download full PDF</button>
         </div>
         <div id="printStatus" role="status">
           Stills and comic tools ready. Wait for movie loading to finish before
           capturing.
         </div>
-        <canvas
-          id="comicPreview"
-          width="850"
-          height="1100"
-          style="max-width: 650px"
-        ></canvas>
-      </section>
-    </main>
-    <footer>
+        <canvas id="comicPreview" width="850" height="1100" style="max-width: 650px"></canvas>
+      </section></main><footer>
       3D Cartoon Studio. Original code and emotion-based music by Jet Black /
       Nicholas Alexander Benson, GPL-3.0-only. Third-party dependencies retain
       their own licenses; see THIRD_PARTY_NOTICES.md. Generic procedural assets.
       No remote requests.
-    </footer>
-    <!--SCRIPTS-->
-  </body>
-</html>
+    </footer><!--SCRIPTS-->
+</body></html>

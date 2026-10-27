@@ -56,7 +56,7 @@
     c.height = h;
     return c;
   }
-  function sceneFor(pkg, o) {
+  function sceneFor(pkg, o, validationOptions = {deferStandardAssets:true}) {
     if (!pkg?.project?.scenes?.length)
       throw Error("A cartoon project is required.");
     let i = o.sceneIndex ?? 0;
@@ -71,18 +71,17 @@
       sc.target = copy(o.target);
       sc.shots = [];
     }
-    S.validate({ ...pkg.project, scenes: [sc] });
+    S.validate({ ...pkg.project, scenes: [sc] }, validationOptions);
     return sc;
   }
   async function still(pkg, o = {}) {
-    let sc = sceneFor(pkg, o),
-      t = o.time ?? Math.min(sc.duration / 2, sc.duration);
-    if (!Number.isFinite(t) || t < 0 || t > sc.duration)
-      throw Error("Still time must fall within the scene duration.");
-    let prior = S.getAssetState(),
-      st;
+    let prior = S.getAssetState(), st;
     try {
       await S.init(pkg.assets);
+      const sc = sceneFor(pkg, o, {deferStandardAssets:false}),
+        t = o.time ?? Math.min(sc.duration / 2, sc.duration);
+      if (!Number.isFinite(t) || t < 0 || t > sc.duration)
+        throw Error("Still time must fall within the scene duration.");
       st = S.stage(sc);
       await S.prepare(st);
       S.update(st, t);
@@ -109,10 +108,7 @@
       });
       return c;
     } finally {
-      if (st)
-        st.root.traverse((x) => {
-          if (x.geometry) x.geometry.dispose();
-        });
+      if (st) S.disposeStage(st);
       S.restoreAssetState(prior);
     }
   }
@@ -230,7 +226,7 @@
       c.pages.length > 300
     )
       throw Error("Expected a JetCartoonComic v1 with 1–300 pages.");
-    S.validate(c.source.project);
+    S.validate(c.source.project, {deferStandardAssets:true});
     for (const p of c.pages) {
       if (!layouts[p.layout]) throw Error("Unknown page layout: " + p.layout);
       if (

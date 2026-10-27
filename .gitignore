@@ -18,3 +18,6 @@ integrate-library.py
 
 qa/
 Cast-Previews/
+
+/node_modules
+Standard-Rigs-Demo.jetcartoon.json

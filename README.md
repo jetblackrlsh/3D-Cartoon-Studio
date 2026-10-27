@@ -2,7 +2,7 @@
 
 Offline, editable 3D cartoons, fresh stills, and comics from the same scene data.
 
-This is the **1.5.0 public source edition**, derived from the 1.4 Stills & Comics edition. It uses lightweight procedural low-poly rigs and a deterministic software renderer, not a text-to-video AI service. No account or API key is needed to use the built application.
+This is the **1.6.0 public source edition**, derived from the 1.4 Stills & Comics edition. It uses lightweight procedural low-poly rigs and a deterministic software renderer, not a text-to-video AI service. No account or API key is needed to use the built application.
 
 ## New here? Start here
 
@@ -46,6 +46,14 @@ The repository intentionally publishes source rather than prebuilt third-party v
 
 60 editable stock characters across everyday, fantasy, sci-fi, western and original superhero genres are included, with thumbnail browsing, search, appearance replacement and a deterministic diverse-cast helper. All use the shared articulated humanoid rig. See [Cast Library guide](docs/CAST_LIBRARY.md) for editor/headless usage, editable templates and compatibility limits.
 
+## Standard rigs and Fast Mode (new)
+
+New projects use **Fast Mode: 640 × 360, 6 fps**, with lightweight original procedural cast. Existing imported projects retain their saved settings; projects without a mode retain the Standard path. Fast Mode never silently replaces an imported/skinned lead or deletes story action. Only explicitly designated, distant, non-interacting background extras may use graphic cutouts.
+
+The optional standard-rig editor supports actual imported GLB skins, anatomical mapping, native clips, backward seeking, hand sockets/grips, expressions and 60 editable appearances. Included offline assets are the genuine **71-joint ActionForge rig** and exact public T-pose/idle exports, plus the free official Quaternius **43-clip** Universal Animation Library (in-place and root-motion). The 58 authored Studio actions remain available on both original and compatible imported rigs, with revised anatomical leg/knee and slash mapping.
+
+See [Standard rigs and Fast Mode](docs/STANDARD_RIGS_FAST_MODE.md) for formats, CLI settings, source URLs, checksums and limitations. The full advertised vendor animation/prop catalog is **not** included or claimed; private captured skating is excluded.
+
 ## Headless commands
 
 Install FFmpeg separately for movies. Stills and comics do not require it.
@@ -55,6 +63,7 @@ npm test
 node Source/print.cjs still Starter.jetcartoon.json output/still.png
 node Source/print.cjs comic Demo/Studio-Demo.jetcomic.json output/comic
 node Source/render.cjs Demo.jetcartoon.json rendered 0 1 12
+node Source/render.cjs Standard-Rigs-Demo.jetcartoon.json rendered-native --mode fast
 ```
 
 The test command creates the editable demo comic and its PDF under `Demo/`. The renderer produces one MP4 per selected scene; it is not an automatic finished-film editor. Existing scene MP4 files are skipped, so use a fresh output directory after project edits.

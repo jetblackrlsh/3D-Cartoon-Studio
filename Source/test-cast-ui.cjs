@@ -16,7 +16,7 @@ process.chdir(path.resolve(__dirname,'..'));
  $('addBlank').click();assert.equal(w.StudioApp.getProject().scenes[0].actors.at(-1).kind,'blank-human');
  // Repeat until full; a further click is a no-op with an explanatory status.
  for(let i=0;i<5;i++)$('diverseCast').click();assert.equal(w.StudioApp.getProject().scenes[0].actors.length,16);const full=snapshot();$('diverseCast').click();$('addCast').click();$('addBlank').click();assert.equal(snapshot(),full);assert.match($('status').textContent,/limit/);
- w.confirm=()=>false;$('newProject').click();assert.equal(snapshot(),full);w.confirm=()=>true;$('newProject').click();assert.equal(w.StudioApp.getProject().scenes[0].actors.length,1);assert.equal(w.StudioApp.getProject().scenes[0].actors[0].cast,'everyday-neighbor-f');S.validate(JSON.parse(snapshot()));
+ w.confirm=()=>false;$('newProject').click();assert.equal(snapshot(),full);w.confirm=()=>true;$('newProject').click();assert.equal(w.StudioApp.getProject().scenes[0].actors.length,2);assert.equal(w.StudioApp.getProject().renderSettings.mode,'fast');assert(w.StudioApp.getProject().scenes[0].actors.every(a=>a.kind==='blank-human'));assert.notEqual(w.StudioApp.getProject().scenes[0].actors[0].cast,w.StudioApp.getProject().scenes[0].actors[1].cast);S.validate(JSON.parse(snapshot()));
  console.log('PASS cast DOM: search/filter, add/apply, identity/motion preservation, diversity, blank, capacity, cancel/new project');
  }finally{w.close()}
 })().catch(e=>{console.error(e);process.exitCode=1});

@@ -1,15 +1,16 @@
 {
   "name": "3d-cartoon-studio",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "private": true,
   "description": "Offline 3D cartoon authoring, rendering, stills and editable comics",
   "license": "GPL-3.0-only",
   "scripts": {
     "build": "node Source/build.cjs",
-    "test": "npm run build && node Source/test.cjs && node Source/test-voice.cjs && node Source/test-generic.cjs && node Source/test-library.cjs && node Source/test-cast-ui.cjs && node Source/test-diverse-cast.cjs && node Source/test-cast.cjs",
+    "test": "npm run build && node Source/test.cjs && node Source/test-voice.cjs && node Source/test-generic.cjs && node Source/test-library.cjs && node Source/test-cast-ui.cjs && node Source/test-diverse-cast.cjs && node Source/test-cast.cjs && node Source/test-standard.cjs && node Source/test-fast-mode.cjs && node Source/test-fast-render-cli.cjs && node Source/test-standard-print.cjs && node Source/test-fast-ui.cjs",
     "render": "node Source/render.cjs",
     "print": "node Source/print.cjs",
-    "build:urban": "esbuild Source/urban-portable.js --bundle --format=esm --external:three --external:three/* --outfile=urban-assets.mjs"
+    "build:urban": "esbuild Source/urban-portable.js --bundle --format=esm --external:three --external:three/* --outfile=urban-assets.mjs",
+    "render:film": "node Source/render-film.cjs"
   },
   "engines": {
     "node": ">=20"
