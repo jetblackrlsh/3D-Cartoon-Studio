@@ -96,3 +96,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Keep the offline build and editable proj
 ## License
 
 The original studio code, generic procedural demo and included original music are licensed under **GNU GPL version 3 only**. Third-party packages retain their own licenses. GPL permits use, modification and commercial distribution under its conditions; redistribution of modified or bundled software requires applicable notices and corresponding source. Media you import is not automatically licensed by this repository.
+
+## Comic source modes (1.6.1)
+
+Comic pages now support newly rendered scene stills, extracted frames from an existing animation, or a per-panel mix. Local video picker, reusable embedded stills, provenance, PNG/PDF and portable headless output: [guide](docs/COMIC_SOURCE_MODES.md). Older scene comics still load.

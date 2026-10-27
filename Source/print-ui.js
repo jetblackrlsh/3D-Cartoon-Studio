@@ -7,7 +7,7 @@
     copy = (x) => JSON.parse(JSON.stringify(x));
   let comic = null,
     pageIndex = 0,
-    rendering = false;
+    rendering = false, videoSource = null;
   const status = (t) => ($("printStatus").textContent = t);
   function download(name, data, mime = "application/json") {
     let u = URL.createObjectURL(new Blob([data], { type: mime })),
@@ -51,6 +51,9 @@
   function sync() {
     if (!comic) return;
     $("comicTitle").value = comic.title;
+    $("comicMode").value = comic.mode || "mixed";
+    $("comicImage").replaceChildren(...Object.keys(comic.images || {}).map(id => { const o=document.createElement("option"); o.value=id; o.textContent=id + " — " + (comic.images[id].provenance?.timeSeconds ?? "image") + "s"; return o; }));
+    $("comicPanel").replaceChildren(...comic.pages[pageIndex].panels.map((p,i) => {const o=document.createElement("option");o.value=i;o.textContent="Panel "+(i+1)+(p.imageId ? " (image)" : " (scene)");return o;}));
     $("comicPages").innerHTML = comic.pages
       .map((p, i) => `<option value="${i}">${i + 1}: ${p.layout}</option>`)
       .join("");
@@ -128,7 +131,8 @@
   action("comicNew", async () => {
     let { pkg, panel } = snapshot();
     comic = P.createComic(pkg);
-    comic.pages[0].panels = [panel];
+    comic.mode = $("comicMode").value;
+    comic.pages[0].panels = comic.mode === "animation" ? [] : [panel];
     pageIndex = 0;
     sync();
     await preview();
@@ -147,6 +151,7 @@
       throw Error(
         "This page is full. Choose a larger layout or add another page.",
       );
+    if (comic.mode === "animation") throw Error("Choose Mixed or newly rendered mode to add scenes.");
     let { pkg, panel } = snapshot();
     comic.source.assets = { ...comic.source.assets, ...pkg.assets };
     panel.sceneIndex = 0;
@@ -235,7 +240,7 @@
       if (f.size > 220000000) throw Error("Comic project exceeds 220 MB.");
       let c = JSON.parse(await f.text());
       P.validateComic(c);
-      for (const v of Object.values(c.source.assets))
+      for (const v of Object.values(c.source?.assets || {}))
         if (typeof v !== "string" || !v.startsWith("data:"))
           throw Error("Comic assets must be embedded data URLs.");
       comic = c;
@@ -270,6 +275,69 @@
     } finally {
       rendering = false;
     }
+  });
+  $("comicMode").onchange = () => {
+    if (!comic) return;
+    const next = copy(comic); next.mode = $("comicMode").value;
+    try { P.validateComic(next); comic = next; status("Source mode changed. Existing panels preserved."); }
+    catch(e) { $("comicMode").value = comic.mode || "mixed"; status(e.message); }
+  };
+  let videoURL, videoRequest = 0;
+  $("comicVideoFile").onchange = async () => {
+    try {
+      const request = ++videoRequest, f = $("comicVideoFile").files[0]; if (!f) return;
+      videoSource = null;
+      if (f.size > 500000000) throw Error("Browser frame picker accepts videos up to 500 MB. Use headless extraction for larger movies.");
+      if (!crypto.subtle) throw Error("SHA-256 unavailable here. Use localhost/secure context or headless extraction.");
+      const digest = await crypto.subtle.digest("SHA-256", await f.arrayBuffer());
+      if (request !== videoRequest) return;
+      const sourceSha256 = Array.from(new Uint8Array(digest), b=>b.toString(16).padStart(2,"0")).join("");
+      if (videoURL) URL.revokeObjectURL(videoURL);
+      videoURL = URL.createObjectURL(f); $("comicVideo").src = videoURL;
+      videoSource = {kind:"animation-frame",sourceName:f.name,sourceSha256,sourceBytes:f.size};
+      status("Animation loaded locally. Select a time and capture a frame.");
+    } catch(e) {status(e.message);}
+  };
+  action("comicSeek", async () => {
+    const v=$("comicVideo"), t=+$("comicFrameTime").value;
+    if (!videoSource || !Number.isFinite(v.duration)) throw Error("Load a decodable animation first.");
+    if (!Number.isFinite(t) || t<0 || t>=v.duration) throw Error("Time must be within the animation (before its end).");
+    v.pause();
+    if (Math.abs(v.currentTime-t) > 0.00001) await new Promise((resolve,reject)=>{
+      const timer=setTimeout(()=>{clean();reject(Error("Video seek timed out."));},15000);
+      const clean=()=>{clearTimeout(timer);v.removeEventListener("seeked",done);v.removeEventListener("error",fail);};
+      const done=()=>{clean();resolve();},fail=()=>{clean();reject(Error("Video seek failed."));};
+      v.addEventListener("seeked",done);v.addEventListener("error",fail);v.currentTime=t;
+    });
+    status("Seeked to "+v.currentTime.toFixed(3)+" seconds. Capture to embed this frame.");
+  });
+  $("comicVideo").ontimeupdate = () => {$("comicFrameTime").value=$("comicVideo").currentTime.toFixed(3);};
+  action("comicCaptureFrame", async () => {
+    if (!comic) throw Error("Create a comic first; choose Animation or Mixed mode.");
+    const v=$("comicVideo"); v.pause();
+    if (!videoSource || v.readyState<2 || !v.videoWidth || v.seeking) throw Error("Load and seek a decodable animation before capturing.");
+    if (v.videoWidth>4096 || v.videoHeight>4096 || v.videoWidth*v.videoHeight>8388608) throw Error("Video exceeds 8 megapixels / 4096 pixels; use headless extraction with scaling.");
+    const c=document.createElement("canvas");c.width=v.videoWidth;c.height=v.videoHeight;c.getContext("2d").drawImage(v,0,0);
+    const id="frame-"+Date.now()+"-"+Object.keys(comic.images || {}).length;
+    comic.images ||= {};comic.images[id]={dataUrl:c.toDataURL("image/png"),provenance:{...videoSource,timeSeconds:v.currentTime,sourceDurationSeconds:v.duration,width:c.width,height:c.height,method:"browser-video-seek"}};
+    sync();$("comicImage").value=id;status("Frame embedded and reusable. Add it as a panel or replace a selected panel; save to keep it.");
+  });
+  async function useImage(replace) {
+    if (!comic) throw Error("Create a comic first.");
+    if (comic.mode === "render") throw Error("Choose Animation or Mixed mode for image panels.");
+    const id=$("comicImage").value;if(!comic.images?.[id]) throw Error("Capture or load an image asset first.");
+    const p=comic.pages[pageIndex], i=+$("comicPanel").value;
+    if (replace) {if(!p.panels[i]) throw Error("Choose an existing panel."); const old=p.panels[i];p.panels[i]={imageId:id,fit:"contain",caption:old.caption||"",balloons:old.balloons||[]};}
+    else {if(p.panels.length>=P.layouts[p.layout].length) throw Error("Page full; choose a larger layout or add a page.");p.panels.push({imageId:id,fit:"contain",caption:""});}
+    sync();await preview();
+  }
+  action("comicAddImage",()=>useImage(false));
+  action("comicReplaceImage",()=>useImage(true));
+  action("comicReplaceScene",async()=>{
+    if(!comic || comic.mode === "animation") throw Error("Choose Mixed or Render mode to replace with a scene.");
+    const p=comic.pages[pageIndex],i=+$("comicPanel").value;if(!p.panels[i]) throw Error("Choose an existing panel.");
+    const {pkg,panel}=snapshot();comic.source ||= copy(pkg);comic.source.assets={...comic.source.assets,...pkg.assets};
+    const old=p.panels[i];panel.sceneIndex=0;p.panels[i]={...panel,caption:old.caption||"",balloons:old.balloons||[]};sync();await preview();
   });
   window.StudioComicApp = {
     getComic: () => (comic ? copy(comic) : null),
