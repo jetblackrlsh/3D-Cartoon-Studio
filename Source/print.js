@@ -217,6 +217,44 @@
     );
     ctx.restore();
   }
+  const modes = ["render", "animation", "mixed"];
+  function imageAsset(c, panel) {
+    if (panel.imageId != null) {
+      const a = c.images?.[panel.imageId];
+      if (!a) throw Error("Missing embedded comic image: " + panel.imageId);
+      return a;
+    }
+    return panel.sourceImage ? {dataUrl: panel.sourceImage} : null;
+  }
+  function checkImage(a) {
+    if (!a || typeof a.dataUrl !== "string" || !/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/=\s]+$/.test(a.dataUrl))
+      throw Error("Comic images must be embedded PNG, JPEG or WebP data URLs.");
+    if (a.dataUrl.length > 60000000) throw Error("Comic image exceeds 45 MB.");
+    const p = a.provenance;
+    if (p?.kind === "animation-frame" &&
+        (typeof p.sourceName !== "string" || !p.sourceName || !/^[a-f0-9]{64}$/i.test(p.sourceSha256 || "") ||
+        !Number.isFinite(p.timeSeconds) || p.timeSeconds < 0))
+      throw Error("Animation frame provenance needs sourceName, SHA-256 and nonnegative timeSeconds.");
+  }
+  function loadImage(dataUrl) {
+    return new Promise((resolve, reject) => {
+      const im = new root.Image();
+      im.onload = () => resolve(im);
+      im.onerror = () => reject(Error("Cannot decode embedded comic image."));
+      im.src = dataUrl;
+    });
+  }
+  async function panelImage(comic, panel, options) {
+    const a = imageAsset(comic, panel);
+    return a ? loadImage(a.dataUrl) : still(comic.source, {...panel, ...options});
+  }
+  function drawPanelImage(ctx, im, r, fit = "contain") {
+    const k = (fit === "cover" ? Math.max : Math.min)(r.w / im.width, r.h / im.height),
+      w = im.width * k, h = im.height * k;
+    ctx.save(); ctx.beginPath(); ctx.rect(r.x,r.y,r.w,r.h); ctx.clip();
+    ctx.fillStyle = "#101827"; ctx.fillRect(r.x,r.y,r.w,r.h);
+    ctx.drawImage(im, r.x + (r.w-w)/2, r.y + (r.h-h)/2, w, h); ctx.restore();
+  }
   function validateComic(c) {
     if (
       c?.schema !== "JetCartoonComic" ||
@@ -226,7 +264,9 @@
       c.pages.length > 300
     )
       throw Error("Expected a JetCartoonComic v1 with 1–300 pages.");
-    S.validate(c.source.project, {deferStandardAssets:true});
+    if (c.mode != null && !modes.includes(c.mode)) throw Error("Unknown comic source mode.");
+    for (const a of Object.values(c.images || {})) checkImage(a);
+    if (c.source) S.validate(c.source.project, {deferStandardAssets:true});
     for (const p of c.pages) {
       if (!layouts[p.layout]) throw Error("Unknown page layout: " + p.layout);
       if (
@@ -234,7 +274,19 @@
         p.panels.length > layouts[p.layout].length
       )
         throw Error("Too many panels for " + p.layout);
-      for (const panel of p.panels) sceneFor(c.source, panel);
+      for (const panel of p.panels) {
+        const a = imageAsset(c, panel);
+        if (panel.fit != null && !["contain", "cover"].includes(panel.fit)) throw Error("Unknown panel image fit.");
+        if (panel.textSize != null && (!Number.isFinite(panel.textSize) || panel.textSize < 4 || panel.textSize > 200)) throw Error("Invalid caption textSize.");
+        if (a) {
+          checkImage(a);
+          if (c.mode === "render") throw Error("Render mode requires scene panels; choose mixed for images.");
+        } else {
+          if (c.mode === "animation") throw Error("Animation mode requires an embedded image for every panel.");
+          const sc = sceneFor(c.source, panel), t = panel.time ?? sc.duration / 2;
+          if (!Number.isFinite(t) || t < 0 || t > sc.duration) throw Error("Panel time must fall within the scene.");
+        }
+      }
     }
     return true;
   }
@@ -287,24 +339,23 @@
       x.fillRect(r.x, r.y, r.w, r.h);
       if (pn) {
         let cap = pn.caption || "",
-          capHeight = 0;
+          capHeight = 0, textSize = pn.textSize || 22;
         if (cap) {
-          x.font = `${22 * scale}px sans-serif`;
+          x.font = `${textSize * scale}px sans-serif`;
           capHeight =
-            (wrap(x, cap, r.w - 24 * scale).length * 27.5 + 24) * scale;
+            (wrap(x, cap, r.w - 24 * scale).length * textSize * 1.25 + 24) * scale;
           if (capHeight > r.h * 0.45)
             throw Error(
               "Panel " + (i + 1) + " caption is too long for this layout.",
             );
         }
-        let im = await still(comic.source, {
-          ...pn,
+        let im = await panelImage(comic, pn, {
           width: Math.max(64, Math.round(r.w)),
           height: Math.max(64, Math.round(r.h - capHeight)),
           captions: false,
           transitions: false,
         });
-        x.drawImage(im, r.x, r.y, r.w, r.h - capHeight);
+        drawPanelImage(x, im, {...r, h:r.h-capHeight}, pn.fit || "contain");
         if (cap) {
           x.fillStyle = "#fff7df";
           x.fillRect(r.x, r.y + r.h - capHeight, r.w, capHeight);
@@ -312,7 +363,7 @@
             x,
             cap,
             { x: r.x, y: r.y + r.h - capHeight, w: r.w, h: capHeight },
-            { fontSize: 22 * scale, padding: 12 * scale },
+            { fontSize: textSize * scale, padding: 12 * scale },
           );
         }
         for (let b of pn.balloons || [])
@@ -333,7 +384,7 @@
           h: inner.h * 0.7,
         },
         {
-          fontSize: 28 * scale,
+          fontSize: (p.textSize || p.textStyle?.fontSize || 28) * scale,
           color: p.textColor || "#ffffff",
           strokeWidth: 3 * scale,
           strokeColor: "#000000",
@@ -365,6 +416,8 @@
     return {
       schema: "JetCartoonComic",
       version: 1,
+      mode: "render",
+      images: {},
       title: pkg.project.title || "New comic",
       source: copy(pkg),
       pages: [
@@ -388,6 +441,7 @@
     createComic,
     validateComic,
     layouts,
+    modes, imageAsset, loadImage, drawPanelImage,
     sceneFor,
     wrap,
   };

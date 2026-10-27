@@ -46,6 +46,14 @@
           <button id="comicNew">New comic from current frame</button><label>Load comic
             <input id="comicLoad" type="file" accept=".json"></label><button id="comicSave">Save editable comic</button>
         </div>
+        <label>Comic source mode <select id="comicMode"><option value="render">Newly rendered scene stills</option><option value="animation">Frames from existing animation</option><option value="mixed">Mixed: animation frames and new stills</option></select></label>
+        <details open><summary>Existing animation frame picker (local/offline)</summary>
+          <label>Choose animation <input id="comicVideoFile" type="file" accept="video/*"></label>
+          <video id="comicVideo" controls preload="metadata" style="max-width:640px;width:100%"></video>
+          <div class="row"><label>Exact time (seconds) <input id="comicFrameTime" type="number" min="0" step="0.001" value="0"></label><button id="comicSeek">Seek to time</button><button id="comicCaptureFrame">Capture reusable frame</button></div>
+          <p>Scrub/play or seek to seconds, then capture. Captured pixels, source filename, SHA-256 and actual seek time are embedded; no video upload or rerender. Browser seeking uses its decoded frame at that time (not a guaranteed frame-index API).</p>
+        </details>
+        <div class="row"><label>Reusable captured image <select id="comicImage"></select></label><label>Panel to replace <select id="comicPanel"></select></label><button id="comicAddImage">Add image panel</button><button id="comicReplaceImage">Replace selected panel with image</button><button id="comicReplaceScene">Replace selected panel with current scene</button></div>
         <label>Comic title <input id="comicTitle"></label>
         <div class="row">
           <select id="comicPages" aria-label="Select comic page"></select><select id="comicLayout" aria-label="Page layout">
