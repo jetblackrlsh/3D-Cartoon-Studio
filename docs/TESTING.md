@@ -45,3 +45,18 @@ START.html, runtime bundles, complete embedded-audio example projects, Demo/, ou
 `npm test` also checks all 60 cast designs, 17,400 pose updates across the 58 authored actions, finite transforms/textures, joint and hand-socket attachments (including backward seek), catalog/legacy validation, and 768 seeded four-character diversity cases. It renders all 60 previews under ignored `Cast-Previews/` and writes reports to ignored `qa/`. `test-cast-ui.cjs` exercises search/filter, add/apply, identity/motion preservation, capacity, blank characters and cancel/new-project behavior through jsdom with a stub preview renderer; it is not WebGL/browser QA.
 
 Optional real-browser coverage is `PLAYWRIGHT_MODULE=/path/to/playwright CHROMIUM_PATH=/path/to/chromium node Source/test-cast-browser.cjs` after building. Install Playwright separately if desired; it is not a runtime dependency. The public cast integration passed the full automated suite and a native-rendered five-genre visual smoke inspection. Chromium interaction QA could not run in the cloud authoring environment because its process/socket sandbox prevented browser startup; no browser pass is claimed.
+
+## Standard rigs and Fast defaults (public 1.6.0)
+
+`npm test` now also verifies the original five CC0 asset checksums, actual 71-joint skin, all 43 native Quaternius clips, all 58 authored actions, 60 standard appearance recipes, clone isolation, backward seeking, finger joints, hand sockets/grips, serialization and offline mapping failures. `test-standard-print.cjs` renders a native-rig still and checks that success/failure restore the imported-asset registry; synchronous comic metadata checks defer only asset lookup, while rendering strictly revalidates after loading its assets.
+
+`test-fast-mode.cjs` checks protected actor eligibility, graphic cutout geometry, facing, full override and unchanged actor data. `test-fast-render-cli.cjs` checks effective dimensions/FPS, option precedence, legacy settings and master reuse. `test-fast-ui.cjs` uses the actual public HTML and engine with a stub preview renderer: it covers fresh two-actor Fast defaults, cancel, mode switches, role protections, save/reimport, and old Standard/no-mode project compatibility. These DOM tests do not establish real WebGL, MediaRecorder, audio playback or download-dialog behavior.
+
+A reproducible actual native-skin movie smoke check is:
+
+```sh
+npm run build
+node Source/render-film.cjs Standard-Rigs-Demo.jetcartoon.json output/native-fast --mode fast --two-speed
+```
+
+For the public integration, that command rendered twelve 640×360 frames at 6 fps, assembled a decodable normal-speed master with audio, then derived a decodable 12 fps 2× version. The measured durations were 2.023 and 1.016 seconds (codec padding included). A representative actual frame was visually inspected; this is not an exhaustive choreography or listening review. No private production movie, project, capture, log or fixture is part of the source release.

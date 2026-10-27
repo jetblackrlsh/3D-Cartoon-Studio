@@ -1,0 +1,70 @@
+{
+  "standard/quaternius-ual": {
+    "schema": "JetStandardAsset",
+    "version": 1,
+    "id": "quaternius-ual",
+    "name": "Quaternius Universal Animation Library \u2014 in-place",
+    "license": "CC0-1.0",
+    "source": "https://quaternius.itch.io/universal-animation-library",
+    "sourcePage": "https://quaternius.com/packs/universalanimationlibrary.html",
+    "creator": "Quaternius",
+    "sha256": "69591853d817488edaa8fd9bf8fc1d821eaeaf789f8627b3cd23b41c4ed67997",
+    "notes": "Official Quaternius original/portable consolidation, not certified byte-identical ActionForge export.",
+    "file": "Assets/Standard/quaternius-ual.glb"
+  },
+  "standard/quaternius-ual-root-motion": {
+    "schema": "JetStandardAsset",
+    "version": 1,
+    "id": "quaternius-ual-root-motion",
+    "name": "Quaternius Universal Animation Library \u2014 root motion",
+    "license": "CC0-1.0",
+    "source": "https://quaternius.itch.io/universal-animation-library",
+    "sourcePage": "https://quaternius.com/packs/universalanimationlibrary.html",
+    "creator": "Quaternius",
+    "sha256": "be684571ed655a1b892c2c07e6e2aeca053b606c442d34004adaf1d944090d01",
+    "notes": "Official Quaternius original/portable consolidation, not certified byte-identical ActionForge export.",
+    "file": "Assets/Standard/quaternius-ual-root-motion.glb"
+  },
+  "standard/actionforge-human": {
+    "schema": "JetStandardAsset",
+    "version": 1,
+    "id": "actionforge-human",
+    "name": "ActionForge original 71-joint blank rig",
+    "license": "CC0-1.0",
+    "source": "https://actionforge.app/assets/animation-library/rig/rig-human.glb?v=7d71eb4e",
+    "sourcePage": "https://actionforge.app/",
+    "licenseSource": "https://actionforge.app/THIRD-PARTY-NOTICES.txt",
+    "creator": "Quaternius; ActionForge repackaging by CGstuff",
+    "sha256": "1e6c4f98ed439fe852495794f58c366cf353552e5fbcc33503bf3581cd74819d",
+    "notes": "Exact unmodified public asset directly advertised by ActionForge HTML preload, not extracted from proprietary application code.",
+    "file": "Assets/Standard/actionforge-human.glb"
+  },
+  "standard/actionforge-tpose": {
+    "schema": "JetStandardAsset",
+    "version": 1,
+    "id": "actionforge-tpose",
+    "name": "ActionForge exact T-pose animation",
+    "license": "CC0-1.0",
+    "source": "https://actionforge.app/assets/animation-library/animations/a_tpose.glb?v=516e375f",
+    "sourcePage": "https://actionforge.app/",
+    "licenseSource": "https://actionforge.app/THIRD-PARTY-NOTICES.txt",
+    "creator": "Quaternius; ActionForge repackaging by CGstuff",
+    "sha256": "5c7440e6d23515968f1c489cbd9330b59839a7289181eafc436ffa99954151b3",
+    "notes": "Exact unmodified public asset directly advertised by ActionForge HTML preload, not extracted from proprietary application code.",
+    "file": "Assets/Standard/actionforge-tpose.glb"
+  },
+  "standard/actionforge-idle": {
+    "schema": "JetStandardAsset",
+    "version": 1,
+    "id": "actionforge-idle",
+    "name": "ActionForge exact idle animation",
+    "license": "CC0-1.0",
+    "source": "https://actionforge.app/assets/animation-library/animations/idle_loop.glb?v=21b7a135",
+    "sourcePage": "https://actionforge.app/",
+    "licenseSource": "https://actionforge.app/THIRD-PARTY-NOTICES.txt",
+    "creator": "Quaternius; ActionForge repackaging by CGstuff",
+    "sha256": "fbc6fcdcf3ae3fc9854276a17a0585778182a4805f9de6bb087e040bec512794",
+    "notes": "Exact unmodified public asset directly advertised by ActionForge HTML preload, not extracted from proprietary application code.",
+    "file": "Assets/Standard/actionforge-idle.glb"
+  }
+}

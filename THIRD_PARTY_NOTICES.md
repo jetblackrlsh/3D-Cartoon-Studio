@@ -33,3 +33,9 @@ Selected vehicle geometry from mrdoob/slop-newyork, commit 12593c9963f141665fe91
 ## Cast Library additions
 
 The 60 generic cast presets, editable snapshots, procedural wardrobe and embedded generated thumbnails are original studio additions under GPL-3.0-only, modified/integrated on 2026-10-26. No third-party stock model, franchise character or captured motion is included. See docs/CAST_LIBRARY.md.
+
+## CC0 imported skeleton and animation additions (2026-10-27)
+
+`Source/standard-assets.json` inventories five binary GLB assets in `Assets/Standard/` with per-asset original URLs, creator, license and SHA-256. These are redistributable media, not ActionForge application code. The actual ActionForge rig/T-pose/idle were advertised by public HTML preload links; ActionForge's published notice identifies their Quaternius origin and CC0 1.0 terms. See [the saved notice](docs/ACTIONFORGE-THIRD-PARTY-NOTICES.txt). The two 43-clip Quaternius Standard GLBs came from the creator's official free itch.io pack; see [the shipped license](docs/UAL-License.txt), [asset inventory](docs/STANDARD_ASSETS.json) and [guide](docs/STANDARD_RIGS_FAST_MODE.md).
+
+The original Studio standard-skeleton adapter, appearance recipes, anatomical action transfer, Fast Mode and tests are GPL-3.0-only additions. GLTFLoader and SkeletonUtils are imported from the pinned MIT-licensed `three` npm package, not copied from ActionForge. No proprietary ActionForge code, CGstuff prop pack, paid kit, private captured skating, private film, personal character or production log is included. Optional Quaternius bases/hair originals are not bundled; the new editor uses the bundled ActionForge mannequin and original procedural styling.

@@ -101,7 +101,7 @@ const fs = require("node:fs"),
   ])
     assert.ok(pkg.assets["music/" + name].startsWith("data:audio/"));
   assert.equal(
-    Object.keys(pkg.assets).length,
+    Object.keys(pkg.assets).filter(k => k.startsWith("music/")).length,
     4,
     "Only authorized music embedded",
   );
@@ -110,7 +110,9 @@ const fs = require("node:fs"),
   );
   S.validate(tutorial.project);
   assert.equal(tutorial.project.scenes.length, 2);
-  assert.equal(Object.keys(tutorial.assets).length, 4);
+  assert.equal(Object.keys(tutorial.assets).filter(k => k.startsWith("music/")).length, 4);
+  assert.deepEqual(Object.keys(pkg.assets).filter(k => k.startsWith("standard/")).sort(), Object.keys(require("./standard-assets.json")).sort());
+  assert.equal(Object.keys(pkg.assets).length, 9, "Only four authorized songs and five CC0 GLBs embedded");
   vm.runInContext(
     fs.readFileSync(path.join(__dirname, "print.js"), "utf8"),
     ctx,
