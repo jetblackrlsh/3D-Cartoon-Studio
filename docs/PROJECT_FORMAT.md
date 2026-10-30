@@ -16,7 +16,7 @@ A portable package has `project` and `assets` properties. `Starter.jetcartoon.js
 - Browser SFX: `assets["sfx/" + scene.id]` contains a pre-mixed scene-length audio track.
 - Headless procedural SFX: `scene.sfx` is an array of `{kind, at}` where `at` is normalized scene time. Kinds include `impact`, `laser`, `rewind`, `alarm`, `block`.
 
-The build embeds the four original emotion tracks and generates Demo.jetcartoon.json. Use that generated package for headless movies with music; Starter.jetcartoon.json is the small source blueprint without embedded binary media. Set music to an empty string for silence. Narration must be generated or imported separately.
+The build embeds the ten original emotion tracks and generates Demo.jetcartoon.json. Use that generated package for headless movies with music; Starter.jetcartoon.json is the small source blueprint without embedded binary media. Set music to an empty string for silence. Narration must be generated or imported separately.
 
 ## Story adaptation workflow
 

@@ -98,11 +98,12 @@ const fs = require("node:fs"),
     "Suspense",
     "Determination",
     "Playfulness",
+    "Anger", "Fear", "Nostalgia", "Excitement", "Sorrow", "Joy",
   ])
     assert.ok(pkg.assets["music/" + name].startsWith("data:audio/"));
   assert.equal(
     Object.keys(pkg.assets).filter(k => k.startsWith("music/")).length,
-    4,
+    10,
     "Only authorized music embedded",
   );
   const tutorial = JSON.parse(
@@ -110,9 +111,9 @@ const fs = require("node:fs"),
   );
   S.validate(tutorial.project);
   assert.equal(tutorial.project.scenes.length, 2);
-  assert.equal(Object.keys(tutorial.assets).filter(k => k.startsWith("music/")).length, 4);
+  assert.equal(Object.keys(tutorial.assets).filter(k => k.startsWith("music/")).length, 10);
   assert.deepEqual(Object.keys(pkg.assets).filter(k => k.startsWith("standard/")).sort(), Object.keys(require("./standard-assets.json")).sort());
-  assert.equal(Object.keys(pkg.assets).length, 9, "Only four authorized songs and five CC0 GLBs embedded");
+  assert.equal(Object.keys(pkg.assets).length, 15, "Only ten authorized songs and five CC0 GLBs embedded");
   vm.runInContext(
     fs.readFileSync(path.join(__dirname, "print.js"), "utf8"),
     ctx,
@@ -128,7 +129,7 @@ const fs = require("node:fs"),
     JSON.stringify({
       genericCharacterEnvironmentRenders: count,
       controlsPresent: true,
-      musicTracks: 4,
+      musicTracks: 10,
       unknownRigRejected: true,
       tutorialAndStillOptions: true,
     }),

@@ -7,7 +7,7 @@ npm ci
 npm test
 ```
 
-Tests build the app, render real frames through native Canvas, and generate demo artifacts. They do not require FFmpeg or a GUI browser.
+Tests build the app, render real frames through native Canvas, and generate demo artifacts. The film-alignment regression requires FFmpeg and ffprobe on PATH; no GUI browser or Kokoro model is required.
 
 ## What the suite checks
 
@@ -17,7 +17,7 @@ Tests build the app, render real frames through native Canvas, and generate demo
 - All eight comic layouts, overflow rejection, and a parsed four-page PDF.
 - All six speech presets generate nonempty WAV data in jsdom.
 - All 80 combinations of ten generic character rigs and eight environments render.
-- UI-referenced element IDs exist, unsupported character kinds fail, and all four authorized music tracks are embedded.
+- UI-referenced element IDs exist, unsupported character kinds fail, and all ten authorized music tracks are embedded.
 - The documented first-cartoon project and still options produce a nonempty PNG.
 
 ## What the suite does not establish
@@ -60,3 +60,13 @@ node Source/render-film.cjs Standard-Rigs-Demo.jetcartoon.json output/native-fas
 ```
 
 For the public integration, that command rendered twelve 640×360 frames at 6 fps, assembled a decodable normal-speed master with audio, then derived a decodable 12 fps 2× version. The measured durations were 2.023 and 1.016 seconds (codec padding included). A representative actual frame was visually inspected; this is not an exhaustive choreography or listening review. No private production movie, project, capture, log or fixture is part of the source release.
+
+## Kokoro and film alignment regression (1.7.0)
+
+`npm test` includes request/clip validation, SHA-256 checks, measured WAV duration, distinct stable cast assignments, legacy preservation, actual DOM export/import and interrupted-import tests. These use generic synthetic fixtures; Python/models are not required for the default test suite. FFmpeg and ffprobe must be installed and on PATH for the film test: it checks twelve alternating 48 kHz stereo, 44.1 kHz mono and silent scene boundaries, preserved audio marker timing and a single continuous AAC encode. The concat contract also rejects incompatible unnormalized stream metadata.
+
+Actual local Kokoro synthesis and two-voice normal/2x headless export were additionally exercised on Linux CPU. This does not certify perceptual listening or real-browser UI rendering; Chromium execution in the cloud sandbox was blocked by its socket policy. Optional setup and platform limits: [tools/KOKORO.md](../tools/KOKORO.md).
+
+### Complete ten-track music library
+
+`Source/test-music.cjs` verifies all ten manifest hashes against both source files and embedded project audio, probes MP3/48 kHz stereo, fully decodes every recording and exercises every selectable track plus Silence. A four-track legacy project retains its original selection/bytes; deliberately selecting one of the six additional bundled songs embeds only that chosen recording. No private storage identifiers or production projects are used.

@@ -67,6 +67,11 @@
     $("environmentSet").innerHTML = S.environmentCatalog.map((e) => `<option value="${esc(e.id)}">${esc(e.label || e.id)}</option>`).join("");
     $("environmentSet").value = s.set || S.environmentCatalog[0].id;
     $("voicePreset").value = s.voice || "narrator";
+    $("voiceProvider").value = s.voiceProvider || "mespeak";
+    $("kokoroSpeaker").value = s.speakerId || s.speaker || "narrator";
+    const castVoice = project.voiceCast?.[$("kokoroSpeaker").value];
+    $("kokoroVoice").value = s.kokoroVoice || castVoice?.voice || "af_heart";
+    $("kokoroSpeed").value = s.kokoroSpeed ?? castVoice?.speed ?? 1;
     $("musicTrack").value = s.music || "";
     $("camera").value = JSON.stringify(s.camera || [5, 3.7, 9]);
     $("actors").value = JSON.stringify(s.actors, null, 2);
@@ -173,7 +178,7 @@
     editor();
   };
   $("sceneList").onchange = () => select(+$("sceneList").value);
-  $("apply").onclick = () => {
+  function applyScene() {
     try {
       let candidate = clone(project), s = candidate.scenes[index], old = s.caption;
       s.title = $("title").value;
@@ -181,6 +186,14 @@
       s.duration = +$("duration").value;
       s.environment = $("environment").value;
       s.voice = $("voicePreset").value;
+      // An unchanged legacy scene stays legacy; never silently migrate loaded projects.
+      if (s.voiceProvider || $("voiceProvider").value !== "mespeak") s.voiceProvider = $("voiceProvider").value;
+      if (s.voiceProvider === "kokoro") {
+        s.kokoroVoice = $("kokoroVoice").value;
+        s.kokoroSpeed = +$("kokoroSpeed").value;
+        s.speakerId = $("kokoroSpeaker").value.trim() || "narrator";
+        StudioVoice.kokoro.request(s, candidate);
+      }
       s.music = $("musicTrack").value;
       s.camera = JSON.parse($("camera").value);
       s.actors = JSON.parse($("actors").value);
@@ -193,18 +206,28 @@
         delete s.audio;
       }
       S.validate(candidate);
+      // A legacy project may embed only the original four songs. Selecting an
+      // additional bundled song explicitly brings its exact bytes into this project.
+      const musicAsset = "music/" + s.music;
+      if (s.music && !pkg.assets[musicAsset] && BUNDLED.assets[musicAsset]) pkg.assets[musicAsset] = BUNDLED.assets[musicAsset];
       project = candidate;
       pkg.project = project;
       let i = index;
       select(i);
       status("Scene updated. Regenerate speech if you changed its text.");
+      return true;
     } catch (e) {
       status(e.message);
     }
   };
+  $("apply").onclick = applyScene;
   $("generateVoice").onclick = async () => {
     try {
-      $("apply").click();
+      if (!applyScene()) return;
+      if (project.scenes[index].voiceProvider === "kokoro") {
+        exportKokoroRequest();
+        return;
+      }
       status("Synthesizing bundled offline voice\u2026");
       await new Promise((r) => setTimeout(r, 30));
       let s = project.scenes[index], bytes = StudioVoice.generate(s.caption, s.voice);
@@ -227,7 +250,51 @@
       status(e.message);
     }
   };
+  function exportKokoroRequest() {
+    const scene = {...project.scenes[index],caption:$("caption").value,kokoroVoice:$("kokoroVoice").value,kokoroSpeed:+$("kokoroSpeed").value,speakerId:$("kokoroSpeaker").value.trim() || "narrator"};
+    const request = StudioVoice.kokoro.request(scene,project);
+    download("scene-" + index + ".kokoro-request.json", JSON.stringify(request,null,2));
+    status("Kokoro request exported. Run the local Python command below, then import clip.wav.json. No model download runs in this browser.");
+  }
+  $("kokoroRequest").onclick = () => { try { exportKokoroRequest(); } catch(e) { status(e.message); } };
+  $("kokoroSpeaker").onchange = () => {
+    const id=$("kokoroSpeaker").value.trim(), cast=project.voiceCast;
+    const choice=cast && Object.hasOwn(cast,id) ? cast[id] : null;
+    if(choice) { $("kokoroVoice").value=choice.voice;$("kokoroSpeed").value=choice.speed; }
+  };
+  $("kokoroCast").onclick = () => {
+    try {
+      const ids = [...new Set(["narrator",...project.scenes.flatMap(s=>s.actors.map(a=>a.id))])];
+      project.voiceCast = StudioVoice.kokoro.assignCast(ids, project.voiceCast || {});
+      const choice = project.voiceCast[$("kokoroSpeaker").value];
+      if(choice) {$("kokoroVoice").value=choice.voice;$("kokoroSpeed").value=choice.speed;}
+      status("Distinct Kokoro cast assigned (10 voices, then cycle). Existing assignments kept. Set each scene's speaker ID; apply to save its voice.");
+    } catch(e) { status(e.message); }
+  };
+  $("kokoroClip").onchange = async () => {
+    try {
+      if(exporting)throw Error("Finish the current recording before importing speech.");
+      const f=$("kokoroClip").files[0]; if(!f)return;
+      if(f.size>42000000)throw Error("Use clips under 30 MB.");
+      const target=index, original=JSON.stringify(project), candidate=clone({...pkg,project});
+      // Imports use applied scene settings, not half-edited form controls.
+      const clip = JSON.parse(await f.text());
+      StudioVoice.kokoro.wavDuration(clip.data);
+      await StudioVoice.kokoro.verifyHash(clip);
+      StudioVoice.kokoro.embed(candidate,target,clip);
+      if(index!==target || JSON.stringify(project)!==original)throw Error("Scene changed during import; try again.");
+      pkg=candidate;project=pkg.project;select(target);
+      status("Kokoro narration embedded. Playback and movie export are now fully offline.");
+    } catch(e) { status("Kokoro import rejected: "+e.message); }
+    finally { $("kokoroClip").value=""; }
+  };
   $("voiceSample").onclick = () => {
+    if ($("voiceProvider").value === "kokoro") {
+      const s=project.scenes[index];
+      if(s.audio && s.voiceProvenance?.provider === "kokoro") new Audio(url(s.audio)).play().catch(e=>status(e.message));
+      else status("Import a generated Kokoro clip to hear it, or select Bundled synthetic for an immediate offline sample.");
+      return;
+    }
     let b = StudioVoice.generate("Welcome to the cartoon studio. Every world begins with an idea.", $("voicePreset").value);
     new Audio(URL.createObjectURL(new Blob([b], { type: "audio/wav" }))).play().catch((e) => status(e.message));
   };
@@ -303,7 +370,7 @@
     const settings = { mode: preferredNewMode };
     if (!confirm("Start a new project? Export this one first to keep edits.")) return;
     stopAudio();
-    project = { schema: "JetCartoonProject", version: 1, createdWith: "1.3.1", title: "New cartoon", renderSettings: { mode: settings.mode }, scenes: [{ id: "scene-1", title: "Opening", label: "Opening", caption: "A new story begins.", duration: 6, environment: "gym", page: 0, actors: settings.mode === "fast" ? S.diverseCast(2, { genre: $("castGenre").value || "everyday", seed: 0 }) : [{ id: "actor-1", ...S.createStandardCastActor("standard-everyday-neighbor-m"), id: "actor-1" }], props: [], camera: [3, 2.3, 5], target: [0, 1, 0], music: "Tranquility", voice: "narrator" }] };
+    project = { schema: "JetCartoonProject", version: 1, createdWith: "1.7.0", title: "New cartoon", voiceCast: {narrator:{voice:"af_heart",speed:1}}, renderSettings: { mode: settings.mode }, scenes: [{ id: "scene-1", title: "Opening", label: "Opening", caption: "A new story begins.", duration: 6, environment: "gym", page: 0, actors: settings.mode === "fast" ? S.diverseCast(2, { genre: $("castGenre").value || "everyday", seed: 0 }) : [{ id: "actor-1", ...S.createStandardCastActor("standard-everyday-neighbor-m"), id: "actor-1" }], props: [], camera: [3, 2.3, 5], target: [0, 1, 0], music: "Tranquility", voice: "narrator", voiceProvider: "kokoro", kokoroVoice:"af_heart", kokoroSpeed:1, speakerId:"narrator" }] };
     pkg.project = project;
     select(0);
   };
@@ -1047,5 +1114,5 @@
     draw();
     editor();
   } };
-  status("Ready. " + renderer.mode + " preview; all assets and voices are bundled. Export a project to save edits.");
+  status("Ready. " + renderer.mode + " preview; embedded audio plays offline; Kokoro generation needs explicit local setup. Export a project to save edits.");
 })();

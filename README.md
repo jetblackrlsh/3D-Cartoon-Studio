@@ -2,7 +2,7 @@
 
 Offline, editable 3D cartoons, fresh stills, and comics from the same scene data.
 
-This is the **1.6.0 public source edition**, derived from the 1.4 Stills & Comics edition. It uses lightweight procedural low-poly rigs and a deterministic software renderer, not a text-to-video AI service. No account or API key is needed to use the built application.
+This is the **1.7.0 public source edition**, derived from the 1.4 Stills & Comics edition. It uses lightweight procedural low-poly rigs and a deterministic software renderer, not a text-to-video AI service. No account or API key is needed to use the built application.
 
 ## New here? Start here
 
@@ -31,7 +31,7 @@ The repository intentionally publishes source rather than prebuilt third-party v
 
 - Scene-based 3D animation, procedural characters, props, environments, camera shots and timed action tracks.
 - Native WebGL preview where available, with a Canvas software-rendering fallback.
-- Six offline synthetic voice presets, imported dialogue, embedded music and sound-effect tracks.
+- Preferred optional local Kokoro narration with stable character voices; six immediate offline synthetic presets, imported dialogue, embedded music and sound-effect tracks.
 - Portable `.jetcartoon.json` projects with embedded assets.
 - Browser movie recording where supported; headless MP4 scene rendering through Node and FFmpeg.
 - Fresh PNG stills with independent scene, camera, lighting, time and resolution controls.
@@ -76,7 +76,7 @@ For precise still settings, pass a JSON options file as the fourth argument:
 
 ## Audio and media
 
-The public starter uses generic procedural characters and scenery, with no personal characters, private worlds, story text or production artwork. Four original emotion-based songs by Nicholas Alexander Benson (Jet Black) are included with his authorization: Tranquility, Suspense, Determination and Playfulness. The build embeds these in START.html and generates Demo.jetcartoon.json for headless use. You can supply media you have permission to use in your own project. See [docs/PROJECT_FORMAT.md](docs/PROJECT_FORMAT.md).
+The public starter uses generic procedural characters and scenery, with no personal characters, private worlds, story text or production artwork. Ten original emotion-based songs by Nicholas Alexander Benson (Jet Black) are included with his authorization: Tranquility, Suspense, Determination, Playfulness, Anger, Fear, Nostalgia, Excitement, Sorrow and Joy. The build embeds these in START.html and generates Demo.jetcartoon.json for headless use. You can supply media you have permission to use in your own project. See [docs/PROJECT_FORMAT.md](docs/PROJECT_FORMAT.md).
 
 Local synthetic speech is included at build time through meSpeak. It is traditional text-to-speech, not voice cloning. Generated speech can sound robotic. For higher-quality voices, import a recording you are authorized to use.
 
@@ -100,3 +100,7 @@ The original studio code, generic procedural demo and included original music ar
 ## Comic source modes (1.6.1)
 
 Comic pages now support newly rendered scene stills, extracted frames from an existing animation, or a per-panel mix. Local video picker, reusable embedded stills, provenance, PNG/PDF and portable headless output: [guide](docs/COMIC_SOURCE_MODES.md). Older scene comics still load.
+
+## Preferred Kokoro narration (1.7.0)
+
+New projects prefer local Kokoro voices; legacy synthetic speech remains an immediate offline choice. Browser authoring exports a synthesis request and imports the generated WAV/clip JSON; saved projects embed their audio for fully offline playback and export. No startup model downloads or API keys. See [studio controls, distinct cast and headless workflow](docs/KOKORO.md) and [optional Python setup, cached model paths and dependency licenses](tools/KOKORO.md). Film assembly resamples each scene to continuous 48 kHz stereo PCM and encodes AAC once so per-clip encoder padding cannot accumulate across the timeline.

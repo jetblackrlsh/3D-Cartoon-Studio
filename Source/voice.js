@@ -13,6 +13,8 @@ const presets = {
 };
 window.StudioVoice = {
   presets,
+  kokoro: require("./kokoro.cjs"),
+  providers: {kokoro: "Kokoro (preferred · local Python setup)", mespeak: "Bundled synthetic (meSpeak · immediate offline)"},
   generate(text, name = "narrator") {
     if (typeof text !== "string" || text.length > 8000)
       throw Error("Voice text must be at most 8000 characters.");
