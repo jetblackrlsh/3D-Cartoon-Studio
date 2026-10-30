@@ -64,10 +64,10 @@ For each scene:
 2. Click **Hear voice sample** to hear the preset.
 3. Click **Generate scene speech** and wait for the generated-and-stored message.
 4. The scene duration may increase to fit the speech. Preview the whole scene after generation.
-5. Choose **Music**: `Tranquility`, `Suspense`, `Determination`, `Playfulness`, or `Silence`. Click **Apply scene changes** after changing it.
+5. Choose **Music**: `Tranquility`, `Suspense`, `Determination`, `Playfulness`, `Anger`, `Fear`, `Nostalgia`, `Excitement`, `Sorrow`, `Joy`, or `Silence`. Click **Apply scene changes** after changing it.
 6. Press **Play**, then adjust the voice/music sliders so the words remain clear.
 
-The tutorial already embeds all four tracks. They are original emotion-based music by Nicholas Alexander Benson (Jet Black). The voices are traditional local synthetic speech, not cloned or cloud-generated voices.
+The tutorial already embeds all ten tracks. They are original emotion-based music by Nicholas Alexander Benson (Jet Black). The voices are traditional local synthetic speech, not cloned or cloud-generated voices.
 
 Changing narration text invalidates its old generated speech. Generate it again after changing the caption. Imported dialogue is also supported with **Use an existing dialogue recording**; set scene duration to fit the imported audio yourself.
 

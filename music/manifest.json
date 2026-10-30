@@ -26,6 +26,44 @@
       "file": "Playfulness.mp3",
       "mime": "audio/mpeg",
       "sha256": "bbe50be8f3cf189ce8a013d5f96230a02ffa583df20d6634c50dc0f2d91b011e"
+    },
+    {
+      "name": "Anger",
+      "file": "Anger.mp3",
+      "mime": "audio/mpeg",
+      "sha256": "0e2c817dc40ef399b7b2e54a178f59ae3019e6cb9e6647ada2b31809af988180"
+    },
+    {
+      "name": "Fear",
+      "file": "Fear.mp3",
+      "mime": "audio/mpeg",
+      "sha256": "c3b5d2d5cf4dd8827afa56d4f59711d6970bf77e42ddf2a2dbc2ccbb99bf75c0"
+    },
+    {
+      "name": "Nostalgia",
+      "file": "Nostalgia.mp3",
+      "mime": "audio/mpeg",
+      "sha256": "f9001100cf176629c6d11ea3110064dbfb3fd0f7a0db0373568649c00b7937d5"
+    },
+    {
+      "name": "Excitement",
+      "file": "Excitement.mp3",
+      "mime": "audio/mpeg",
+      "sha256": "e02235ea683306d5d8c53a8079989f53a815f86798f81f0086736703eaa71728"
+    },
+    {
+      "name": "Sorrow",
+      "file": "Sorrow.mp3",
+      "mime": "audio/mpeg",
+      "sha256": "7b7468bff713d63af002c2041e8a88543652166e46bd3cffda54ccdff2b9901d"
+    },
+    {
+      "name": "Joy",
+      "file": "Joy.mp3",
+      "mime": "audio/mpeg",
+      "sha256": "70a7331cf3df6300acf95af3cd5342b8667a3c751ce2576f251543fadf12e07a"
     }
-  ]
+  ],
+  "authorization": "Creator explicitly authorized all ten original emotion/thematic compositions for the public studio source release.",
+  "bytePolicy": "Exact approved supplied MP3 bytes; no additional transcoding. Original four track IDs and bytes preserved."
 }

@@ -21,3 +21,7 @@ Cast-Previews/
 
 /node_modules
 Standard-Rigs-Demo.jetcartoon.json
+
+# Optional local Kokoro Python environment (never part of public source)
+/.venv/
+**/__pycache__/
