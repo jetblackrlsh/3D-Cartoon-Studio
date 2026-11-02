@@ -1,3 +1,4 @@
+import {applyMinifigurePreset} from './minifigure-rig.js';
 import {proportionDimensions} from './cast-library.js';
 import {dressCast} from './cast-wardrobe.js';
 import * as THREE from 'three';
@@ -39,6 +40,7 @@ export function samplePreset(name,q,options={}){
 export function applyPreset(r,name,t,q,options={}){
  if(!curves[name]||!r.arms||r.arms.length!==2||!r.shins||r.quad)return false;
  const phase=['idle','breathe','walk','run'].includes(name)?(((t%3)+3)%3)/3:q;const c=samplePreset(name,phase,options),angle=k=>(c[k]?.rotation||0)*RAD,unit=(r.height||2.62)/260;
+ if(r.minifigure)return applyMinifigurePreset(r,name,t,q,c,options);
  r.body.position.set((c.root?.x||0)*unit,-(c.root?.y||0)*unit,0);r.body.rotation.set(0,0,0);r.body.scale.y=c.torso?.scaleY??1;r.head.rotation.set(0,0,0);r.arms.forEach(x=>x.rotation.set(0,0,0));r.forearms.forEach(x=>x.rotation.set(0,0,0));r.legs.forEach(x=>x.rotation.set(0,0,0));r.shins.forEach(x=>x.rotation.set(0,0,0));r.hands.forEach(x=>x.rotation.set(0,0,0));
  const locomotion=['walk','run'].includes(name),fold=['sit','stand-up','crouch','kneel'].includes(name),forward=['punch-jab','punch-cross','punch-uppercut','kick-front','shoot-pistol','shoot-rifle','carry','push','reach','point','cast-projectile','heal'].includes(name);
  r.body.position.y-=(c.pelvis?.y||0)*unit;r.body.rotation.x=angle('torso')+angle('pelvis');r.head.rotation.x=['nod','bow','sad','crying','tired','embarrassed'].includes(name)?angle('neck'):0;r.head.rotation.z=['nod','bow','sad','crying','tired','embarrassed'].includes(name)?0:-angle('neck');
@@ -109,7 +111,7 @@ else if(kind==='energy-orb'){orb(g,.16,m,0,0,.12);}
 else if(kind==='barrier'){mesh(g,new THREE.TorusGeometry(.42,.035,6,24),m,0,.15,.2);}
 else if(kind==='aura'){mesh(g,new THREE.TorusGeometry(.8,.025,6,24),m,0,1.2,0);}
 }}
-export function updateActionProps(r,name,q,options={}){if(!r.actionProps)return;for(const g of Object.values(r.actionProps))g.visible=false;const info=curves[name]?.info;if(!options.accessory||!info?.prop||!r.actionProps[info.prop])return;const g=r.actionProps[info.prop];const parent=info.prop==='aura'?r.body:r.hands[options.mirror?0:1];if(g.parent!==parent)parent.add(g);g.visible=(r.standard&&['weapon-slash','weapon-overhead'].includes(name))||q>.02&&q<.98;if(g.userData.flash)g.userData.flash.visible=Math.abs(q-(info.peak||.4))<.045;if(['aura','barrier','energy-orb'].includes(info.prop)){const u=(r.height||2.62)/2.62;g.scale.setScalar(u*(.8+Math.sin(Math.PI*q)*.2));}}
+export function updateActionProps(r,name,q,options={}){if(r.minifigure&&r.accessory)r.accessory.visible=true;if(!r.actionProps)return;for(const g of Object.values(r.actionProps))g.visible=false;const info=curves[name]?.info;if(!options.accessory||!info?.prop||!r.actionProps[info.prop])return;const g=r.actionProps[info.prop];const parent=info.prop==='aura'?r.body:r.hands[options.mirror?0:1];if(g.parent!==parent)parent.add(g);g.visible=(r.standard&&['weapon-slash','weapon-overhead'].includes(name))||q>.02&&q<.98;if(r.minifigure&&r.accessory&&g.visible&&info.prop!=='aura')r.accessory.visible=false;if(g.userData.flash)g.userData.flash.visible=Math.abs(q-(info.peak||.4))<.045;if(['aura','barrier','energy-orb'].includes(info.prop)){const u=(r.height||2.62)/2.62;g.scale.setScalar(u*(.8+Math.sin(Math.PI*q)*.2));}}
 
 function solveHand(r,i,target,pole){const a=r.arms[i],b=r.forearms[i],hand=r.hands[i],start=a.position.clone(),la=-b.position.y,lb=-hand.position.y;const dir=target.clone().sub(start),length=clamp(dir.length(),Math.abs(la-lb)+.00001,la+lb-.00001);dir.normalize();const along=(la*la+length*length-lb*lb)/(2*length),height=Math.sqrt(Math.max(0,la*la-along*along));let bend=pole.clone().sub(start);bend.addScaledVector(dir,-bend.dot(dir));if(bend.lengthSq()<1e-8)bend.set(i===0?-1:1,0,0);bend.normalize();const elbow=start.clone().addScaledVector(dir,along).addScaledVector(bend,height),end=start.clone().addScaledVector(dir,length),down=new THREE.Vector3(0,-1,0);a.quaternion.setFromUnitVectors(down,elbow.clone().sub(start).normalize());b.quaternion.setFromUnitVectors(down,end.clone().sub(elbow).normalize().applyQuaternion(a.quaternion.clone().invert()));hand.quaternion.copy(a.quaternion).multiply(b.quaternion).invert();}
 

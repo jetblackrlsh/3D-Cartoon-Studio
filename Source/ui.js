@@ -3,7 +3,7 @@
 (async function() {
   "use strict";
   const $ = (id) => document.getElementById(id), S = CartoonStudio, clone = (x) => JSON.parse(JSON.stringify(x));
-  let pkg = clone(BUNDLED), project = pkg.project, renderer, st, index = -1, time = 0, playing = false, last = 0, voice = null, effect = null, music = null, musicKey = "", voiceIndex = -1, audioURLs = /* @__PURE__ */ new Map(), exporting = false, preferredNewMode = "fast";
+  let pkg = clone(BUNDLED), project = pkg.project, renderer, st, index = -1, time = 0, playing = false, last = 0, voice = null, effect = null, music = null, musicKey = "", musicSceneIndex = -1, voiceIndex = -1, audioURLs = /* @__PURE__ */ new Map(), exporting = false, preferredNewMode = "fast";
   const esc = (t) => String(t).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
   function url(key) {
     return pkg.assets[key] || key;
@@ -47,6 +47,7 @@
     voice = null;
     music = null;
     musicKey = "";
+    musicSceneIndex = -1;
     voiceIndex = -1;
   }
   function select(i) {
@@ -72,6 +73,14 @@
     const castVoice = project.voiceCast?.[$("kokoroSpeaker").value];
     $("kokoroVoice").value = s.kokoroVoice || castVoice?.voice || "af_heart";
     $("kokoroSpeed").value = s.kokoroSpeed ?? castVoice?.speed ?? 1;
+    // Preserve generated/imported score IDs while editing, including old portable projects.
+    for (const key of Object.keys(pkg.assets).filter(k => k.startsWith("music/"))) {
+      const id = key.slice(6);
+      if (!Array.from($("musicTrack").options).some(o => o.value === id)) {
+        const option = document.createElement("option"); option.value = id; option.textContent = id;
+        $("musicTrack").appendChild(option);
+      }
+    }
     $("musicTrack").value = s.music || "";
     $("camera").value = JSON.stringify(s.camera || [5, 3.7, 9]);
     $("actors").value = JSON.stringify(s.actors, null, 2);
@@ -111,7 +120,7 @@
       if (effect) effect.pause();
       if (pkg.assets["sfx/" + s.id]) {
         effect = new Audio(url("sfx/" + s.id));
-        effect.volume = 0.24;
+        effect.volume = project.audioProduction?.profile === "local-generative-v1" ? (s.audioMix?.effects ?? .65) : .24;
         effect.currentTime = local;
         effect.play().catch(() => {
         });
@@ -123,19 +132,21 @@
         voice.play().catch((e) => status("Press Play to allow sound: " + e.message));
       } else voice = null;
     }
-    if (s.music !== musicKey) {
+    if (s.music !== musicKey || (project.audioProduction?.profile === "local-generative-v1" && musicSceneIndex !== row.index)) {
       if (music) music.pause();
       musicKey = s.music;
+      musicSceneIndex = row.index;
       if (pkg.assets["music/" + s.music]) {
         music = new Audio(url("music/" + s.music));
         music.loop = true;
+        if (project.audioProduction?.profile === "local-generative-v1") music.currentTime = Math.max(0, s.musicOffsetSeconds || 0) + local;
         music.volume = +$("musicVolume").value;
         music.play().catch(() => {
         });
       } else music = null;
     }
-    if (voice) voice.volume = +$("voiceVolume").value;
-    if (music) music.volume = +$("musicVolume").value * (voice && !voice.paused ? 0.55 : 1);
+    if (voice) voice.volume = project.audioProduction?.profile === "local-generative-v1" ? (s.audioMix?.speech ?? .95) : +$("voiceVolume").value;
+    if (music) music.volume = project.audioProduction?.profile === "local-generative-v1" ? (s.audioMix?.music ?? .30) * (voice && !voice.paused ? (s.audioMix?.musicDuringSpeech ?? .65) : 1) : +$("musicVolume").value * (voice && !voice.paused ? .55 : 1);
   }
   let lastPreviewFrame = -Infinity;
   function tick(t) {
@@ -155,6 +166,52 @@
     last = t;
     requestAnimationFrame(tick);
   }
+  const miniEnumFields = [["miniHeadwear", "headwear"], ["miniFace", "face"], ["miniTorsoPrint", "torsoPrint"], ["miniHandAccessory", "handAccessory"]];
+  const miniColorFields = [["miniSkin", "skin"], ["miniTop", "top"], ["miniLegs", "legs"], ["miniShoes", "shoes"], ["miniHair", "hair"], ["miniHelmet", "helmet"]];
+  for (const [id, key] of miniEnumFields) $(id).innerHTML = S.minifigureOptions[key].map(value => `<option value="${esc(value)}">${esc(value.replace(/-/g, " "))}</option>`).join("");
+  function minifigureEditor(actor) {
+    const isMini = actor?.kind === "minifigure", d = S.normalizeMinifigureDesign(isMini ? actor.design || {} : {});
+    for (const [id, key] of [...miniEnumFields, ...miniColorFields]) $(id).value = d[key];
+    $("miniHeight").value = d.height;
+    $("miniSelectionState").textContent = isMini ? `Editing ${actor.id || "minifigure"}. Identity, placement and animation are retained.` : "Select a minifigure to edit, or configure a new one and choose Add minifigure.";
+  }
+  function chosenMinifigureDesign() {
+    const d = {};
+    for (const [id, key] of [...miniEnumFields, ...miniColorFields]) d[key] = $(id).value;
+    d.height = +$("miniHeight").value;
+    if (!Number.isFinite(d.height) || d.height < .8 || d.height > 3.5) throw Error("Minifigure height must be between 0.8 and 3.5 metres");
+    return S.normalizeMinifigureDesign(d);
+  }
+  $("addMinifigure").onclick = () => {
+    try {
+      const design = chosenMinifigureDesign(), copy = clone(project), row = S.locate(copy, time), scene = copy.scenes[row.index];
+      if (scene.actors.length >= 16) throw Error("Actor limit reached");
+      const actor = S.createMinifigureActor(design);
+      let suffix = 1;
+      while (scene.actors.some(a => a.id === `minifigure-${suffix}`)) suffix++;
+      actor.id = `minifigure-${suffix}`;
+      actor.from = [0, 0, 0];
+      scene.actors.push(actor);
+      S.validate(copy);
+      project = copy; pkg.project = project;
+      $("presetActor").value = String(scene.actors.length - 1);
+      // Rebuild options before selecting the newly appended actor.
+      select(row.index);
+      $("presetActor").value = String(scene.actors.length - 1);
+      presetEditor();
+      status("Minifigure added. Existing cast, sets and animation remain unchanged; use the preset controls to animate it.");
+    } catch (e) { status(e.message); }
+  };
+  $("applyMinifigure").onclick = () => {
+    try {
+      const design = chosenMinifigureDesign();
+      changeActor(a => {
+        if (a.kind !== "minifigure") throw Error("Select a minifigure first; existing cast is not automatically converted.");
+        a.design = design;
+      });
+      status("Minifigure appearance updated; identity, placement and animation retained.");
+    } catch (e) { status(e.message); }
+  };
   await S.init(pkg.assets);
   renderer = new S.PreviewRenderer($("preview"));
   draw();
@@ -370,7 +427,7 @@
     const settings = { mode: preferredNewMode };
     if (!confirm("Start a new project? Export this one first to keep edits.")) return;
     stopAudio();
-    project = { schema: "JetCartoonProject", version: 1, createdWith: "1.7.0", title: "New cartoon", voiceCast: {narrator:{voice:"af_heart",speed:1}}, renderSettings: { mode: settings.mode }, scenes: [{ id: "scene-1", title: "Opening", label: "Opening", caption: "A new story begins.", duration: 6, environment: "gym", page: 0, actors: settings.mode === "fast" ? S.diverseCast(2, { genre: $("castGenre").value || "everyday", seed: 0 }) : [{ id: "actor-1", ...S.createStandardCastActor("standard-everyday-neighbor-m"), id: "actor-1" }], props: [], camera: [3, 2.3, 5], target: [0, 1, 0], music: "Tranquility", voice: "narrator", voiceProvider: "kokoro", kokoroVoice:"af_heart", kokoroSpeed:1, speakerId:"narrator" }] };
+    project = { schema: "JetCartoonProject", version: 1, createdWith: "1.8.0", title: "New cartoon", audioProduction: {profile:"local-generative-v1",speechProvider:"kokoro",musicProvider:"stable-audio",effectsProvider:"stable-audio",libraryRole:"secondary",listeningVerified:false}, voiceCast: {narrator:{voice:"af_heart",speed:1}}, renderSettings: { mode: settings.mode }, scenes: [{ id: "scene-1", title: "Opening", label: "Opening", caption: "A new story begins.", duration: 6, environment: "gym", page: 0, actors: settings.mode === "fast" ? S.diverseCast(2, { genre: $("castGenre").value || "everyday", seed: 0 }) : [{ id: "actor-1", ...S.createStandardCastActor("standard-everyday-neighbor-m"), id: "actor-1" }], props: [], camera: [3, 2.3, 5], target: [0, 1, 0], music: null, voice: "narrator", voiceProvider: "kokoro", kokoroVoice:"af_heart", kokoroSpeed:1, speakerId:"narrator" }] };
     pkg.project = project;
     select(0);
   };
@@ -490,17 +547,18 @@
     $("presetActor").innerHTML = s.actors.map((a2, i) => `<option value="${i}">${esc(a2.id || a2.kind)}</option>`).join("");
     $("presetActor").value = String(Math.min(+old || 0, s.actors.length - 1));
     const a = s.actors[+$("presetActor").value];
+    minifigureEditor(a);
     if (!a) return;
     $("actorRenderRole").value = a.renderRole === "background-extra" ? "background-extra" : "active";
     $("actorRepresentation").value = a.renderRepresentation === "full" ? "full" : "auto";
     $("actorNonInteracting").checked = a.nonInteracting === true;
     $("actorRoleState").textContent = S.backgroundExtraEligible?.(a, s) ? "Eligible background extra; Fast Mode may render a cutout." : "Full actor retained (active, unmarked, or protected).";
     const d = a.design || {};
-    $("rigKind").value = ["blank-human", "blank-skater", "skater", "standard-humanoid"].includes(a.kind) ? a.kind : "keep";
+    $("rigKind").value = ["blank-human", "blank-skater", "skater", "standard-humanoid", "minifigure"].includes(a.kind) ? a.kind : "keep";
     for (const [id, key, fallback] of [["styleSkin", "skin", "#c6cdd7"], ["styleTop", "top", "#a9b5c5"], ["styleLegs", "legs", "#8391a6"], ["styleShoes", "shoes", "#58657b"], ["styleHair", "hair", "#3d4055"]]) $(id).value = d[key] || fallback;
     $("hairVisible").checked = !!d.hairVisible;
     $("helmetVisible").checked = d.helmetVisible !== false;
-    $("rigHeight").value = d.height || (["blank-human", "standard-humanoid"].includes(a.kind) ? 2.62 : 1.72);
+    $("rigHeight").value = d.height || (a.kind === "minifigure" ? 2.2 : ["blank-human", "standard-humanoid"].includes(a.kind) ? 2.62 : 1.72);
     for (const [id, k] of [["standardBody", "body"], ["standardHair", "hairStyle"], ["standardOutfit", "outfit"], ["standardAccessory", "accessory"]]) if ($(id) && d[k]) $(id).value = d[k];
   }
   function changeActor(fn) {
@@ -559,9 +617,21 @@
   };
   $("restyle").onclick = () => {
     try {
+      let removedNativeClips = false;
       changeActor((a) => {
         if ($("rigKind").value !== "keep") {
           a.kind = $("rigKind").value;
+          if (a.kind === "minifigure") {
+            removedNativeClips = !!a.standardAnimation || (a.beats || []).some(b => b.standardAnimation);
+            delete a.standardAnimation;
+            for (const beat of a.beats || []) {
+              if (beat.standardAnimation) {
+                delete beat.standardAnimation;
+                if (!S.presetCatalog.some(p => p.name === beat.action)) beat.action = "idle";
+              }
+            }
+            if (removedNativeClips && !S.presetCatalog.some(p => p.name === a.action)) a.action = "idle";
+          }
           if (!["blank-human", "standard-humanoid"].includes(a.kind)) {
             delete a.cast;
             for (const k of ["body", "hairStyle", "outfit", "accessory", "species", "variant"]) if (a.design) delete a.design[k];
@@ -577,7 +647,7 @@
           a.design.hairStyle = a.design.hairStyle || "bald";
         }
       });
-      status("Appearance updated; motion retained.");
+      status(removedNativeClips ? "Rig converted to minifigure. Incompatible imported clips were removed; authored actions are retained, with idle where no authored action existed. Review the animation." : "Appearance updated; motion retained.");
     } catch (e) {
       status(e.message);
     }

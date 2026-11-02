@@ -1,3 +1,4 @@
+import {createMinifigureRig,createMinifigureActor,normalizeMinifigureDesign,minifigureOptions} from './minifigure-rig.js';
 // SPDX-License-Identifier: GPL-3.0-only
 // Copyright (C) 2026 jetblackrlsh
 import { defaultRenderMode, createProject, renderSettings, backgroundExtraEligible, createBackgroundCutout, renderBudget } from "./fast-mode.js";
@@ -194,6 +195,7 @@ const TYPES = {
   }
 };
 function rig(kind = "person", design) {
+  if(kind === "minifigure") return createMinifigureRig(design||{}, {mat,mesh,box,cyl,orb});
   if (kind === "standard-humanoid") {
     const r = createStandardRig(design?.standardAsset || "quaternius-ual", design || {}, { mat, mesh, box, cyl, orb });
     if (design?.standardAppearance === true || design?.outfit) {
@@ -607,10 +609,11 @@ function validate(p, {deferStandardAssets=false}={}) {
     if (!Array.isArray(s.actors) || s.actors.length > 16)
       throw Error("Limit 16 actors per scene.");
     for (let a of s.actors) {
-      if (!["standard-humanoid", "blank-human", "blank-skater", "skater", "deer", "rabbit", "badger", "squirrel"].includes(a.kind) && !TYPES[a.kind])
+      if (!["minifigure", "standard-humanoid", "blank-human", "blank-skater", "skater", "deer", "rabbit", "badger", "squirrel"].includes(a.kind) && !TYPES[a.kind])
         throw Error("Unknown character rig.");
 
-      if(a.kind==='standard-humanoid') {
+      if(a.kind==='minifigure') { normalizeMinifigureDesign(a.design||{}); if(a.cast)throw Error('Minifigure uses design rather than cast'); if(a.standardAnimation||(a.beats||[]).some(b=>b.standardAnimation))throw Error('Minifigure uses authored presets, not imported clips'); }
+      else if(a.kind==='standard-humanoid') {
         if(!deferStandardAssets)validateStandardActor(a);
         else if(typeof a.design?.standardAsset!=="string")throw Error("Missing imported skeleton asset identifier");
         for(const beat of a.beats||[]) if(beat.standardAnimation&&!deferStandardAssets) validateStandardActor({...a,standardAnimation:beat.standardAnimation});
@@ -753,6 +756,7 @@ function visibleAt(a, p) {
   return p >= (a.visibleFrom ?? 0) && p < (a.visibleUntil ?? 1.001);
 }
 function directorPose(r, action, t, q) {
+  if(r.minifigure && !presetCatalog.some(p=>p.name===action)) action=({observe:"idle",think:"curious",march:"walk",dance:"celebrate",swing:"wave"})[action]||"idle";
   if (applyPreset(r, action, t, q, r.presetOptions || {})) return;
   if (r.quad) {
     r.legs.forEach(
@@ -1432,6 +1436,7 @@ function poseAPI(r, action, t = 0, q, options = {}) {
 }
 
 window.CartoonStudio = {
+  createMinifigureActor,normalizeMinifigureDesign,minifigureOptions,
   defaultRenderMode,createProject,renderSettings,backgroundExtraEligible,renderBudget,standardCastThumbnails,standardCastCatalog,standardAppearanceOptions,standardCastDesign,createStandardCastActor,selectStandardCast,searchStandardCast,validateStandardAppearance,applyStandardAppearance,serializeStandardCast,parseStandardCast,loadStandardAsset,standardAssetCatalog,createStandardRig:(id,design)=>createStandardRig(id,design,{mat,mesh,box,cyl,orb}),validateStandardActor,syncStandardRig,applyStandardPose,applyStandardAnimation,getStandardSocket,mapStandardBones,standardRigSnapshot,retargetStandardClip,solveStandardGrip,applyStandardLookAt,solveStandardActionGrips,disposeStage,
   castThumbnails,
   castCatalog,
