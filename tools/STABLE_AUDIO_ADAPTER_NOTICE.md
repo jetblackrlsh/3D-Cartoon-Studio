@@ -1,0 +1,3 @@
+# Stable Audio adapter attribution
+
+`stable-audio-generate.py` is adapted from the MIT-licensed Motion Manga / Heroic Motion Comics local audio adapter by Jet Black RLSH and AI collaborators. Its original license is retained in `STABLE_AUDIO_ADAPTER_LICENSE.txt`. Project integration, scene placement and tests were added for 3D Cartoon Studio. This attribution does not license the third-party Stable Audio, T5Gemma, LiteRT runtime or model weights; see `docs/STABLE_AUDIO.md` and upstream terms. No model weights, credentials, private project content or private restoration grants are distributed with this adapter.

@@ -2,7 +2,7 @@
 
 Offline, editable 3D cartoons, fresh stills, and comics from the same scene data.
 
-This is the **1.7.0 public source edition**, derived from the 1.4 Stills & Comics edition. It uses lightweight procedural low-poly rigs and a deterministic software renderer, not a text-to-video AI service. No account or API key is needed to use the built application.
+This is the **1.8.0 public source edition**, derived from the 1.4 Stills & Comics edition. It uses lightweight procedural low-poly rigs and a deterministic software renderer, not a text-to-video AI service. No account or API key is needed to use the built application.
 
 ## New here? Start here
 
@@ -104,3 +104,14 @@ Comic pages now support newly rendered scene stills, extracted frames from an ex
 ## Preferred Kokoro narration (1.7.0)
 
 New projects prefer local Kokoro voices; legacy synthetic speech remains an immediate offline choice. Browser authoring exports a synthesis request and imports the generated WAV/clip JSON; saved projects embed their audio for fully offline playback and export. No startup model downloads or API keys. See [studio controls, distinct cast and headless workflow](docs/KOKORO.md) and [optional Python setup, cached model paths and dependency licenses](tools/KOKORO.md). Film assembly resamples each scene to continuous 48 kHz stereo PCM and encodes AAC once so per-clip encoder padding cannot accumulate across the timeline.
+
+
+## New in 1.8.0: original scores and minifigure actors
+
+Newly authored projects prefer **Kokoro dialogue/narration**, **local Stable Audio instrumental scores**, and **local Stable Audio sound effects**. The ten original music-library tracks and traditional synthetic voices remain available as explicit secondary choices. Existing imported projects and accepted exports are not automatically migrated.
+
+- [Local generated-audio setup and workflow](docs/STABLE_AUDIO.md): explicit local inference, measured WAV import, provenance, and offline project playback. Model weights are separate; the editor never silently downloads them.
+- [Audio mixing and verification](docs/AUDIO_PRODUCTION.md): clear voice and meaningful effects over an audible score, bounded ducking, and truthful listening-review status.
+- [Minifigure configurator](docs/MINIFIGURES.md): original customizable toy actors with rigid-joint adaptations of the existing 58 authored actions. These are not branded LEGO assets or imported human motion capture.
+
+See [CHANGELOG](CHANGELOG.md) for scope and compatibility. Use a fresh output directory after edits, and retain a copy of any accepted project before deliberately adopting new audio defaults.

@@ -25,7 +25,7 @@ The initial public release therefore distributes source only. No compiled voice 
 
 ## Imported media
 
-The tool license does not grant rights to third-party stories, likenesses, fonts, music, recordings, artwork or characters. The four original music recordings in music/ are separately identified and explicitly authorized by their creator for this release. No personal character/world assets are included. Users are responsible for rights to their own imports and publications.
+The tool license does not grant rights to third-party stories, likenesses, fonts, music, recordings, artwork or characters. The ten original music recordings in music/ are separately identified and explicitly authorized by their creator for this release. No personal character/world assets are included. Users are responsible for rights to their own imports and publications.
 
 ## Urban geometry
 Selected vehicle geometry from mrdoob/slop-newyork, commit 12593c9963f141665fe91881b1b4a2290db51d15, copyright 2026 Mr.doob, MIT. See docs/SLOP-NEWYORK-MIT.txt. No geographic dataset or shader runtime is distributed.
@@ -43,3 +43,10 @@ The original Studio standard-skeleton adapter, appearance recipes, anatomical ac
 ## Creator-authorized emotion music
 
 The ten included emotion/thematic recordings (Tranquility, Suspense, Determination, Playfulness, Anger, Fear, Nostalgia, Excitement, Sorrow and Joy) are original music by Nicholas Alexander Benson (Jet Black), explicitly authorized by their creator for this public source release under GPL-3.0-only. They are not imported third-party tracks. `music/manifest.json` records exact included-byte SHA-256 values; existing four track IDs and bytes remain unchanged. See `music/README.md`. No private storage IDs are published.
+
+
+## 1.8.0 additions
+
+The minifigure geometry, configurator, motion adaptation and Studio audio integration are original GPL-3.0-only code. The toy actors use no LEGO/LDraw assets or branded character models.
+
+Stable Audio runtime and weights are optional external dependencies and are not included in this repository or covered by the Studio GPL grant. See docs/STABLE_AUDIO.md for the exact upstream sources, pinned versions, prerequisites and applicable license notices. Any externally acquired runtime and model files retain their upstream licenses. Do not bundle them merely because this Studio integration is open source.

@@ -1,0 +1,23 @@
+const assert=require('node:assert/strict'),A=require('./audio-profile.cjs');
+const old={project:{scenes:[{id:'a',music:'Tranquility',sfx:['impact']} ]},assets:{}};
+assert.deepEqual(A.gains(old.project),{speech:.95,music:.075,effects:.24});
+const fresh=A.prepareNew(old);assert.equal(old.project.audioProduction,undefined);assert.equal(fresh.project.scenes[0].voiceProvider,'kokoro');assert.equal(fresh.project.audioProduction.musicProvider,'stable-audio');
+assert.equal(fresh.project.audioProduction.effectsProvider,'stable-audio');assert.equal(fresh.project.audioProduction.listeningVerified,false);
+let scene={id:'a',audio:'voice',music:'score',sfx:['impact']},assets={voice:'data', 'music/score':'data','sfx/a':'data'};
+A.assertAssets(fresh.project,scene,assets);assert.deepEqual(A.gains(fresh.project,scene),{speech:.95,music:.195,effects:.65});
+assert.equal(A.gains(fresh.project,{}).music,.3);
+assert.throws(()=>A.assertAssets(fresh.project,scene,{}),/actual generated SFX/);
+assert.throws(()=>A.assertAssets(fresh.project,{audio:'voice'},assets),/score/);
+A.assertAssets(fresh.project,{audio:'voice',musicSilenceReason:'intentional pause'},assets);
+assert.throws(()=>A.gains(fresh.project,{audioMix:{musicDuringSpeech:.08}}),/suppression/);
+assert.throws(()=>A.gains(fresh.project,{audioMix:{music:NaN}}),/Invalid/);
+assert.throws(()=>A.gains(fresh.project,{audioMix:{effects:.1}}),/exceed/);
+console.log('12 audio profile assertions passed; no listening claim');
+
+A.assertAssets(fresh.project,{voiceSilenceReason:'nonverbal action',musicSilenceReason:'intentional quiet'},{});
+assert.throws(()=>A.assertAssets(fresh.project,{musicSilenceReason:'quiet'},{}),/speaker clips/);
+assert.equal(A.musicOffset(fresh.project,{},140),0);
+assert.equal(A.musicOffset(fresh.project,{musicOffsetSeconds:2},140),2);
+assert.equal(A.musicOffset(old.project,{},140),60);
+assert.throws(()=>A.musicOffset(fresh.project,{musicOffsetSeconds:-1}),/Invalid/);
+console.log('PASS intentional nonverbal scenes and scene-local generated score offsets');
